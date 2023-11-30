@@ -84,6 +84,10 @@
    class="page-link"
    th:href="@{'/admin/cautruckhuy/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
     [[${label}]]</a>
+<a th:fragment="mausac_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/colors/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
 
 </body>
 </html>
