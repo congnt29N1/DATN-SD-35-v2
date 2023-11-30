@@ -65,6 +65,15 @@
     <span th:if="${sortField == fieldCauTrucKhuy}" style="text-decoration: none; color: black"
           th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 </th>
+
+<th th:fragment="veao_link(fieldVeAo, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/veao/page/' + ${currentPage} + '?sortField=' + ${fieldVeAo} + '&sortDir=' + ${sortField != fieldVeAo ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldVeAo}" style="text-decoration: none; color: black"
+          th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
 <!-- fragment cho phân trang-->
 <a th:fragment="pagecategory_link(pageNum, label)"
    class="page-link"
@@ -75,7 +84,9 @@
    class="page-link"
    th:href="@{'/admin/products/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
     [[${label}]]</a>
-
+<a th:fragment="pagematerial_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/veao/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
 <a th:fragment="page_link(pageNum, label)"
    class="page-link"
    th:href="@{'/admin/users/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
