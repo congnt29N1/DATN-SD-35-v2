@@ -1,28 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-
-    <!-- Thêm Bootstrap CSS -->
-    <link th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js}"></script>
+    <meta charset="UTF-8">
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link th:href="@{https://use.fontawesome.com/releases/v6.3.0/css/all.css}" crossorigin="anonymous">
     <script th:src="@{https://use.fontawesome.com/releases/v6.3.0/js/all.js}" crossorigin="anonymous"></script>
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/js/scripts.js}"></script>
-    <script th:src="@{/js/datatables-simple-demo.js}"></script>
-
     <style>
-
         body {
             padding: 50px;
             margin: 0;
-            background-image: url('/images/background_login_admin.jpg'); /* Đường dẫn đến ảnh background */
-            background-size: cover; /* Đảm bảo ảnh nằm đúng kích thước */
-            background-position: center center; /* Canh giữa ảnh */
-            background-repeat: no-repeat; /* Không lặp lại ảnh */
+            background-image: url('/images/background_login_admin.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -34,7 +26,7 @@
             border-radius: 10px;
             overflow: hidden;
             padding: 55px 55px 37px;
-            background: rgba(0, 0, 255, 0.1); /* Màu sắc nền với độ trong suốt 0.8 */
+            background: rgba(0, 0, 255, 0.1);
             text-align: center;
         }
 
@@ -48,7 +40,8 @@
             margin-bottom: 30px;
         }
 
-        .form-tt input[type=email], .form-tt input[type=password] {
+        .form-tt input[type=email],
+        .form-tt input[type=password] {
             font-family: Poppins-Regular;
             font-size: 16px;
             color: #fff;
@@ -58,17 +51,23 @@
             height: 45px;
             background: 0 0;
             padding: 10px 0;
-            border-bottom: 2px solid rgba(255,255,255,.24)!important;
+            border-bottom: 2px solid rgba(255, 255, 255, .24)!important;
             border: 0;
             outline: 0;
+            opacity: 0.8;
+            /* Set opacity to make it transparent */
+            padding-right: 30px; /* Add space for the eye icon */
         }
 
-        .form-tt input[type=email]:focus, .form-tt input[type=password]:focus {
-            color: red;
+        .form-tt input[type=email]:focus,
+        .form-tt input[type=password]:focus {
+            color: white;
+            opacity: 1;
+            /* Set opacity to 1 on focus to make it fully visible */
         }
 
         .form-tt input[type=password] {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .form-tt input::placeholder {
@@ -89,15 +88,24 @@
             border: 0;
             outline: 0;
             display: block;
-            margin: 30px auto;
+            margin: 20px auto;
+        }
+
+        /* Style for the "Show Password" eye icon */
+        .password-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #fff;
         }
     </style>
 </head>
+
 <body>
 <div class="form-tt">
     <h2>Đăng nhập</h2>
     <form th:action="@{/post/login}" method="post" name="dang-ky">
-        <!-- Nội dung biểu mẫu -->
         <div th:if="${error}" class="text-danger">
             [[${error}]]
         </div>
@@ -110,10 +118,37 @@
             <p class="text-warning">Bạn Đã Đăng Xuất</p>
         </div>
 
-        <input type="email" name="email" placeholder="email" class="form-control" required/>
-        <input type="password" name="password" placeholder="password" class="form-control" required />
-        <input type="submit" value="login" class="btn btn-primary" />
+        <input type="email" name="email" placeholder="email" class="form-control" required autofocus />
+        <div style="position: relative; margin-top: 10px">
+            <input type="password" name="password" id="password" placeholder="password" class="form-control" required />
+            <span class="password-toggle" onclick="togglePassword()">
+                    <i class="fa fa-eye"></i>
+                </span>
+        </div>
+        <input type="submit" value="Đăng nhập" />
     </form>
 </div>
+
+<!-- Font Awesome for the eye icon -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<!-- JavaScript to toggle password visibility -->
+<script>
+    function togglePassword() {
+        var passwordInput = document.getElementById("password");
+        var icon = document.querySelector(".password-toggle i");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>
 </body>
+
 </html>
