@@ -105,8 +105,17 @@
     <span th:if="${sortField == fieldCauTrucKhuy}" style="text-decoration: none; color: black"
           th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 </th>
-=======
+
     <span th:if="${sortField == fieldCauTrucKhuy}" style="text-decoration: none; color: black"
+          th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
+
+<th th:fragment="hoatiet_link(fieldHoaTiet, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/design/page/' + ${currentPage} + '?sortField=' + ${fieldHoaTiet} + '&sortDir=' + ${sortField != fieldHoaTiet ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldHoaTiet}" style="text-decoration: none; color: black"
           th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 </th>
 <!-- fragment cho phân trang-->
