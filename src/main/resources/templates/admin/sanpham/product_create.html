@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleft.org" lang="en">
+<head th:replace="admin/fragment/fragments:: page_head"></head>
+<body class="sb-nav-fixed">
+<div th:replace="admin/fragment/navigation:: navbar"></div>
+<div id="layoutSidenav">
+    <div th:replace="admin/fragment/navigation:: menu"></div>
+
+    <div id="layoutSidenav_content">
+        <main style="margin-left: 10px">
+            <div class="container">
+                <h2>Quản lý Sản Phẩm | Thêm Sản Phẩm</h2>
+                <div th:if="${chuadoianh != null}">
+                    <span th:text="${chuadoianh}"></span>
+                </div>
+                <form th:action="@{/admin/products/save}" method="post" onsubmit="return checkUniqueCreate(this)"
+                      enctype="multipart/form-data" th:object="${sanPham}">
+                    <input type="hidden" th:field="*{currentMainImage}" th:value="${sanPham.mainImage}"/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h6 for="maSanPham">Mã Sản Phẩm:</h6>
+                                <input type="text" class="form-control" th:field="*{maSanPham}" required
+                                       minlength="3" maxlength="10"/>
+                            </div>
+                            <div class="form-group">
+                                <h6 for="tenSanPham">Tên Sản Phẩm:</h6>
+                                <input type="text" class="form-control" th:field="*{tenSanPham}" required
+                                       minlength="3" maxlength="128"/>
+                            </div>
+                            <div class="form-group">
+                                <h6 for="danhMuc">Danh Mục:</h6>
+                                <select th:field="*{danhMuc}" class="form-control" required>
+                                    <th:block th:each="category : ${listDanhMuc}">
+                                        <option th:value="${category.id}" th:text="${category.ten}"></option>
+                                    </th:block>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <h6 for="trangThai">Trạng Thái:</h6>
+                                <div>
+                                    <label class="radio-inline">
+                                        <input type="radio" th:field="*{trangThai}" th:value="1" /> Hoạt động
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" th:field="*{trangThai}" th:value="0"/> Ngưng hoạt động
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h6 for="moTaSanPham">Mô Tả Sản Phẩm:</h6>
+                                <textarea class="form-control" id="moTaSanPham" name="moTaSanPham" th:field="*{moTaSanPham}" required
+                                          minlength="3" maxlength="1024" rows="4"></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h6>Ảnh Chính</h6>
+                                    </div>
+                                    <div class="form-group">
+                                        <img id="thumbnail"  class="img-fluid"
+                                             th:src="@{${sanPham.getMainImagePath}}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fileImage" class="custom-file-upload">
+                                            <i class="fa fa-cloud-upload"></i> Chọn ảnh
+                                        </label>
+                                        <input type="file" id="fileImage" name="fileImage" multiple
+                                               accept="image/png,image/jpeg" style="display: none;"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" value="Save" class="btn btn-primary m-3" id="submitButton"/>
+                        <input type="button" value="Cancel" class="btn btn-secondary" id="buttonCancel">
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+
+<div class="modal fade text-center" id="modalDialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle">Warning</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <span id="modalBody"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    moduleURL = "[[@{/admin/products}]]";
+    $("#buttonCancel").on("click", function () {
+        window.location = moduleURL;
+    });
+
+    function checkUniqueCreate(form) {
+        var url = "[[@{/admin/products/check_name_and_code}]]";
+        var sanPhamMa = form.maSanPham.value;
+        var sanPhamName = form.tenSanPham.value;
+        var csrfValue = $("input[name='_csrf']").val();
+        var params = {
+            ten: sanPhamName,
+            ma: sanPhamMa,
+            _csrf: csrfValue
+        };
+
+        $.post(url, params)
+            .done(function (response) {
+                if (response == "OK") {
+                    form.submit();
+                } else if (response == "Duplicated") {
+                    showWarningModal("Mã Hoặc Tên Đã Tồn Tại, Vui Lòng Kiểm Tra");
+                } else {
+                    showErrorModal("Lỗi phản hồi từ server");
+                }
+            })
+            .fail(function () {
+                showWarningModal("Mã Hoặc Tên Đã Tồn Tại, Vui Lòng Kiểm Tra");
+            });
+
+        return false;
+
+    }
+
+
+</script>
+
+<script th:inline="javascript">
+    function toggleTrangThaiUpdate(checkbox) {
+        if (checkbox.checked) {
+            checkbox.value = 1;
+        } else {
+            checkbox.value = 0;
+        }
+    }
+</script>
+<script th:src="@{/js/index_form.js}"></script>
+</body>
+</html>
