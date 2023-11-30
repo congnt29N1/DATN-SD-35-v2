@@ -45,14 +45,29 @@
         <span th:if="${sortField == fieldProducts}" style="text-decoration: none; color: black"
               th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
     </th>
+    <th th:fragment="pagematerial_link(fieldVatLieu, columnLabel)">
+        <a style="text-decoration: none; color: black"
+           th:href="@{'/admin/chatlieu/page/' + ${currentPage} + '?sortField=' + ${fieldVatLieu} + '&sortDir=' + ${sortField != fieldVatLieu ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+            [[${columnLabel}]]
+        </a>
+        <span th:if="${sortField == fieldVatLieu}" style="text-decoration: none; color: black"
+              th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+    </th>
+
     <!-- fragment cho phân trang-->
     <a th:fragment="pagecategory_link(pageNum, label)"
        class="page-link"
-       th:href="@{'/admin/categories/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
 
-    <a th:fragment="pageproduct_link(pageNum, label)"
+       th:href="@{'/admin/categories/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+    <a th:fragment="pagecategory_link(pageNum, label)"
        class="page-link"
+
+       th:href="@{'/admin/chatlieu/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+    <a th:fragment="pagematerial_link(pageNum, label)"
+       class="page-link"
+
        th:href="@{'/admin/products/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+
     <th th:fragment="cautruckhuy_link(fieldCauTrucKhuy, columnLabel)">
         <a style="text-decoration: none; color: black"
            th:href="@{'/admin/cautruckhuy/page/' + ${currentPage} + '?sortField=' + ${fieldCauTrucKhuy} + '&sortDir=' + ${sortField != fieldCauTrucKhuy ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
