@@ -18,8 +18,8 @@ public class WebSecurityConfig  {
     private final AuthenticationProvider authenticationProvider;
     private final com.example.datn.security.AccountFilter accountFilter;
 
-//    @Autowired
-//    SecurityConfiguration securityConfiguration;
+    @Autowired
+    SecurityConfiguration securityConfiguration;
 
     public WebSecurityConfig(AuthenticationProvider authenticationProvider, com.example.datn.security.AccountFilter accountFilter) {
         this.authenticationProvider = authenticationProvider;

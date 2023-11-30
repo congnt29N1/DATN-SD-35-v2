@@ -25,8 +25,8 @@ import javax.validation.Valid;
 @Controller
 public class MainController {
 
-@Autowired
-AuthenticationManager authenticationManager;
+    @Autowired
+    AuthenticationManager authenticationManager;
     @Autowired
     private AccountFilterService tokenProvider;
     @Autowired
