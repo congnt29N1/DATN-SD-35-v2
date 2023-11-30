@@ -53,6 +53,13 @@
     <a th:fragment="pageproduct_link(pageNum, label)"
        class="page-link"
        th:href="@{'/admin/products/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
-
+    <th th:fragment="cautruckhuy_link(fieldCauTrucKhuy, columnLabel)">
+        <a style="text-decoration: none; color: black"
+           th:href="@{'/admin/cautruckhuy/page/' + ${currentPage} + '?sortField=' + ${fieldCauTrucKhuy} + '&sortDir=' + ${sortField != fieldCauTrucKhuy ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+            [[${columnLabel}]]
+        </a>
+        <span th:if="${sortField == fieldCauTrucKhuy}" style="text-decoration: none; color: black"
+              th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+    </th>
    </body>
 </html>
