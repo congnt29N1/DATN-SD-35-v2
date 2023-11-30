@@ -32,9 +32,9 @@ public class CauTrucKhuyController {
     @GetMapping("/admin/cautruckhuy")
     public String listFirstPage(Model model){
         HttpSession session = request.getSession();
-//        if(session.getAttribute("admin") == null ){
-//            return "redirect:/login-admin" ;
-//        }
+        if(session.getAttribute("admin") == null ){
+            return "redirect:/login-admin" ;
+        }
         return listByPage(1,model,"tenCauTrucKhuy","asc",null);
     }
 
@@ -43,9 +43,9 @@ public class CauTrucKhuyController {
                               @Param("sortField") String sortField, @Param("sortDir") String sortDir,
                               @Param("keyword") String keyword){
         HttpSession session = request.getSession();
-//        if(session.getAttribute("admin") == null ){
-//            return "redirect:/login-admin" ;
-//        }
+        if(session.getAttribute("admin") == null ){
+            return "redirect:/login-admin" ;
+        }
 
         Page<CauTrucKhuy> page = cauTrucKhuyService.listByPage(pageNum,sortField,sortDir,keyword);
         List<CauTrucKhuy> listCauTrucKhuy = page.getContent();
@@ -74,9 +74,9 @@ public class CauTrucKhuyController {
                                              @PathVariable("status")boolean enabled,
                                              RedirectAttributes redirectAttributes){
         HttpSession session = request.getSession();
-//        if(session.getAttribute("admin") == null ){
-//            return "redirect:/login-admin" ;
-//        }
+        if(session.getAttribute("admin") == null ){
+            return "redirect:/login-admin" ;
+        }
         cauTrucKhuyService.updateCauTrucKhuyEnabledStatus(id,enabled);
         String status = enabled ? "online" : "offline";
         String message = "Cấu trúc khuy có id " + id + " thay đổi trạng thái thành " + status;
@@ -87,9 +87,9 @@ public class CauTrucKhuyController {
     @GetMapping("/admin/cautruckhuy/new")
     public String newVatLieu(Model model){
         HttpSession session = request.getSession();
-//        if(session.getAttribute("admin") == null ){
-//            return "redirect:/login-admin" ;
-//        }
+        if(session.getAttribute("admin") == null ){
+            return "redirect:/login-admin" ;
+        }
         model.addAttribute("cauTrucKhuy",new CauTrucKhuy());
         model.addAttribute("pageTitle","Tạo Mới cấu trúc khuy");
         return "admin/cautruckhuy/cautruckhuy_form";
@@ -98,9 +98,9 @@ public class CauTrucKhuyController {
     @PostMapping("/admin/cautruckhuy/save")
     public String saveVatLieu(CauTrucKhuy cauTrucKhuy, RedirectAttributes redirectAttributes){
         HttpSession session = request.getSession();
-//        if(session.getAttribute("admin") == null ){
-//            return "redirect:/login-admin" ;
-//        }
+        if(session.getAttribute("admin") == null ){
+            return "redirect:/login-admin" ;
+        }
         cauTrucKhuyService.save(cauTrucKhuy);
         redirectAttributes.addFlashAttribute("message","Thay Đổi Thành Công");
         return "redirect:/admin/cautruckhuy";
@@ -113,9 +113,9 @@ public class CauTrucKhuyController {
 
         try {
             HttpSession session = request.getSession();
-//            if (session.getAttribute("admin") == null) {
-//                return "redirect:/login-admin";
-//            }
+            if (session.getAttribute("admin") == null) {
+                return "redirect:/login-admin";
+            }
             CauTrucKhuy cauTrucKhuy = cauTrucKhuyService.get(id);
             model.addAttribute("cauTrucKhuy", cauTrucKhuy);
             model.addAttribute("pageTitle", "Update Cấu trúc khuy (ID: " + id + ")");
