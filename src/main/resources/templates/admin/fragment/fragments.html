@@ -27,6 +27,14 @@
 
 </head>
 <body>
+<th th:fragment="column_link(fieldName, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/users/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldName}" style="text-decoration: none; color: black"
+          th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
     <!-- fragment cho navigation-->
     <th th:fragment="danhmuc_link(fieldDanhMuc, columnLabel)">
         <a style="text-decoration: none; color: black"
@@ -53,6 +61,10 @@
     <a th:fragment="pageproduct_link(pageNum, label)"
        class="page-link"
        th:href="@{'/admin/products/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+<a th:fragment="page_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/users/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+
 
    </body>
 </html>
