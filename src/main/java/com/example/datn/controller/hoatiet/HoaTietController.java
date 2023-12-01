@@ -34,9 +34,9 @@ public class HoaTietController {
     public String listFirstPage(Model model){
         HttpSession session = request.getSession();
 
-//        if(session.getAttribute("admin") == null ){
-//            return "redirect:/login-admin" ;
-//        }
+        if(session.getAttribute("admin") == null ){
+            return "redirect:/login-admin" ;
+        }
         return listByPage(1,model,"tenHoaTiet","asc",null);
     }
 
@@ -46,9 +46,9 @@ public class HoaTietController {
                              @Param("keyword")String keyword
     ){
         HttpSession session = request.getSession();
-//        if(session.getAttribute("admin") == null ){
-//            return "redirect:/login-admin" ;
-//        }
+        if(session.getAttribute("admin") == null ){
+            return "redirect:/login-admin" ;
+        }
         System.out.println("SortField: " + sortField);
         System.out.println("sortOrder: " + sortDir);
         Page<HoaTiet> page = service.listByPage(pageNum, sortField, sortDir,keyword);
@@ -60,7 +60,6 @@ public class HoaTietController {
         if(endCount > page.getTotalElements()){
             endCount = page.getTotalElements();
         }
-
         String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
 
         model.addAttribute("currentPage",pageNum);
@@ -76,17 +75,14 @@ public class HoaTietController {
         return "admin/hoatiet/design";
 
     }
-
     @GetMapping("/admin/design/{id}/enabled/{status}")
     public String updateHoaTietEnabledStatus(@PathVariable("idHoaTiet") Integer id,
                                              @PathVariable("status") boolean enabled,
                                              RedirectAttributes redirectAttributes){
         HttpSession session = request.getSession();
-//        if(session.getAttribute("admin") == null ){
-//            return "redirect:/login-admin" ;
-//
-//
-//        }
+        if(session.getAttribute("admin") == null ){
+            return "redirect:/login-admin" ;
+        }
         service.updateHoaTietEnabledStatus(id, enabled);
         String status = enabled ? "online" : "offline";
         String message = "Hoạ tiết có id " + id + " thay đổi trạng thái thành " + status;
@@ -97,9 +93,9 @@ public class HoaTietController {
     @GetMapping("/admin/design/new")
     public String newHoaTiet(Model model){
         HttpSession session = request.getSession();
-//        if (session.getAttribute("admin") == null) {
-//            return "redirect:/login-admin";
-//        }
+        if (session.getAttribute("admin") == null) {
+            return "redirect:/login-admin";
+        }
         model.addAttribute("hoaTiet", new HoaTiet());
         model.addAttribute("pageTitle","Tạo Mới Họa Tiết");
         return "admin/hoatiet/design_form";
@@ -107,10 +103,10 @@ public class HoaTietController {
 
     @PostMapping("/admin/design/save")
     public String saveHoaTiet(HoaTiet danhMuc, RedirectAttributes redirectAttributes){
-//        HttpSession session = request.getSession();
-//        if(session.getAttribute("admin") == null ){
-//            return "redirect:/login-admin" ;
-//        }
+        HttpSession session = request.getSession();
+        if(session.getAttribute("admin") == null ){
+            return "redirect:/login-admin" ;
+        }
         service.save(danhMuc);
         redirectAttributes.addFlashAttribute("message","Thay Đổi Thành Công");
         return "redirect:/admin/design";
@@ -122,9 +118,9 @@ public class HoaTietController {
                            RedirectAttributes redirectAttributes){
         try{
             HttpSession session = request.getSession();
-//            if(session.getAttribute("admin") == null ){
-//                return "redirect:/login-admin" ;
-//            }
+            if(session.getAttribute("admin") == null ){
+                return "redirect:/login-admin" ;
+            }
             HoaTiet hoaTiet = service.get(id);
             model.addAttribute("hoaTiet", hoaTiet);
             model.addAttribute("pageTitle","Update Họa Tiết(ID : " + id + ")");
