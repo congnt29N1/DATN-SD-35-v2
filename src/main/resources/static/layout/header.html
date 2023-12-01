@@ -1,0 +1,115 @@
+<!-- Add your site or application content here -->
+<style>
+    .header-top {
+        background-color: rgb(255, 255, 255);
+        height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .header-right-menu {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .logo {
+        text-align: center;
+        padding-top: 20px; /* Adjust the padding as needed */
+    }
+
+    .logo img {
+        width: 60%; /* Adjust the width as needed */
+        height: 100%; /* This will maintain the aspect ratio */
+        display: block;
+        margin: 0 auto; /* Center the image */
+    }
+
+    /* Add the following styles to set the text color to black and make it bold */
+    .header-right-menu nav ul.list-inline li a {
+        color: black;
+        font-weight: bold;
+        margin: 0 10px; /* Adjust the margin as needed */
+    }
+
+    select {
+        border: none;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        margin: 0 10px; /* Adjust the margin as needed */
+    }
+
+    /* Style to show dropdown on hover */
+    select:hover {
+        cursor: pointer;
+    }
+</style>
+<!-- HEADER-TOP START -->
+<div class="header-top">
+    <div class="container">
+        <div class="row">
+            <!-- HEADER-LEFT-MENU START -->
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                <div class="logo" >
+                    <a href="#index"><img src="/images/logo.png" alt="bstore logo"  /></a>
+                </div>
+            </div>
+            <!-- HEADER-LEFT-MENU END -->
+            <!-- HEADER-RIGHT-MENU START -->
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                <div class="header-right-menu">
+                    <nav>
+                        <ul class="list-inline" ng-if="currentUser.username == null">
+                            <li class="active"><a href="#index">TRANG CHỦ</a> </li>
+                             <li><a href="#">MAY ĐO ONLINE</a></li>
+                            <li>
+                                <a href="#sanPham">SẢN PHẨM</a>
+                            </li>
+
+                            <li> <a href="#chinhSach">CHÍNH SÁCH</a></li>
+                            <li><a href="#cart">GIỎ HÀNG</a></li>
+                            <li><a href="#login">ĐĂNG NHẬP</a></li>
+                            <li><a href="#signup">ĐĂNG KÝ</a></li>
+                        </ul>
+                        <ul class="list-inline" ng-if="currentUser.username != null">
+                            <li class="active"><a href="#index">TRANG CHỦ</a> </li>
+                            <li><a href="#">MAY ĐO ONLINE</a></li>
+                            <li>
+                                <a href="#sanPham">SẢN PHẨM</a>
+                            </li>
+
+                            <li> <a href="#chinhSach">CHÍNH SÁCH</a></li>
+                            <li><a style="cursor: pointer"  data-toggle="modal" data-target="#myModal10" >ĐĂNG XUẤT</a></li>
+                            <li><a href="#cart">GIỎ HÀNG</a></li>
+                            <li><a href="#account">TÀI KHOẢN</a></li>
+                                <li>Hi {{currentUser.username}} </li>
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="indexCtrl" >
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content" style="margin-top: 40%;width: 69%;margin-left: 14%;">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h2 class="modal-title" id="myModalLabel">Thông báo</h2>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h3 class="modal-title">Bạn vẫn muốn đăng xuất chứ</h3>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary" ng-click="logouts()" style="background: red">Xác nhận</button>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- HEADER-RIGHT-MENU END -->
+        </div>
+    </div>
+</div>
+<hr>

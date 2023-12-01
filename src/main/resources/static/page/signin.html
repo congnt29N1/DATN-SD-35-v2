@@ -1,0 +1,82 @@
+
+		<section class="main-content-section" >
+			<div class="container">
+
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<h2 class="page-title" style="text-align: center">Đăng nhập</h2>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<!-- CREATE-NEW-ACCOUNT START -->
+						<div class="create-new-account">
+							<img height="340px" src="/assets/img/slider_4.jpg">
+						</div>
+						<!-- CREATE-NEW-ACCOUNT END -->
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<!-- REGISTERED-ACCOUNT START -->
+						<div class="primari-box registered-account" ng-controller="loginCtrl">
+							<form class="new-account-box" id="accountLogin" method="post" novalidate name="formLogin" >
+								<div class="form-content">
+									<div class="form-group primary-form-group">
+										<label for="loginemail">Email</label>
+										<small
+											id="fullnae"
+											ng-show="formLogin.txtTen.$error.required"
+											class="form-text text-danger"
+									>
+											<h1 style="color: #ff171a">*</h1>
+										</small>
+										<input type="email"  name="txtTen" id="loginemail"  ng-model="username" class="form-control input-feild" required>
+
+									</div>
+									<div class="form-group primary-form-group">
+										<label for="password">Password</label>
+										<small
+												id="passwrd"
+												ng-show="formLogin.txtPass.$error.required"
+												class="form-text text-danger"
+										><h1 style="color: #ff171a">*</h1></small
+										>
+										<small
+												id="passrd"
+												ng-show="formLogin.txtPass.$error.maxlength"
+												class="form-text text-danger"
+										>Không nhập mật khẩu quá 30 kí tự</small
+										>
+										<small
+												id="pasword"
+												ng-show="formLogin.txtPass.$error.maxlength"
+												class="form-text text-danger"
+										>Không nhập mật khẩu ít hơn 4 kí tự</small
+										>
+										<input type="password"  name="txtPass"  ng-model="password" id="password" class="form-control input-feild" required>
+
+									</div>
+									<div class="forget-password">
+										<p><a href="#forgotPassword">Quên mật khẩu?</a></p>
+									</div>
+									<div class="forget-password">
+										<p><a href="#signup">Bạn chưa có tài khoản?</a></p>
+									</div>
+									<span class="text-danger" ng-show="error">
+                     				 {{errorMessages}}
+                    				</span>
+									<div class="submit-button"   ng-click="logins()">
+										<p id="signinCreate" class="btn main-btn" style="border-radius:2px;background: rgb(142, 116, 77)">
+										<span style="color: #EEEEEE">
+											<i class="fa fa-lock submit-icon" ></i>
+											Đăng nhập
+										</span>
+										</p>
+									</div>
+<!--									<a href="#forgotPassword">Quên mật khẩu</a>-->
+								</div>
+							</form>
+						</div>
+						<!-- REGISTERED-ACCOUNT END -->
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- MAIN-CONTENT-SECTION END -->

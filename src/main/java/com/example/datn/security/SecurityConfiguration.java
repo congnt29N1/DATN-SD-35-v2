@@ -1,7 +1,7 @@
 package com.example.datn.security;
 
 import com.example.datn.entity.KhachHang;
-//import com.example.datn.repository.KhachHangRepository;
+import com.example.datn.repository.KhachHangRepository;
 import com.example.datn.repository.NhanVienRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfiguration {
 
     private final NhanVienRepository nhanVienRepository;
-//    private final KhachHangRepository khachHangRepository;
+    private final KhachHangRepository khachHangRepository;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -33,17 +33,16 @@ public class SecurityConfiguration {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-////                KhachHang customer = khachHangRepository.getKhachHangByEmail(username);
+                KhachHang customer = khachHangRepository.getKhachHangByEmail(username);
 ////                NhanVien staff = nhanVienRepository.getNhanVienByEmail(username);
-//                if(customer != null){
-//                    return customer.get();
+                if(customer != null){
+                    return customer.get();
 ////                }else if (staff != null) {
 ////                    System.out.println(staff);
 ////                    return staff.get();
-//                } else {
-//                    throw new UsernameNotFoundException("Không tìm thấy người dùng với email: " + username);
-//                }
-                return null;
+                } else {
+                    throw new UsernameNotFoundException("Không tìm thấy người dùng với email: " + username);
+                }
             }
         };
     }
