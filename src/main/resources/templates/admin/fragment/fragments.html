@@ -66,6 +66,14 @@
     <span th:if="${sortField == fieldCauTrucKhuy}" style="text-decoration: none; color: black"
           th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 </th>
+<th th:fragment="kichco_link(fieldKichCo, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/sizes/page/' + ${currentPage} + '?sortField=' + ${fieldKichCo} + '&sortDir=' + ${sortField != fieldKichCo ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldKichCo}" style="text-decoration: none; color: black"
+          th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
 <!-- fragment cho phân trang-->
 <a th:fragment="pagecategory_link(pageNum, label)"
    class="page-link"
@@ -90,6 +98,9 @@
 <a th:fragment="page_link(pageNum, label)"
    class="page-link"
    th:href="@{'/admin/users/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+<a th:fragment="pagesize_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/sizes/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
 
 </body>
 </html>
