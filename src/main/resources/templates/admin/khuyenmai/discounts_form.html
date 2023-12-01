@@ -76,7 +76,6 @@
     </form>
 
         </main>
-        <div th:replace="admin/fragment/fragments::footer"></div>
     </div>
 </div>
 
@@ -154,6 +153,7 @@
         var params = {
             maKhuyenMai: maKhuyenMai,
             maKhuyenMaiBanDau: maKhuyenMaiBanDau,
+            khuyenMaiName: khuyenMaiName,
             _csrf: csrfValue
         };
 
