@@ -89,6 +89,13 @@
     <span th:if="${sortField == fieldkieutui}" style="text-decoration: none; color: black"
           th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 </th>
+<th th:fragment="loplot_link(fieldLopLot, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/loplot/page/' + ${currentPage} + '?sortField=' + ${fieldLopLot} + '&sortDir=' + ${sortField != fieldLopLot ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldLopLot}" style="text-decoration: none; color: black"
+
 <th th:fragment="khuyenmai_link(fieldKhuyenMai, columnLabel)">
     <a style="text-decoration: none; color: black"
        th:href="@{'/admin/discounts/page/' + ${currentPage} + '?sortField=' + ${fieldKhuyenMai} + '&sortDir=' + ${sortField != fieldKhuyenMai ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
@@ -106,6 +113,7 @@
     <span th:if="${sortField == fieldHoaTiet}" style="text-decoration: none; color: black"
           th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 </th>
+
 <!-- fragment cho phân trang-->
 <a th:fragment="pagecategory_link(pageNum, label)"
    class="page-link"
@@ -126,6 +134,10 @@
    class="page-link"
    th:href="@{'/admin/products/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
     [[${label}]]</a>
+<a th:fragment="pagematerial_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/loplot/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+<a th:fragment="page_link(pageNum, label)"
 <a th:fragment="cautruckhuy_link(pageNum, label)"
    class="page-link"
    th:href="@{'/admin/cautruckhuy/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
