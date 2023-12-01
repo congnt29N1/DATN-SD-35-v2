@@ -143,5 +143,9 @@
 <a th:fragment="kieutui_link(pageNum, label)"
    class="page-link"
    th:href="@{'/admin/kieutui/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+<a th:fragment="pagedesign_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/design/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+
 </body>
 </html>
