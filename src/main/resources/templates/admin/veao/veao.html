@@ -76,21 +76,21 @@
                     <nav>
                         <ul class="pagination justify-content-center">
                             <li th:class="${currentPage > 1 ?'page-item' : 'page-item disabled'}">
-                                <a th:replace="admin/fragment/fragments::pagematerial_link(1, 'Trang Đầu')" ></a>
+                                <a th:replace="admin/fragment/fragments::veao_link(1, 'Trang Đầu')" ></a>
                             </li>
                             <li th:class="${currentPage > 1 ?'page-item' : 'page-item disabled'}">
-                                <a th:replace="admin/fragment/fragments::pagematerial_link(${currentPage - 1}, Trước)"></a>
+                                <a th:replace="admin/fragment/fragments::veao_link(${currentPage - 1}, Trước)"></a>
                             </li>
                             <li th:class="${currentPage != i ? 'page-item': 'page-item active' }"
                                 th:each="i : ${#numbers.sequence(1,totalPages)}">
-                                <a th:replace="admin/fragment/fragments::pagematerial_link(${i}, ${i})"></a>
+                                <a th:replace="admin/fragment/fragments::veao_link(${i}, ${i})"></a>
                             </li>
 
                             <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-                                <a th:replace="admin/fragment/fragments::pagematerial_link(${currentPage + 1}, Sau)"></a>
+                                <a th:replace="admin/fragment/fragments::veao_link(${currentPage + 1}, Sau)"></a>
                             </li>
                             <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-                                <a th:replace="admin/fragment/fragments::pagematerial_link(${totalPages}, 'Trang Cuối')"></a>
+                                <a th:replace="admin/fragment/fragments::veao_link(${totalPages}, 'Trang Cuối')"></a>
                             </li>
                         </ul>
                     </nav>

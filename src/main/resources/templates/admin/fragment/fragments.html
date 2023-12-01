@@ -4,20 +4,23 @@
 
 
 <head th:fragment="page_head">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <link  th:href="@{/css/bootstrap.min.css}">
-    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link th:href="@{/css/bootstrap.min.css}">
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
     <link th:href="@{https://use.fontawesome.com/releases/v6.3.0/css/all.css}" crossorigin="anonymous">
     <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
     <script th:src="@{https://use.fontawesome.com/releases/v6.3.0/js/all.js}" crossorigin="anonymous"></script>
     <script th:src="@{https://cdn.jquery.com/jquery-3.7.0.js}" crossorigin="anonymous"></script>
     <script th:src="@{https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js}" crossorigin="anonymous"></script>
-    <script th:src="@{https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js}" crossorigin="anonymous"></script>
-    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css}" crossorigin="anonymous"></script>
-    <script th:src="@{https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css}" crossorigin="anonymous"></script>
+    <script th:src="@{https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js}"
+            crossorigin="anonymous"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css}"
+            crossorigin="anonymous"></script>
+    <script th:src="@{https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css}"
+            crossorigin="anonymous"></script>
     <script th:src="@{/js/scripts.js}"></script>
     <script th:src="@{/js/index_form.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
@@ -127,29 +130,29 @@
    class="page-link"
    th:href="@{'/admin/categories/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
     [[${label}]]</a>
+<a th:fragment="chatLieu_link(pageNum, label)"
+   class="page-link"
 
+   th:href="@{'/admin/chatlieu/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
+<a th:fragment="pagematerial_link(pageNum, label)"
+   class="page-link"
 
-       th:href="@{'/admin/categories/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
-    <a th:fragment="pagecategory_link(pageNum, label)"
-       class="page-link"
-
-       th:href="@{'/admin/chatlieu/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
-    <a th:fragment="pagematerial_link(pageNum, label)"
-       class="page-link"
-
-       th:href="@{'/admin/products/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+   th:href="@{'/admin/products/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
 <a th:fragment="pageproduct_link(pageNum, label)"
    class="page-link"
    th:href="@{'/admin/products/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
     [[${label}]]</a>
-<a th:fragment="pagematerial_link(pageNum, label)"
+<a th:fragment="veao_link(pageNum, label)"
    class="page-link"
-   th:href="@{'/admin/veao/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+   th:href="@{'/admin/veao/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
 <a th:fragment="page_link(pageNum, label)"
 
    class="page-link"
-   th:href="@{'/admin/loplot/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
-<a th:fragment="page_link(pageNum, label)"
+   th:href="@{'/admin/loplot/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
 <a th:fragment="cautruckhuy_link(pageNum, label)"
    class="page-link"
    th:href="@{'/admin/cautruckhuy/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
@@ -164,22 +167,28 @@
     [[${label}]]</a>
 <a th:fragment="pagesdiscounts_link(pageNum, label)"
    class="page-link"
-   th:href="@{'/admin/discounts/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+   th:href="@{'/admin/discounts/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
 <a th:fragment="page_link(pageNum, label)"
    class="page-link"
-   th:href="@{'/admin/users/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+   th:href="@{'/admin/users/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
 <a th:fragment="pagesize_link(pageNum, label)"
    class="page-link"
-   th:href="@{'/admin/sizes/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+   th:href="@{'/admin/sizes/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
 <a th:fragment="kieudet_link(pageNum, label)"
    class="page-link"
-   th:href="@{'/admin/kieudet/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+   th:href="@{'/admin/kieudet/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
 <a th:fragment="kieutui_link(pageNum, label)"
    class="page-link"
-   th:href="@{'/admin/kieutui/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+   th:href="@{'/admin/kieutui/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
 <a th:fragment="pagedesign_link(pageNum, label)"
    class="page-link"
-   th:href="@{'/admin/design/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+   th:href="@{'/admin/design/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
 
-   </body>
+</body>
 </html>
