@@ -1,0 +1,184 @@
+<!-- Add your site or application content here -->
+<style>
+    .header-top,
+    .header-middle {
+        background-color: #222; /* Màu nền */
+        color: #fff; /* Màu chữ */
+        padding: 15px 0; /* Khoảng cách giữa phần tử và nội dung bên trong */
+    }
+
+    .header-middle {
+        text-align: center; /* Căn giữa nội dung trong header-middle */
+    }
+
+    /* CSS cho header-middle */
+    .header-middle {
+        background-color: #333; /* Màu nền */
+        padding: 15px 0; /* Khoảng cách giữa phần tử và nội dung bên trong */
+        text-align: center; /* Căn giữa nội dung trong header-middle */
+    }
+    .header-middle .logo a img {
+        margin-right: 155px;
+    }
+    .header-middle a,
+    .header-middle select,
+    .header-middle input,
+    .header-middle button {
+        color: #fff;
+        text-decoration: none;
+        margin: 10px; /* Khoảng cách giữa các phần tử */
+        display: inline-block; /* Hiển thị các phần tử trên cùng một dòng */
+        vertical-align: middle;
+    }
+    .header-middle a:hover,
+    .header-middle select:hover {
+        color: #fff; /* Màu chữ khi hover */
+    }
+
+    .header-middle select {
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+        background-color: #333; /* Màu nền combobox */
+        color: #fff; /* Màu chữ combobox */
+    }
+
+    .header-middle input {
+        border: 1px solid #fff;
+        padding: 8px;
+        height: 30px;
+    }
+
+    .header-middle button {
+        background-color: #fff;
+        color: #333;
+        cursor: pointer;
+        height: 30px;
+    }
+
+
+</style>
+<!-- HEADER-TOP START -->
+<div class="header-top">
+    <div class="container">
+        <div class="row">
+            <!-- HEADER-LEFT-MENU START -->
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="header-left-menu">
+                    <div class="welcome-info">
+                        Welcome to <span>SUIT HOUSE</span>
+                    </div>
+                    <div class="currenty-converter">
+                        <form method="post" action="#" id="currency-set">
+                            <div class="current-currency">
+                                <span class="cur-label">Tiền tệ : </span><strong>VNĐ</strong>
+                            </div>
+                            <ul class="currency-list currency-toogle">
+                                <li>
+                                    <a title="Dollar (USD)" href="#">Dollar (USD)</a>
+                                </li>
+                                <li>
+                                    <a title="Euro (EUR)" href="#">Euro (EUR)</a>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="selected-language">
+                        <div class="current-lang">
+                            <span class="current-lang-label">Ngôn ngữ : </span><strong>Tiếng Việt</strong>
+                        </div>
+                        <ul class="languages-choose language-toogle">
+                            <li>
+                                <a href="#" title="English">
+                                    <span>English</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" title="Français (French)">
+                                    <span>Français</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- HEADER-LEFT-MENU END -->
+            <!-- HEADER-RIGHT-MENU START -->
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="header-right-menu">
+                    <nav>
+                        <ul class="list-inline" ng-if="currentUser.username == null">
+                            <li><a href="#cart">Giỏ hàng</a></li>
+                            <li><a href="#login">Đăng nhập</a></li>
+                            <li><a href="#signup">Đăng ký</a></li>
+                        </ul>
+                        <ul class="list-inline" ng-if="currentUser.username != null">
+                            <li><a style="cursor: pointer"  data-toggle="modal" data-target="#myModal10" >Đăng xuất</a></li>
+                            <li><a href="#cart">Giỏ hàng</a></li>
+                            <li><a href="#account">Tài khoản</a></li>
+                                <li><a href="#wishlist">Yêu thích</a></li>
+                                <li>Hi {{currentUser.username}} </li>
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="indexCtrl" >
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content" style="margin-top: 40%;width: 69%;margin-left: 14%;">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h2 class="modal-title" id="myModalLabel">Thông báo</h2>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h3 class="modal-title">Bạn vẫn muốn đăng xuất chứ</h3>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary" ng-click="logouts()" style="background: red">Xác nhận</button>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--     modal-->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- HEADER-RIGHT-MENU END -->
+        </div>
+    </div>
+</div>
+<!-- HEADER-TOP END -->
+<!-- HEADER-MIDDLE START -->
+<section class="header-middle">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- LOGO START -->
+                <div class="logo" style=" width: 30%; padding-top: 0;float: left; margin-bottom: 0;
+">
+                    <a href="#index"><img src="/images/logo.png" alt="bstore logo"  width="46%"/></a>
+                </div>
+
+                <a href="#">MAY ĐO ONLINE</a>
+                <select>
+                    <option value="" disabled selected>SẢN PHẨM</option>
+                    <option value="category1">PHỤ KIỆN</option>
+                    <option value="category2">ÁO SƠ MI</option>
+                    <option value="category3">TUXEDO</option>
+                    <option value="category3">SUITS NỮ</option>
+                    <option value="category3">SUITS NAM</option>
+                </select>
+                <a href="#">LOOKBOOKS</a>
+                <select>
+                    <option value="" disabled selected>TIN TỨC</option>
+                    <option value="news1">Tin tức 1</option>
+                    <option value="news2">Tin tức 2</option>
+                    <option value="news3">Tin tức 3</option>
+                </select>
+                <input type="text" placeholder="Nhập thông tin áo">
+                <button type="submit">Tìm kiếm</button>
+                <!-- CATEGORYS-PRODUCT-SEARCH END -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- HEADER-MIDDLE END -->
+<!-- MAIN-MENU-AREA START -->
