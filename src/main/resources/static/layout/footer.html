@@ -2,24 +2,26 @@
 <style>
     /* FOOTER-TOP-AREA */
     .footer-top-area {
-        background-color: #222; /* Màu nền tối */
+        background-color: rgb(255, 255, 255);
         color: #fff; /* Màu chữ sáng */
         padding: 50px 0;
+        margin-top: 10px;
     }
 
     .footer-top-area h3 {
-        color: #fff;
+        color: black;
         font-size: 20px;
         margin-bottom: 15px;
+        font-weight: bold;
     }
     .footer-top-area h6 {
-        color: #FF4F4F;
+        color: black;
         font-size: 16px;
         margin-top: 10px;
     }
 
     .footer-top-area p {
-        color: #ccc; /* Màu chữ hơi xám */
+        color: black; /* Màu chữ hơi xám */
         font-size: 14px;
         line-height: 1.5;
     }
@@ -35,31 +37,41 @@
     }
 
     .footer-top-area ul li a {
-        color: #EEEEEE;
+        color: black;
         text-decoration: none;
         font-size: 14px;
     }
 
-    /* COPYRIGHT-AREA */
-    .copyright-area {
-        background-color: #111; /* Màu nền tối */
-        color: #fff;
-        padding: 20px 0;
-    }
+
 
     .copy-right address {
         font-size: 14px;
         margin: 0;
     }
 
-    .scroll-to-top {
-        position: relative;
-        float: right;
-        margin-top: -30px;
+
+
+    .scroll-to-top a {
+        color: black;
+        font-size: 24px;
+        text-decoration: none;
+    }
+
+    /* Scroll to top button on hover */
+    .scroll-to-top a:hover {
+        color: black;
+    }
+
+
+
+    .copy-right address {
+        font-size: 14px;
+        margin: 0;
+        color: black; /* Màu chữ hơi xám */
     }
 
     .scroll-to-top a {
-        color: #fff;
+        color: black;
         font-size: 24px;
         text-decoration: none;
     }
@@ -68,51 +80,38 @@
     .scroll-to-top a:hover {
         color: #f4f4f4;
     }
+    span{
+        color: black;
 
-    .copyright-area {
-        background-color: #222; /* Màu nền tối */
-        color: #fff;
-        padding: 20px 0;
     }
-
-    .copy-right address {
-        font-size: 14px;
-        margin: 0;
-        color: #ccc; /* Màu chữ hơi xám */
-    }
-
-    .scroll-to-top {
-        position: relative;
-        float: right;
-        margin-top: -30px;
-    }
-
-    .scroll-to-top a {
-        color: #fff;
-        font-size: 24px;
-        text-decoration: none;
-    }
-
-    /* Scroll to top button on hover */
-    .scroll-to-top a:hover {
-        color: #f4f4f4;
-    }
-
 </style>
 <!-- COMPANY-FACALITY END -->
 <!-- FOOTER-TOP-AREA START -->
+
 <section class="footer-top-area">
     <div class="container">
-
+        <hr>
 
                 <div class="row">
                     <div class="col-md-4">
                         <h3>ĐỊA CHỈ CỬA HÀNG NHÀ SUITS</h3>
-                        <h6>Văn phòng đại diện & Showroom 1:</h6> 129 Quốc Hương, P. Thảo Điền , TP Thủ Đức, TPHCM
-                        <h6>Điện thoại:</h6>  0938.437.581
-                        <h6>Showroom 2:</h6>  15 Đinh Công Tráng, Phường Tân Định, Quận 1, TP. HCM
-                        <h6>Email:</h6>  hello@thesuitshouse.com
-                        <h6>Thời gian làm việc:</h6>  Thứ 2 - CN: 12:00 PM - 21:30 PM
+                        <span><strong>Văn phòng đại diện & Showroom 1:</strong>  129 Quốc Hương, P. Thảo Điền , TP Thủ Đức, TPHCM</span>
+                        <br>
+                        <br>
+
+                        <span><strong>Điện thoại:</strong> 0938.437.581</span>
+                        <br>
+                        <br>
+
+                        <span><strong>Showroom 2:</strong> 15 Đinh Công Tráng, Phường Tân Định, Quận 1, TP. HCM</span>
+                        <br>
+                        <br>
+
+                        <span><strong>Email:</strong>hello@thesuitshouse.com</span>
+                        <br>
+                        <br>
+
+                        <span><strong>Thời gian làm việc:</strong>Thứ 2 - CN: 12:00 PM - 21:30 PM </span>
                     </div>
                     <div class="col-md-2">
                         <h3>DANH MỤC</h3>
@@ -136,35 +135,13 @@
                         <h3>ĐĂNG KÝ NHẬN TIN</h3>
                         <p>Để nhận tin khuyến mãi mới nhất từ Nhà SUITS</p>
                         <div class="form-group newsletter-form-group">
-                            <input type="text" class="form-control newsletter-form" placeholder="Nhập  email của bạn">
-                            <input type="submit" class="newsletter-btn" name="submit" value="Đăng ký" />
+                            <input type="text" class="form-control newsletter-form" placeholder="Nhập  email của bạn" style="width: 60%">
+                            <input type="submit" class="newsletter-btn" name="submit" value="Đăng ký" style="border-radius:2px;background: rgb(142, 116, 77);float: left"/>
                         </div>
 
                     </div>
                 </div>
-
-
-
-
-
         </div>
     </div>
 </section>
-<!-- FOOTER-TOP-AREA END -->
-<!-- COPYRIGHT-AREA START -->
-<footer class="copyright-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="copy-right">
-                    <address>Copyright © 2015 <a href="http://bootexperts.com/">BootExperts</a> All Rights Reserved</address>
-                </div>
-                <div class="scroll-to-top">
-                    <a href="#" class="bstore-scrollertop"><i class="fa fa-angle-double-up"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- COPYRIGHT-AREA END -->
 <script src="/assets/js/main.js"></script>

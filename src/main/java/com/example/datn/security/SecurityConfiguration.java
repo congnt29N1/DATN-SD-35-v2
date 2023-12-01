@@ -1,7 +1,6 @@
 package com.example.datn.security;
 
 import com.example.datn.entity.KhachHang;
-//import com.example.datn.repository.KhachHangRepository;
 import com.example.datn.repository.KhachHangRepository;
 import com.example.datn.repository.NhanVienRepository;
 import lombok.AllArgsConstructor;

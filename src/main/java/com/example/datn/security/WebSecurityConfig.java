@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class WebSecurityConfig  {
+public class WebSecurityConfig {
 
     private final AuthenticationProvider authenticationProvider;
     private final com.example.datn.security.AccountFilter accountFilter;
@@ -27,9 +27,8 @@ public class WebSecurityConfig  {
     }
 
 
-
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
 
                 .cors()
@@ -38,8 +37,8 @@ public class WebSecurityConfig  {
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/refresh-token").permitAll()
-                .antMatchers("/src/**","/images/**", "/js/**", "/webjars/**").permitAll()
-                .antMatchers("/api/giohang/**","/api/phan-hoi/**","/api/dia-chi","/api/don-hang/**").hasAuthority("ROLE_CUSTOMER")
+                .antMatchers("/src/**", "/images/**", "/js/**", "/webjars/**").permitAll()
+                .antMatchers("/api/giohang/**", "/api/phan-hoi/**", "/api/dia-chi", "/api/don-hang/**").hasAuthority("ROLE_CUSTOMER")
 //                .antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
                 .and()
                 .sessionManagement()
