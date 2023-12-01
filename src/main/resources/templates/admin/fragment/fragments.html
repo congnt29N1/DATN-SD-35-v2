@@ -4,20 +4,23 @@
 
 
 <head th:fragment="page_head">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <link  th:href="@{/css/bootstrap.min.css}">
-    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link th:href="@{/css/bootstrap.min.css}">
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
     <link th:href="@{https://use.fontawesome.com/releases/v6.3.0/css/all.css}" crossorigin="anonymous">
     <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
     <script th:src="@{https://use.fontawesome.com/releases/v6.3.0/js/all.js}" crossorigin="anonymous"></script>
     <script th:src="@{https://cdn.jquery.com/jquery-3.7.0.js}" crossorigin="anonymous"></script>
     <script th:src="@{https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js}" crossorigin="anonymous"></script>
-    <script th:src="@{https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js}" crossorigin="anonymous"></script>
-    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css}" crossorigin="anonymous"></script>
-    <script th:src="@{https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css}" crossorigin="anonymous"></script>
+    <script th:src="@{https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js}"
+            crossorigin="anonymous"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css}"
+            crossorigin="anonymous"></script>
+    <script th:src="@{https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css}"
+            crossorigin="anonymous"></script>
     <script th:src="@{/js/scripts.js}"></script>
     <script th:src="@{/js/index_form.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
@@ -27,32 +30,122 @@
 
 </head>
 <body>
-    <!-- fragment cho navigation-->
-    <th th:fragment="danhmuc_link(fieldDanhMuc, columnLabel)">
-        <a style="text-decoration: none; color: black"
-           th:href="@{'/admin/categories/page/' + ${currentPage} + '?sortField=' + ${fieldDanhMuc} + '&sortDir=' + ${sortField != fieldDanhMuc ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
-            [[${columnLabel}]]
-        </a>
-        <span th:if="${sortField == fieldDanhMuc}" style="text-decoration: none; color: black"
-              th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
-    </th>
+<!-- fragment cho navigation-->
+<th th:fragment="danhmuc_link(fieldDanhMuc, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/categories/page/' + ${currentPage} + '?sortField=' + ${fieldDanhMuc} + '&sortDir=' + ${sortField != fieldDanhMuc ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldDanhMuc}" style="text-decoration: none; color: black"
+          th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
 
-    <th th:fragment="products_link(fieldProducts, columnLabel)">
-        <a style="text-decoration: none; color: black"
-           th:href="@{'/admin/products/page/' + ${currentPage} + '?sortField=' + ${fieldProducts} + '&sortDir=' + ${sortField != fieldProducts ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
-            [[${columnLabel}]]
-        </a>
-        <span th:if="${sortField == fieldProducts}" style="text-decoration: none; color: black"
-              th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
-    </th>
-    <!-- fragment cho phân trang-->
-    <a th:fragment="pagecategory_link(pageNum, label)"
-       class="page-link"
-       th:href="@{'/admin/categories/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+<th th:fragment="products_link(fieldProducts, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/products/page/' + ${currentPage} + '?sortField=' + ${fieldProducts} + '&sortDir=' + ${sortField != fieldProducts ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldProducts}" style="text-decoration: none; color: black"
+          th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
 
-    <a th:fragment="pageproduct_link(pageNum, label)"
-       class="page-link"
-       th:href="@{'/admin/products/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+<th th:fragment="column_link(fieldName, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/users/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldName}" style="text-decoration: none; color: black"
+          th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
 
-   </body>
+<th th:fragment="cautruckhuy_link(fieldCauTrucKhuy, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/cautruckhuy/page/' + ${currentPage} + '?sortField=' + ${fieldCauTrucKhuy} + '&sortDir=' + ${sortField != fieldCauTrucKhuy ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldCauTrucKhuy}" style="text-decoration: none; color: black"
+          th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
+<th th:fragment="kichco_link(fieldKichCo, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/sizes/page/' + ${currentPage} + '?sortField=' + ${fieldKichCo} + '&sortDir=' + ${sortField != fieldKichCo ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldKichCo}" style="text-decoration: none; color: black"
+          th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
+<th th:fragment="kieudet_link(fieldkieuDet, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/kieudet/page/' + ${currentPage} + '?sortField=' + ${fieldkieuDet} + '&sortDir=' + ${sortField != fieldkieuDet ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldkieuDet}" style="text-decoration: none; color: black"
+          th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
+<th th:fragment="kieutui_link(fieldkieutui, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/kieutui/page/' + ${currentPage} + '?sortField=' + ${fieldkieutui} + '&sortDir=' + ${sortField != fieldDanhMuc ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldkieutui}" style="text-decoration: none; color: black"
+          th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
+<th th:fragment="khuyenmai_link(fieldKhuyenMai, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/discounts/page/' + ${currentPage} + '?sortField=' + ${fieldKhuyenMai} + '&sortDir=' + ${sortField != fieldKhuyenMai ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldKhuyenMai}" style="text-decoration: none; color: black"
+          th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
+
+<th th:fragment="hoatiet_link(fieldHoaTiet, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/design/page/' + ${currentPage} + '?sortField=' + ${fieldHoaTiet} + '&sortDir=' + ${sortField != fieldHoaTiet ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldHoaTiet}" style="text-decoration: none; color: black"
+          th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
+<!-- fragment cho phân trang-->
+<a th:fragment="pagecategory_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/categories/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
+<a th:fragment="pageproduct_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/products/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
+<a th:fragment="cautruckhuy_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/cautruckhuy/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
+<a th:fragment="xeta_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/xeta/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
+<a th:fragment="mausac_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/colors/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
+    [[${label}]]</a>
+<a th:fragment="pagesdiscounts_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/discounts/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+<a th:fragment="page_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/users/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+<a th:fragment="pagesize_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/sizes/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+<a th:fragment="kieudet_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/kieudet/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+<a th:fragment="kieutui_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/kieutui/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+<a th:fragment="pagedesign_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/design/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+
+</body>
 </html>
