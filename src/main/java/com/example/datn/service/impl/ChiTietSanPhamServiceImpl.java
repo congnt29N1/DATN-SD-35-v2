@@ -4,6 +4,7 @@ import com.example.datn.entity.ChiTietSanPham;
 import com.example.datn.entity.VeAo;
 import com.example.datn.exception.ChiTietSanPhamNotFountException;
 import com.example.datn.repository.ChiTietSanPhamRepository;
+import com.example.datn.repository.MaDinhDanhRepository;
 import com.example.datn.response.SanPhamAdminResponse;
 import com.example.datn.response.TimKiemSettingResponse;
 import com.example.datn.service.CauTrucKhuyService;
@@ -60,6 +61,8 @@ public class ChiTietSanPhamServiceImpl  implements ChiTietSanPhamService {
     XeTaService xeTaService;
     @Autowired
     VeAoService veAoService;
+    @Autowired
+    MaDinhDanhRepository maDinhDanhRepository;
     @Override
     public int totalPageSearchSP(String key, int pageNum) {
         return chiTietSanPhamRepository.searchByKey(key, PageRequest.of(pageNum - 1, 5)).getTotalPages();
@@ -79,7 +82,7 @@ public class ChiTietSanPhamServiceImpl  implements ChiTietSanPhamService {
                         .sanPham(lstSP.getSanPham())
                         .mauSac(lstSP.getMauSac())
                         .khuyenMai(lstSP.getKhuyenMai())
-                        .soLuong(lstSP.getIdChiTietSanPham())  // find All Imei status is enabled
+                        .soLuong(maDinhDanhRepository.countByIdCTSPEnabled(lstSP.getSoLuong())) // find All  status is enabled
                         .chatLieu(lstSP.getChatLieu())
                         .cauTrucKhuy(lstSP.getCauTrucKhuy())
                         .hoaTiet(lstSP.getHoaTiet())
@@ -144,7 +147,7 @@ public class ChiTietSanPhamServiceImpl  implements ChiTietSanPhamService {
                         .sanPham(lstSP.getSanPham())
                         .mauSac(lstSP.getMauSac())
                         .khuyenMai(lstSP.getKhuyenMai())
-                        .soLuong(lstSP.getIdChiTietSanPham())  // find All Imei status is enabled
+                        .soLuong(maDinhDanhRepository.countByIdCTSPEnabled(lstSP.getSoLuong()))  // find All  status is enabled
                         .chatLieu(lstSP.getChatLieu())
                         .cauTrucKhuy(lstSP.getCauTrucKhuy())
                         .hoaTiet(lstSP.getHoaTiet())

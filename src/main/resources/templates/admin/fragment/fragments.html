@@ -199,6 +199,8 @@
 <a th:fragment="pageproductDetail_link(pageNum, label)"
    class="page-link"
    th:href="@{'/admin/productDetails/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''} + ${productName != null ? '&productName=' + productName : ''}}"> [[${label}]]</a>
-
+<a th:fragment="pageseri_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/ma-dinh-danh/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
 </body>
 </html>

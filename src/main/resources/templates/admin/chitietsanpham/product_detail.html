@@ -86,11 +86,12 @@
                         <td>[[${ctsp.lopLot.tenLopLot}]]</td>
                         <td>[[${ctsp.veAo.tenVeAo}]]</td>
                         <td>[[${ctsp.xeTa.tenXeTa}]]</td>
+                        <td th:text="${#numbers.formatDecimal(ctsp.giaSanPham, 0, 'COMMA', 0, 'POINT')} +
+                         ' đ'">[[${ctsp.giaSanPham}]]</td>
                         <td>[[${ctsp.giayPhuHop}]]</td>
                         <td>[[${ctsp.soMiPhuHop}]]</td>
 <!--                        <td>[[${ctsp.soLuong}]]</td>-->
-                        <td th:text="${#numbers.formatDecimal(ctsp.giaSanPham, 0, 'COMMA', 0, 'POINT')} +
-                         ' đ'">[[${ctsp.giaSanPham}]]</td>
+
                         <td>
                             [[${ctsp.trangThai == 1 ? 'Hoạt động' : 'Không hoạt động'}]]
                         </td>
