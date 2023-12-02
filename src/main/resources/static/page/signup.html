@@ -1,4 +1,11 @@
-
+<style>
+	.custom-select {
+		border: 1px solid #ced4da; /* Màu viền */
+		border-radius: 0px; /* Độ cong của viền */
+		padding: 4px; /* Khoảng cách giữa nội dung và viền */
+		margin-left: 0px;
+	}
+</style>
 		<!-- MAIN-CONTENT-SECTION START -->
 		<section class="main-content-section" ng-controller="registerCtrl">
 			<div class="container">
@@ -73,30 +80,24 @@
 								</div>
 								<div class="form-group primary-form-group p-info-group" style="display: flex">
 									<div class="col-4">
-										<label>Phường xã </label>
-										<select id="inputPX" class="form-select" ng-model="user.idPhuongXa" name="phuongXa">
+										<label>Phường xã</label>
+										<select id="inputPX" class="form-select custom-select" ng-model="user.idPhuongXa" name="phuongXa">
 											<option selected>Choose...</option>
-											<option ng-repeat ="(key,value) in pxMap" ng-value="key">
-												{{value}}
-											</option>
+											<option ng-repeat="(key,value) in pxMap" ng-value="key">{{value}}</option>
 										</select>
 									</div>
 									<div class="col-4">
-										<label >Quận huyện </label>
-										<select id="inputQH" class="form-select"  name="quanHuyen" ng-model="user.idQuanHuyen">
+										<label>Quận huyện</label>
+										<select id="inputQH" class="form-select custom-select" name="quanHuyen" ng-model="user.idQuanHuyen">
 											<option selected>Choose...</option>
-											<option ng-repeat ="(key,value) in qhMap" ng-value="key">
-												{{value}}
-											</option>
+											<option ng-repeat="(key,value) in qhMap" ng-value="key">{{value}}</option>
 										</select>
 									</div>
 									<div class="col-3">
-										<label>Thành Phố </label>
-										<select id="inputTP" class="form-select" name="thanhPho" ng-model="user.idTinhThanh">
+										<label>Thành Phố</label>
+										<select id="inputTP" class="form-select custom-select" name="thanhPho" ng-model="user.idTinhThanh">
 											<option selected>Thành phố</option>
-											<option ng-repeat ="(key,value) in tpMap" ng-value="key">
-												{{value}}
-											</option>
+											<option ng-repeat="(key,value) in tpMap" ng-value="key">{{value}}</option>
 										</select>
 									</div>
 								</div>
