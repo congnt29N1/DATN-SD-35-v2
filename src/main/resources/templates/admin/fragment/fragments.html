@@ -105,7 +105,7 @@
        th:href="@{'/admin/loplot/page/' + ${currentPage} + '?sortField=' + ${fieldLopLot} + '&sortDir=' + ${sortField != fieldLopLot ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
         [[${columnLabel}]]
     </a>
-    <span th:if="${sortField == fieldLopLot}" style="text-decoration: none; color: black"
+    <span th:if="${sortField == fieldLopLot}" style="text-decoration: none; color: black"></span>
 
 <th th:fragment="khuyenmai_link(fieldKhuyenMai, columnLabel)">
     <a style="text-decoration: none; color: black"
@@ -124,7 +124,14 @@
     <span th:if="${sortField == fieldHoaTiet}" style="text-decoration: none; color: black"
           th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 </th>
-
+<th th:fragment="productDetails_link(fieldProductDetails, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/productDetails/page/' + ${currentPage} + '?sortField=' + ${fieldProductDetails} + '&sortDir=' + ${sortField != fieldProductDetails ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''} + ${productName != null ? '&productName=' + productName : ''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldProductDetails}" style="text-decoration: none; color: black"
+          th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
 <!-- fragment cho phân trang-->
 <a th:fragment="pagecategory_link(pageNum, label)"
    class="page-link"
@@ -189,6 +196,9 @@
    class="page-link"
    th:href="@{'/admin/design/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}">
     [[${label}]]</a>
+<a th:fragment="pageproductDetail_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/productDetails/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''} + ${productName != null ? '&productName=' + productName : ''}}"> [[${label}]]</a>
 
 </body>
 </html>
