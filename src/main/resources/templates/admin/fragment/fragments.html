@@ -202,5 +202,9 @@
 <a th:fragment="pageseri_link(pageNum, label)"
    class="page-link"
    th:href="@{'/admin/ma-dinh-danh/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+<a th:fragment="page_spct_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/ban-hang/sanpham/page/' + ${pageNum}}"> [[${label}]]</a>
+
 </body>
 </html>
