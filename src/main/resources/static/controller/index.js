@@ -3,34 +3,14 @@ myApp.config(function ($routeProvider, $locationProvider,$httpProvider) {
     $httpProvider.interceptors.push('responseObserver');
     $locationProvider.hashPrefix("");
     $routeProvider
-        // .when("/", {
-        //   templateUrl: "page/trangchu.html",
-        // })
-        // .when("/", {
-        //     templateUrl: "page/trangchu.html",
-        //     controller :"homeCtrl"
-        // })
-        // .when("/about", {
-        //     templateUrl: "page/about-us.html",
-        // })
-        // .when("/contact", {
-        //     templateUrl: "page/contact-us.html",
-        // })
-        // .when("/blog", {
-        //     templateUrl: "page/blog.html",
-        // })
-        // .when("/sanpham", {
-        //     templateUrl: "page/shop-gird.html",
-        //     controller: "SanPhamController"
-        // })
-        // .when("/account", {
-        //     templateUrl: "page/my-account.html",
-        //     controller: "ThongTinCaNhanController"
-        // })
-        // .when("/cart", {
-        //     templateUrl: "page/cart.html",
-        //     controller :"cartCtrl"
-        // })
+        .when("/",{
+            templateUrl:"/page/helo.html"
+        })
+        .when("/account", {
+            templateUrl: "page/my-account.html",
+            controller: "ThongTinCaNhanController"
+        })
+
         .when("/signup", {
             templateUrl: "page/signup.html",
             controller: "registerCtrl"
@@ -39,104 +19,30 @@ myApp.config(function ($routeProvider, $locationProvider,$httpProvider) {
             templateUrl: "page/signin.html",
             controller:"loginCtrl"
         })
-    //     .when("/address", {
-    //     templateUrl: "page/address.html",
-    // })
-    //     .when("/shipping", {
-    //     templateUrl: "page/checkout-shipping.html",
-    // })
-    //
-    //     .when("/checkout", {
-    //         templateUrl: "page/checkout.html",
-    //         controller: "ThanhToanCtrl"
-    //     })
-    //
-    //     .when("/chitietsanpham/:idSp", {
-    //         templateUrl: "page/single-product.html",
-    //         controller: "TrangChiTietSanPhamController"
-    //     })
-    //     .when("/my-info", {
-    //         templateUrl: "/page/my-info.html",
-    //         controller: "ThongTinCaNhanController"
-    //     })
-    //     .when("/my-address", {
-    //         templateUrl: "/page/address.html",
-    //         controller: "AddressCtrl"
-    //     })
-    //     .when("/success", {
-    //         templateUrl: "page/success.html",
-    //         controller: "success"
-    //     })
-    //     .when("/fail", {
-    //         templateUrl: "page/fail.html",
-    //         controller: "fail"
-    //     })
-    //
-    //     .when("/history/all", {
-    //         templateUrl: "page/historyAll.html",
-    //         controller: "historyCtrl"
-    //     })
-    //     .when("/history/0", {
-    //         templateUrl: "page/DHChoThanhToan.html",
-    //         controller: "historyChoCtrl"
-    //     })
-    //     .when("/history/1", {
-    //         templateUrl: "page/DHDangChuanBi.html",
-    //         controller: "historyWaitCtrl"
-    //     })
-    //     .when("/history/2", {
-    //         templateUrl: "page/DHDangGiao.html",
-    //         controller: "historyShippingCtrl"
-    //     })
-    //     .when("/history/3", {
-    //         templateUrl: "page/DHHoanThanh.html",
-    //         controller: "historyDoneCtrl"
-    //     })
-    //     .when("/history/4", {
-    //         templateUrl: "page/DHDaHuy.html",
-    //         controller: "historyCancelCtrl"
-    //     })
-    //     .when("/history/5", {
-    //         templateUrl: "page/DHHoanTra.html",
-    //         controller: "historyReturnCtrl"
-    //     })
-    //     .when("/changePass", {
-    //         templateUrl: "page/changePass.html",
-    //         controller: "ChangePassCtrl"
-    //     })
-    //     .when("/chinhSach", {
-    //         templateUrl: "page/chinhSach.html",
-    //     })
-    //     .when("/forgotPassword", {
-    //         templateUrl: "page/forgotPass.html",
-    //         controller : "forgotCtrl"
-    //     })
-    //     .when("/changePassword/:token", {
-    //         templateUrl: "page/forgotpassUpdate.html",
-    //         controller : "forgotUpdateCtrl"
-    //     })
+
+
+        .when("/my-info", {
+            templateUrl: "/page/my-info.html",
+            controller: "ThongTinCaNhanController"
+        })
+        .when("/my-address", {
+            templateUrl: "/page/address.html",
+            controller: "AddressCtrl"
+        })
+
+        .when("/changePass", {
+            templateUrl: "page/changePass.html",
+            controller: "ChangePassCtrl"
+        })
+
+        .when("/changePassword/:token", {
+            templateUrl: "page/forgotpassUpdate.html",
+            controller : "forgotUpdateCtrl"
+        })
         .otherwise({
-            redirectTo: "/login",
+            redirectTo: "/",
         });
 });
-
-// .run(function ($rootScope, $http, $location) {
-//   // Keep user logged in after page refresh
-//   let user = localStorage.getItem("currentUser");
-//   console.log(user)
-//  let currentUser = user ? JSON.parse(user) : {};
-//   if (currentUser) {
-//     $rootScope.currentUser = currentUser;
-//     $http.defaults.headers.common.Authorization = "Bearer " + currentUser.token;
-//   }
-//   $rootScope.$on("$locationChangeStart", function(event, next, current) {
-//     var publicPages = ["#"];
-//     var restrictPage = publicPages.indexOf($location.path()) === -1;
-//     if(restrictPage && !currentUser) {
-//       $location.path("/login");
-//     }
-//   });
-// });
 
 
 

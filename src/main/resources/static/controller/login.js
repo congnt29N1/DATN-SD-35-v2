@@ -22,7 +22,7 @@ myApp.controller("loginCtrl", function ($scope,$rootScope ,$http,$location, $win
                 $rootScope.currentUser =$scope.currentUser;
                 $window.localStorage.setItem('currentUser', JSON.stringify($scope.currentUser));
                 $http.defaults.headers.common.Authorization = "Bearer " + resp.data.token;
-
+                console.log(currentUser);
                 Swal.fire({
                     icon: "success",
                     title:  resp.data.message,
