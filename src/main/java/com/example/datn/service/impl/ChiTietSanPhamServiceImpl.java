@@ -82,7 +82,7 @@ public class ChiTietSanPhamServiceImpl  implements ChiTietSanPhamService {
                         .sanPham(lstSP.getSanPham())
                         .mauSac(lstSP.getMauSac())
                         .khuyenMai(lstSP.getKhuyenMai())
-                        .soLuong(maDinhDanhRepository.countByIdCTSPEnabled(lstSP.getSoLuong())) // find All  status is enabled
+                        .soLuong(maDinhDanhRepository.countByIdCTSPEnabled(lstSP.getIdChiTietSanPham())) // find All  status is enabled
                         .chatLieu(lstSP.getChatLieu())
                         .cauTrucKhuy(lstSP.getCauTrucKhuy())
                         .hoaTiet(lstSP.getHoaTiet())
@@ -147,7 +147,7 @@ public class ChiTietSanPhamServiceImpl  implements ChiTietSanPhamService {
                         .sanPham(lstSP.getSanPham())
                         .mauSac(lstSP.getMauSac())
                         .khuyenMai(lstSP.getKhuyenMai())
-                        .soLuong(maDinhDanhRepository.countByIdCTSPEnabled(lstSP.getSoLuong()))  // find All  status is enabled
+                        .soLuong(maDinhDanhRepository.countByIdCTSPEnabled(lstSP.getIdChiTietSanPham()))  // find All  status is enabled
                         .chatLieu(lstSP.getChatLieu())
                         .cauTrucKhuy(lstSP.getCauTrucKhuy())
                         .hoaTiet(lstSP.getHoaTiet())

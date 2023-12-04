@@ -64,8 +64,6 @@
                         <th th:replace="admin/fragment/fragments::productDetails_link('giaSanPham', 'Giá')"></th>
                         <th>Giày Phù Hợp</th>
                         <th>Sơ Mi Phù Hợp</th>
-<!--                        <th th:replace="admin/fragment/fragments::productDetails_link('soLuong', 'Số Lượng')"></th>-->
-<!--                        <th>Số Lượng</th>-->
                         <th>Trạng Thái</th>
                         <Th>Action</Th>
                     </tr>
@@ -90,7 +88,6 @@
                          ' đ'">[[${ctsp.giaSanPham}]]</td>
                         <td>[[${ctsp.giayPhuHop}]]</td>
                         <td>[[${ctsp.soMiPhuHop}]]</td>
-<!--                        <td>[[${ctsp.soLuong}]]</td>-->
 
                         <td>
                             [[${ctsp.trangThai == 1 ? 'Hoạt động' : 'Không hoạt động'}]]
