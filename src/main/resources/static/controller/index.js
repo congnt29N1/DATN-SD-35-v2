@@ -4,7 +4,8 @@ myApp.config(function ($routeProvider, $locationProvider,$httpProvider) {
     $locationProvider.hashPrefix("");
     $routeProvider
         .when("/",{
-            templateUrl:"/page/helo.html"
+            templateUrl:"/page/trangchu.html",
+            controller :"homeCtrl"
         })
         .when("/account", {
             templateUrl: "page/my-account.html",

@@ -6,6 +6,15 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        position: fixed; /* Thêm fixed-top */
+        width: 100%; /* Đảm bảo menu chiếm toàn bộ chiều rộng của trang */
+        top: 0; /* Đặt menu ở đầu trang */
+        z-index: 1000; /* Đảm bảo menu hiển thị trên các phần tử khác */
+    }
+
+    /* Thêm padding-top để tránh che phủ nội dung trang */
+    body {
+        padding-top: 75px;
     }
 
     .header-right-menu {
@@ -89,11 +98,12 @@
     }
 
 
+
 </style>
 <!-- HEADER-TOP START -->
 <div class="header-top">
     <div class="container">
-        <div class="row">
+        <div class="row ">
             <!-- HEADER-LEFT-MENU START -->
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                 <div class="logo" >
@@ -103,7 +113,7 @@
             <!-- HEADER-LEFT-MENU END -->
             <!-- HEADER-RIGHT-MENU START -->
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-                <div class="header-right-menu">
+                <div class="header-right-menu ">
                     <nav>
                         <ul class="list-inline" ng-if="currentUser.username == null">
                             <li class="active"><a href="#index">TRANG CHỦ</a> </li>
