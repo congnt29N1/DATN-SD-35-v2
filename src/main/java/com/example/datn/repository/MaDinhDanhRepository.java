@@ -33,7 +33,7 @@ public interface MaDinhDanhRepository extends JpaRepository<MaDinhDanhCTSP,Integ
     List<MaDinhDanhCTSP> findByChiTietSanPhamAndTrangThai(ChiTietSanPham chiTietSanPham, Integer trangThai, Pageable pageable);
 
     @Query(nativeQuery = true, value = """
-       UPDATE MaDinhDanhCTSP s1
+       UPDATE ma_dinh_danh_ctsp s1
        SET s1.trang_thai = 3,
            s1.id_hoa_don_chi_tiet = :idHoaDonChiTiet,
            s1.ngay_ban = CURRENT_TIMESTAMP()
@@ -47,7 +47,7 @@ public interface MaDinhDanhRepository extends JpaRepository<MaDinhDanhCTSP,Integ
     );
 
     @Query(nativeQuery = true, value = """
-       UPDATE MaDinhDanhCTSP s1
+       UPDATE ma_dinh_danh_ctsp s1
        SET s1.trang_thai = 1,
            s1.id_hoa_don_chi_tiet = null,
            s1.ngay_ban = null
@@ -64,7 +64,7 @@ public interface MaDinhDanhRepository extends JpaRepository<MaDinhDanhCTSP,Integ
     @Query(nativeQuery = true, value = """
 
                 SELECT s.id s
-                FROM MaDinhDanhCTSP s
+                FROM ma_dinh_danh_ctsp s
                 WHERE s.trang_thai = 1
                 AND   s.id_chi_tiet_san_pham = :idChiTietSanPham
                 LIMIT :soLuong
@@ -78,14 +78,14 @@ public interface MaDinhDanhRepository extends JpaRepository<MaDinhDanhCTSP,Integ
 
     @Query(nativeQuery = true,value = """
         SELECT COUNT(*) AS count
-        FROM MaDinhDanhCTSP s
+        FROM ma_dinh_danh_ctsp s
         WHERE s.id_hoa_don_chi_tiet = :idHDCT
     """)
     int soLuongDaMuaByHDCT(@Param("idHDCT") int idHDCT);
 
     @Query(nativeQuery = true,value = """
         SELECT COUNT(*) AS count
-        FROM MaDinhDanhCTSP s
+        FROM ma_dinh_danh_ctsp s
         WHERE s.id_chi_tiet_san_pham = :idCTSP
         AND   s.id_hoa_don_chi_tiet IS NULL
     """)

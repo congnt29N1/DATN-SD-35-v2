@@ -82,8 +82,8 @@ public class ChiTietSanPham {
     private String soMiPhuHop;
     @Column(name = "giay_phu_hop")
     private String giayPhuHop;
-    @Column(name = "so_luong")
-    private Integer soLuong;
+//    @Column(name = "so_luong")
+//    private Integer soLuong;
     @Column(name = "gia_san_pham")
     private Double giaSanPham;
     @Column(name = "trang_thai")
