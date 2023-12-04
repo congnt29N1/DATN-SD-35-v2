@@ -125,12 +125,12 @@ public class HoaDonChiTietServiceImpl  implements HoaDonChiTietService {
             }else{
                 hoaDonChiTiet.setGiaBan(chiTietSanPham.getGiaSanPham() - chiTietSanPham.getGiaSanPham()* hoaDonChiTiet.getChietKhau()/100);
             }
-            List<Integer> listSeri = maDinhDanhRepository.getListMaDinhDanh(soLuong,chiTietSanPham.getIdChiTietSanPham());
-            maDinhDanhRepository.themSoLuongAdmin(hoaDonChiTiet.getIdHoaDonChiTiet(),listSeri);
+            List<Integer> listMaDinhDanh = maDinhDanhRepository.getListMaDinhDanh(soLuong,chiTietSanPham.getIdChiTietSanPham());
+            maDinhDanhRepository.themSoLuongAdmin(hoaDonChiTiet.getIdHoaDonChiTiet(),listMaDinhDanh);
         } else{
             hoaDonChiTietRepository.updateSoLuongSanPham(soLuong,existIdHCT);
-            List<Integer> listSeri = maDinhDanhRepository.getListMaDinhDanh(soLuong,chiTietSanPham.getIdChiTietSanPham());
-            maDinhDanhRepository.themSoLuongAdmin(existIdHCT,listSeri);
+            List<Integer> listMaDinhDanh = maDinhDanhRepository.getListMaDinhDanh(soLuong,chiTietSanPham.getIdChiTietSanPham());
+            maDinhDanhRepository.themSoLuongAdmin(existIdHCT,listMaDinhDanh);
         }
     }
 

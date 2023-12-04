@@ -158,7 +158,7 @@
                                     <td th:text="${hd.ngayTao}"></td>
                                     <td>
                                         <form th:action="@{/admin/ban-hang/hoa-don/{maDonHang}(maDonHang=${hd.maDonHang})}" th:method="GET">
-                                            <button class="btn btn-outline-danger">Chọn</button>
+                                            <button class="btn btn-primary">Chọn</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -178,6 +178,13 @@
                                     <th scope="col">Mã sản phẩm</th>
                                     <th scope="col">Tên sản phẩm</th>
                                     <th scope="col">Chất liệu</th>
+                                    <th scope="col">Kích cỡ</th>
+                                    <th scope="col">Cấu trúc khuy</th>
+                                    <th scope="col">Hoạ tiết</th>
+                                    <th scope="col">Kiểu túi</th>
+                                    <th scope="col">Kiểu dệt</th>
+                                    <th scope="col">Ve áo</th>
+                                    <th scope="col">Xẻ tà</th>
                                     <th scope="col">Màu sắc</th>
                                     <th scope="col">Đơn giá</th>
                                     <th scope="col">Số lượng</th>
@@ -190,6 +197,13 @@
                                     <td th:text="${hdct.chiTietSanPham.maChiTietSanPham}"></td>
                                     <td th:text="${hdct.chiTietSanPham.sanPham.tenSanPham}"></td>
                                     <td th:text="${hdct.chiTietSanPham.chatLieu.tenChatLieu}"></td>
+                                    <td th:text="${hdct.chiTietSanPham.kichCo.tenKichCo}"></td>
+                                    <td th:text="${hdct.chiTietSanPham.cauTrucKhuy.tenCauTrucKhuy}"></td>
+                                    <td th:text="${hdct.chiTietSanPham.hoaTiet.tenHoaTiet}"></td>
+                                    <td th:text="${hdct.chiTietSanPham.kieuTui.tenKieuTui}"></td>
+                                    <td th:text="${hdct.chiTietSanPham.kieuDet.tenKieuDet}"></td>
+                                    <td th:text="${hdct.chiTietSanPham.veAo.tenVeAo}"></td>
+                                    <td th:text="${hdct.chiTietSanPham.xeTa.tenXeTa}"></td>
                                     <td th:text="${hdct.chiTietSanPham.mauSac.tenMauSac}"></td>
                                     <td th:text="${#numbers.formatDecimal(hdct.chiTietSanPham.giaSanPham, 0, 'COMMA', 0, 'POINT')} +
                   ' đ'"></td>
@@ -240,7 +254,14 @@
                                     <th scope="col">Đơn giá</th>
                                     <th scope="col">Số lượng</th>
                                     <th scope="col">Màu sắc</th>
-                                    <th scope="col">Vật liệu</th>
+                                    <th scope="col">Chất liệu</th>
+                                    <th scope="col">Kích cỡ</th>
+                                    <th scope="col">Cấu trúc khuy</th>
+                                    <th scope="col">Hoạ tiết</th>
+                                    <th scope="col">Kiểu túi</th>
+                                    <th scope="col">Kiểu dệt</th>
+                                    <th scope="col">Ve áo</th>
+                                    <th scope="col">Xẻ tà</th>
                                     <th scope="col">Giảm giá</th>
                                     <th scope="col">Chức năng</th>
                                 </tr>
@@ -249,11 +270,17 @@
                                 <tr th:each="sp : ${listSanPham}">
                                     <td th:text="${sp.maChiTietSanPham}"></td>
                                     <td th:text="${sp.sanPham.tenSanPham}"></td>
-                                    <td th:text="${#numbers.formatDecimal(sp.giaSanPham, 0, 'COMMA', 0, 'POINT')} +
-                  ' đ'"></td>
+                                    <td th:text="${#numbers.formatDecimal(sp.giaSanPham, 0, 'COMMA', 0, 'POINT')} +'đ'"></td>
                                     <td th:text="${sp.soLuong}"></td>
                                     <td th:text="${sp.mauSac.tenMauSac}"></td>
                                     <td th:text="${sp.chatLieu.tenChatLieu}"></td>
+                                    <td th:text="${sp.kichCo.tenKichCo}"></td>
+                                    <td th:text="${sp.cauTrucKhuy.tenCauTrucKhuy}"></td>
+                                    <td th:text="${sp.hoaTiet.tenHoaTiet}"></td>
+                                    <td th:text="${sp.kieuTui.tenKieuTui}"></td>
+                                    <td th:text="${sp.kieuDet.tenKieuDet}"></td>
+                                    <td th:text="${sp.veAo.tenVeAo}"></td>
+                                    <td th:text="${sp.xeTa.tenXeTa}"></td>
                                     <td th:text="${sp.khuyenMai == null || sp.khuyenMai.enabled == false ? '' : sp.khuyenMai.chietKhau}"></td>
                                     <td>
                                         <button class="btn btn-primary them-san-pham"
