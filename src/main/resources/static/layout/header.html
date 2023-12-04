@@ -46,6 +46,49 @@
     select:hover {
         cursor: pointer;
     }
+
+    /*dropdown css*/
+    /* Style the dropdown button */
+    .dropbtn {
+        background-color: rgba(249, 249, 249, 0.0);
+        color: black;
+        padding: 12px;
+        font-size: 11px;
+        cursor: pointer;
+        font-weight: bold; /* In đậm */
+    }
+
+    /* Style the dropdown content (hidden by default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        z-index: 1;
+        list-style-type: none; /* Remove default list styling */
+        padding: 0; /* Remove default padding */
+    }
+
+    /* Style the links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+
 </style>
 <!-- HEADER-TOP START -->
 <div class="header-top">
@@ -84,7 +127,17 @@
                             <li> <a href="#chinhSach">CHÍNH SÁCH</a></li>
                             <li><a style="cursor: pointer"  data-toggle="modal" data-target="#myModal10" >ĐĂNG XUẤT</a></li>
                             <li><a href="#cart">GIỎ HÀNG</a></li>
-                            <li><a href="#account">TÀI KHOẢN</a></li>
+                            <li >
+                                <ul class="dropdown" style=" list-style: none;">
+                                    <li style="color: black;font-weight: bold;text-decoration: none;">TÀI KHOẢN</li>
+                                    <ul class="dropdown-content">
+                                        <li><a href="#changePass">Đổi mật khẩu</a></li>
+                                        <li><a href="#my-address">Địa chỉ</a></li>
+                                        <li><a href="#my-info">Thông tin cá nhân</a></li>
+                                    </ul>
+                                </ul>
+                            </li>
+
                                 <li>Hi {{currentUser.username}} </li>
                                 <!-- Modal -->
                                 <div class="modal fade" id="myModal10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="indexCtrl" >
@@ -98,7 +151,7 @@
                                                 <h3 class="modal-title">Bạn vẫn muốn đăng xuất chứ</h3>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary" ng-click="logouts()" style="background: red">Xác nhận</button>
+                                                        <button type="button" class="btn btn-primary" ng-click="logouts()" style="background: rgb(142, 116, 77)">Xác nhận</button>
                                                     </div>
                                             </div>
                                         </div>
