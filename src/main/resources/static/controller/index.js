@@ -39,6 +39,34 @@ myApp.config(function ($routeProvider, $locationProvider,$httpProvider) {
             templateUrl: "page/forgotpassUpdate.html",
             controller : "forgotUpdateCtrl"
         })
+        .when("/history/all", {
+            templateUrl: "page/historyAll.html",
+            controller: "historyCtrl"
+        })
+        .when("/history/0", {
+            templateUrl: "page/DHChoThanhToan.html",
+            controller: "historyChoCtrl"
+        })
+        .when("/history/1", {
+            templateUrl: "page/DHDangChuanBi.html",
+            controller: "historyWaitCtrl"
+        })
+        .when("/history/2", {
+            templateUrl: "page/DHDangGiao.html",
+            controller: "historyShippingCtrl"
+        })
+        .when("/history/3", {
+            templateUrl: "page/DHHoanThanh.html",
+            controller: "historyDoneCtrl"
+        })
+        .when("/history/4", {
+            templateUrl: "page/DHDaHuy.html",
+            controller: "historyCancelCtrl"
+        })
+        .when("/history/5", {
+            templateUrl: "page/DHHoanTra.html",
+            controller: "historyReturnCtrl"
+        })
         .otherwise({
             redirectTo: "/",
         });

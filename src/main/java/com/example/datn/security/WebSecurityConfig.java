@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfig {
 
     private final AuthenticationProvider authenticationProvider;
-    private final com.example.datn.security.AccountFilter accountFilter;
+    private final AccountFilter accountFilter;
 
     @Autowired
     SecurityConfiguration securityConfiguration;
