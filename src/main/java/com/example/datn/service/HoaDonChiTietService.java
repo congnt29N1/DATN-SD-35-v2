@@ -10,6 +10,7 @@ import java.util.List;
 public interface HoaDonChiTietService {
     HoaDonChiTiet save(HoaDonChiTiet hdct);
 
+
     List<HoaDonChiTiet> convertToListHoaDonChiTiet(List<HoaDonChiTietRequest> list, Integer idDonHang);
 
     List<HoaDonChiTiet> saveAll(List<HoaDonChiTiet> listHDCT);
