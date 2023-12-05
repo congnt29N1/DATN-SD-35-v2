@@ -33,9 +33,8 @@ myApp.controller(
         $scope.MaDinhDanhBySP = new Map();
         var setKichCo = new Set();
         var setCauTrucKhuy = new Set();
-        var setMauSac = new Set();
-
         var setChatLieu = new Set();
+        var setMauSac = new Set();
         var setHoaTiet = new Set();
         var setKieuDet = new Set();
         var setKieuTui = new Set();
@@ -53,10 +52,10 @@ myApp.controller(
         $scope.setAvaiableVeAo = new Set();
         $scope.setAvaiableXeTa = new Set();
 
-        $scope.selectedMS;
-        $scope.selectedCL;
         $scope.selectedKC;
         $scope.selectedCTK;
+        $scope.selectedCL;
+        $scope.selectedMS;
         $scope.selectedHT;
         $scope.selectedKD;
         $scope.selectedKT;
@@ -70,10 +69,10 @@ myApp.controller(
                 .then(function (response) {
                     $scope.sanPhamDetail = response.data;
                     $scope.chiTietSanPham = $scope.sanPhamDetail.listChiTietSanPham[0];
-                    $scope.selectedMS = $scope.chiTietSanPham.mauSac.tenMauSac;
-                    $scope.selectedCL = $scope.chiTietSanPham.chatLieu.tenChatLieu;
                     $scope.selectedKC = $scope.chiTietSanPham.kichCo.tenKichCo;
                     $scope.selectedCTK = $scope.chiTietSanPham.cauTrucKhuy.tenCauTrucKhuy;
+                    $scope.selectedCL = $scope.chiTietSanPham.chatLieu.tenChatLieu;
+                    $scope.selectedMS = $scope.chiTietSanPham.mauSac.tenMauSac;
                     $scope.selectedHT = $scope.chiTietSanPham.hoaTiet.tenHoaTiet;
                     $scope.selectedKD = $scope.chiTietSanPham.kieuDet.tenKieuDet;
                     $scope.selectedKT = $scope.chiTietSanPham.kieuTui.tenKieuTui;
@@ -86,10 +85,10 @@ myApp.controller(
                     $rootScope.currentDate = new Date().toISOString();
                     $scope.selectImage = $scope.sanPhamDetail.listAnhSanPham[0].link;
                     getAvailabelAttribute(
-                        $scope.selectedMS,
-                        $scope.selectedCL,
                         $scope.selectedKC,
                         $scope.selectedCTK,
+                        $scope.selectedCL,
+                        $scope.selectedMS,
                         $scope.selectedHT,
                         $scope.selectedKD,
                         $scope.selectedKT,
@@ -144,7 +143,7 @@ myApp.controller(
             $scope.listXeTa = Array.from(setXeTa);
         };
         $scope.$watchGroup(
-            ["selectedCTK", "selectedCL", "selectedMS", "selectedKC","selectedHT","selectedKD","selectedKT","selectedLL","selectedVA","selectedXT",],
+            ["selectedKC", "selectedCTK", "selectedCL", "selectedMS", "selectedHT", "selectedKD", "selectedKT", "selectedLL", "selectedVA", "selectedXT"],
             function (newValues, oldValues) {
                 $scope.soLuong = 1;
                 $scope.isFirstRun++;
@@ -165,7 +164,7 @@ myApp.controller(
                     $scope.chiTietSanPham =
                         $scope.sanPhamDetail.listChiTietSanPham.filter(function (item) {
                             return (
-                                item.kichCo.tenKichCo == $scope.selectedKC&&
+                                item.kichCo.tenKichCo == $scope.selectedKC &&
                                 item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK
                             );
                         })[0];
@@ -176,8 +175,8 @@ myApp.controller(
                     $scope.chiTietSanPham =
                         $scope.sanPhamDetail.listChiTietSanPham.filter(function (item) {
                             return (
-                                item.kichCo.tenKichCo == $scope.selectedKC&&
-                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK&&
+                                item.kichCo.tenKichCo == $scope.selectedKC &&
+                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK &&
                                 item.chatLieu.tenChatLieu == $scope.selectedCL
                             );
                         })[0];
@@ -188,9 +187,9 @@ myApp.controller(
                     $scope.chiTietSanPham =
                         $scope.sanPhamDetail.listChiTietSanPham.filter(function (item) {
                             return (
-                                item.kichCo.tenKichCo == $scope.selectedKC&&
-                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK&&
-                                item.chatLieu.tenChatLieu == $scope.selectedCL&&
+                                item.kichCo.tenKichCo == $scope.selectedKC &&
+                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK &&
+                                item.chatLieu.tenChatLieu == $scope.selectedCL &&
                                 item.mauSac.tenMauSac == $scope.selectedMS
                             );
                         })[0];
@@ -201,9 +200,9 @@ myApp.controller(
                     $scope.chiTietSanPham =
                         $scope.sanPhamDetail.listChiTietSanPham.filter(function (item) {
                             return (
-                                item.kichCo.tenKichCo == $scope.selectedKC&&
-                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK&&
-                                item.chatLieu.tenChatLieu == $scope.selectedCL&&
+                                item.kichCo.tenKichCo == $scope.selectedKC &&
+                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK &&
+                                item.chatLieu.tenChatLieu == $scope.selectedCL &&
                                 item.mauSac.tenMauSac == $scope.selectedMS &&
                                 item.hoaTiet.tenHoaTiet == $scope.selectedHT
                             );
@@ -215,11 +214,11 @@ myApp.controller(
                     $scope.chiTietSanPham =
                         $scope.sanPhamDetail.listChiTietSanPham.filter(function (item) {
                             return (
-                                item.kichCo.tenKichCo == $scope.selectedKC&&
-                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK&&
-                                item.chatLieu.tenChatLieu == $scope.selectedCL&&
+                                item.kichCo.tenKichCo == $scope.selectedKC &&
+                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK &&
+                                item.chatLieu.tenChatLieu == $scope.selectedCL &&
                                 item.mauSac.tenMauSac == $scope.selectedMS &&
-                                item.hoaTiet.tenHoaTiet == $scope.selectedHT&&
+                                item.hoaTiet.tenHoaTiet == $scope.selectedHT &&
                                 item.kieuDet.tenKieuDet == $scope.selectedKD
                             );
                         })[0];
@@ -230,12 +229,12 @@ myApp.controller(
                     $scope.chiTietSanPham =
                         $scope.sanPhamDetail.listChiTietSanPham.filter(function (item) {
                             return (
-                                item.kichCo.tenKichCo == $scope.selectedKC&&
-                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK&&
-                                item.chatLieu.tenChatLieu == $scope.selectedCL&&
+                                item.kichCo.tenKichCo == $scope.selectedKC &&
+                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK &&
+                                item.chatLieu.tenChatLieu == $scope.selectedCL &&
                                 item.mauSac.tenMauSac == $scope.selectedMS &&
-                                item.hoaTiet.tenHoaTiet == $scope.selectedHT&&
-                                item.kieuDet.tenKieuDet == $scope.selectedKD&&
+                                item.hoaTiet.tenHoaTiet == $scope.selectedHT &&
+                                item.kieuDet.tenKieuDet == $scope.selectedKD &&
                                 item.kieuTui.tenKieuTui == $scope.selectedKT
                             );
                         })[0];
@@ -246,13 +245,13 @@ myApp.controller(
                     $scope.chiTietSanPham =
                         $scope.sanPhamDetail.listChiTietSanPham.filter(function (item) {
                             return (
-                                item.kichCo.tenKichCo === $scope.selectedKC&&
-                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK&&
-                                item.chatLieu.tenChatLieu == $scope.selectedCL&&
+                                item.kichCo.tenKichCo === $scope.selectedKC &&
+                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK &&
+                                item.chatLieu.tenChatLieu == $scope.selectedCL &&
                                 item.mauSac.tenMauSac == $scope.selectedMS &&
-                                item.hoaTiet.tenHoaTiet == $scope.selectedHT&&
-                                item.kieuDet.tenKieuDet == $scope.selectedKD&&
-                                item.kieuTui.tenKieuTui == $scope.selectedKT&&
+                                item.hoaTiet.tenHoaTiet == $scope.selectedHT &&
+                                item.kieuDet.tenKieuDet == $scope.selectedKD &&
+                                item.kieuTui.tenKieuTui == $scope.selectedKT &&
                                 item.lopLot.tenLopLot == $scope.selectedLL
                             );
                         })[0];
@@ -263,14 +262,14 @@ myApp.controller(
                     $scope.chiTietSanPham =
                         $scope.sanPhamDetail.listChiTietSanPham.filter(function (item) {
                             return (
-                                item.kichCo.tenKichCo === $scope.selectedKC&&
-                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK&&
-                                item.chatLieu.tenChatLieu == $scope.selectedCL&&
+                                item.kichCo.tenKichCo === $scope.selectedKC &&
+                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK &&
+                                item.chatLieu.tenChatLieu == $scope.selectedCL &&
                                 item.mauSac.tenMauSac == $scope.selectedMS &&
-                                item.hoaTiet.tenHoaTiet == $scope.selectedHT&&
-                                item.kieuDet.tenKieuDet == $scope.selectedKD&&
-                                item.kieuTui.tenKieuTui == $scope.selectedKT&&
-                                item.lopLot.tenLopLot == $scope.selectedLL&&
+                                item.hoaTiet.tenHoaTiet == $scope.selectedHT &&
+                                item.kieuDet.tenKieuDet == $scope.selectedKD &&
+                                item.kieuTui.tenKieuTui == $scope.selectedKT &&
+                                item.lopLot.tenLopLot == $scope.selectedLL &&
                                 item.veAo.tenVeAo == $scope.selectedVA
                             );
                         })[0];
@@ -281,15 +280,15 @@ myApp.controller(
                     $scope.chiTietSanPham =
                         $scope.sanPhamDetail.listChiTietSanPham.filter(function (item) {
                             return (
-                                item.kichCo.tenKichCo === $scope.selectedKC&&
-                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK&&
-                                item.chatLieu.tenChatLieu == $scope.selectedCL&&
+                                item.kichCo.tenKichCo === $scope.selectedKC &&
+                                item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK &&
+                                item.chatLieu.tenChatLieu == $scope.selectedCL &&
                                 item.mauSac.tenMauSac == $scope.selectedMS &&
-                                item.hoaTiet.tenHoaTiet == $scope.selectedHT&&
-                                item.kieuDet.tenKieuDet == $scope.selectedKD&&
-                                item.kieuTui.tenKieuTui == $scope.selectedKT&&
-                                item.lopLot.tenLopLot == $scope.selectedLL&&
-                                item.veAo.tenVeAo == $scope.selectedVA&&
+                                item.hoaTiet.tenHoaTiet == $scope.selectedHT &&
+                                item.kieuDet.tenKieuDet == $scope.selectedKD &&
+                                item.kieuTui.tenKieuTui == $scope.selectedKT &&
+                                item.lopLot.tenLopLot == $scope.selectedLL &&
+                                item.veAo.tenVeAo == $scope.selectedVA &&
                                 item.xeTa.tenXeTa == $scope.selectedXT
                             );
                         })[0];
@@ -304,10 +303,10 @@ myApp.controller(
         );
 
         var resetSelectedValue = function () {
-            $scope.selectedCTK = $scope.chiTietSanPham.cauTrucKhuy.tenCauTrucKhuy;
-            $scope.selectedMS = $scope.chiTietSanPham.mauSac.tenMauSac;
-            $scope.selectedcL = $scope.chiTietSanPham.chatLieu.tenChatLieu;
             $scope.selectedKC = $scope.chiTietSanPham.kichCo.tenKichCo;
+            $scope.selectedCTK = $scope.chiTietSanPham.cauTrucKhuy.tenCauTrucKhuy;
+            $scope.selectedCL = $scope.chiTietSanPham.chatLieu.tenChatLieu;
+            $scope.selectedMS = $scope.chiTietSanPham.mauSac.tenMauSac;
             $scope.selectedHT = $scope.chiTietSanPham.hoaTiet.tenHoaTiet;
             $scope.selectedKD = $scope.chiTietSanPham.kieuDet.tenKieuDet;
             $scope.selectedKT = $scope.chiTietSanPham.kieuTui.tenKieuTui;
@@ -315,11 +314,10 @@ myApp.controller(
             $scope.selectedVA = $scope.chiTietSanPham.veAo.tenVeAo;
             $scope.selectedXT = $scope.chiTietSanPham.xeTa.tenXeTa;
         };
-
         var getAvailabelAttribute = function () {
-            $scope.setAvaiableMauSac = new Set();
-            $scope.setAvaiableChatLieu = new Set();
             $scope.setAvaiableCauTrucKhuy = new Set();
+            $scope.setAvaiableChatLieu = new Set();
+            $scope.setAvaiableMauSac = new Set();
             $scope.setAvaiableHoaTiet = new Set();
             $scope.setAvaiableKieuDet = new Set();
             $scope.setAvaiableKieuTui = new Set();
@@ -327,46 +325,46 @@ myApp.controller(
             $scope.setAvaiableVeAo = new Set();
             $scope.setAvaiableXeTa = new Set();
 
-            //Filter Set mausac
+            //Filter Set cautruckhuy
             $scope.sanPhamDetail.listChiTietSanPham
                 .filter(function (item) {
                     return item.kichCo.tenKichCo == $scope.selectedKC;
                 })
                 .forEach(function (item) {
-                    $scope.setAvaiableMauSac.add(item.mauSac.tenMauSac);
+                    $scope.setAvaiableCauTrucKhuy.add(item.cauTrucKhuy.tenCauTrucKhuy);
                 });
             // Filter Set chatlieu
             $scope.sanPhamDetail.listChiTietSanPham
                 .filter(function (item) {
                     return (
                         item.kichCo.tenKichCo == $scope.selectedKC &&
-                        item.mauSac.tenMauSac == $scope.selectedMS
+                        item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK
                     );
                 })
                 .forEach(function (item) {
                     $scope.setAvaiableChatLieu.add(item.chatLieu.tenChatLieu);
                 });
-            //Filter Set cautruckhuy
+            //Filter Set mausac
             $scope.sanPhamDetail.listChiTietSanPham
                 .filter(function (item) {
                     return (
                         item.kichCo.tenKichCo == $scope.selectedKC &&
-                        item.mauSac.tenMauSac == $scope.selectedMS &&
+                        item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK &&
                         item.chatLieu.tenChatLieu == $scope.selectedCL
+
                     );
                 })
                 .forEach(function (item) {
-                    $scope.setAvaiableCauTrucKhuy.add(item.cauTrucKhuy.tenCauTrucKhuy);
+                    $scope.setAvaiableMauSac.add(item.mauSac.tenMauSac);
                 });
             //Filter Set hoaTiet
             $scope.sanPhamDetail.listChiTietSanPham
                 .filter(function (item) {
                     return (
                         item.kichCo.tenKichCo == $scope.selectedKC &&
-                        item.mauSac.tenMauSac == $scope.selectedMS &&
+                        item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK &&
                         item.chatLieu.tenChatLieu == $scope.selectedCL &&
-                        item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK
-
+                        item.mauSac.tenMauSac == $scope.selectedMS
                     );
                 })
                 .forEach(function (item) {
@@ -379,9 +377,8 @@ myApp.controller(
                         item.kichCo.tenKichCo == $scope.selectedKC &&
                         item.mauSac.tenMauSac == $scope.selectedMS &&
                         item.chatLieu.tenChatLieu == $scope.selectedCL &&
-                        item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK&&
+                        item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK &&
                         item.hoaTiet.tenHoaTiet == $scope.selectedHT
-
                     );
                 })
                 .forEach(function (item) {
@@ -394,7 +391,7 @@ myApp.controller(
                         item.kichCo.tenKichCo == $scope.selectedKC &&
                         item.mauSac.tenMauSac == $scope.selectedMS &&
                         item.chatLieu.tenChatLieu == $scope.selectedCL &&
-                        item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK&&
+                        item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK &&
                         item.hoaTiet.tenHoaTiet == $scope.selectedHT &&
                         item.kieuDet.tenKieuDet == $scope.selectedKD
 
@@ -410,7 +407,7 @@ myApp.controller(
                         item.kichCo.tenKichCo == $scope.selectedKC &&
                         item.mauSac.tenMauSac == $scope.selectedMS &&
                         item.chatLieu.tenChatLieu == $scope.selectedCL &&
-                        item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK&&
+                        item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK &&
                         item.hoaTiet.tenHoaTiet == $scope.selectedHT &&
                         item.kieuDet.tenKieuDet == $scope.selectedKD &&
                         item.kieuTui.tenKieuTui == $scope.selectedKT
@@ -427,10 +424,10 @@ myApp.controller(
                         item.kichCo.tenKichCo == $scope.selectedKC &&
                         item.mauSac.tenMauSac == $scope.selectedMS &&
                         item.chatLieu.tenChatLieu == $scope.selectedCL &&
-                        item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK&&
+                        item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK &&
                         item.hoaTiet.tenHoaTiet == $scope.selectedHT &&
                         item.kieuDet.tenKieuDet == $scope.selectedKD &&
-                        item.kieuTui.tenKieuTui == $scope.selectedKT&&
+                        item.kieuTui.tenKieuTui == $scope.selectedKT &&
                         item.lopLot.tenLopLot == $scope.selectedLL
 
                     );
@@ -445,11 +442,11 @@ myApp.controller(
                         item.kichCo.tenKichCo == $scope.selectedKC &&
                         item.mauSac.tenMauSac == $scope.selectedMS &&
                         item.chatLieu.tenChatLieu == $scope.selectedCL &&
-                        item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK&&
+                        item.cauTrucKhuy.tenCauTrucKhuy == $scope.selectedCTK &&
                         item.hoaTiet.tenHoaTiet == $scope.selectedHT &&
                         item.kieuDet.tenKieuDet == $scope.selectedKD &&
-                        item.kieuTui.tenKieuTui == $scope.selectedKT&&
-                        item.lopLot.tenLopLot == $scope.selectedLL&&
+                        item.kieuTui.tenKieuTui == $scope.selectedKT &&
+                        item.lopLot.tenLopLot == $scope.selectedLL &&
                         item.veAo.tenVeAo == $scope.selectedVA
 
                     );
