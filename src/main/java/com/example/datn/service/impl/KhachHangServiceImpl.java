@@ -3,7 +3,7 @@ package com.example.datn.service.impl;
 
 import com.example.datn.entity.DiaChi;
 import com.example.datn.entity.KhachHang;
-import com.example.datn.exception.KhachHangNotFoundException;
+import com.example.datn.exception.CustomException.KhachHangNotFoundException;
 import com.example.datn.repository.DiaChiRepository;
 import com.example.datn.repository.KhachHangRepository;
 import com.example.datn.response.ThongTinCaNhanResponse;

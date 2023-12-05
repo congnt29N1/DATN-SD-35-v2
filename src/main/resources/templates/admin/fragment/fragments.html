@@ -132,6 +132,17 @@
     <span th:if="${sortField == fieldProductDetails}" style="text-decoration: none; color: black"
           th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 </th>
+
+<th th:fragment="thongke_link(fieldDonHang, columnLabel)">
+    <a style="text-decoration: none; color: black"
+       th:href="@{'/admin/statisticals/page/' + ${currentPage} + '?sortField=' + ${fieldDonHang} + '&sortDir=' + ${sortField != fieldDonHang ? sortDir : reverseSortDir} + ${keyword !=null ? '&keyword=' + keyword:''}}">
+        [[${columnLabel}]]
+    </a>
+    <span th:if="${sortField == fieldDonHang}" style="text-decoration: none; color: black"
+          th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
+
+
 <!-- fragment cho phân trang-->
 <a th:fragment="pagecategory_link(pageNum, label)"
    class="page-link"
@@ -205,6 +216,8 @@
 <a th:fragment="page_spct_link(pageNum, label)"
    class="page-link"
    th:href="@{'/admin/ban-hang/sanpham/page/' + ${pageNum}}"> [[${label}]]</a>
-
+<a th:fragment="page_donhang_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/don-hang/page/' + ${pageNum}}"> [[${label}]]</a>
 </body>
 </html>
