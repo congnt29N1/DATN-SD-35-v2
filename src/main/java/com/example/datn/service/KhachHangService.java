@@ -1,7 +1,7 @@
 package com.example.datn.service;
 
 import com.example.datn.entity.KhachHang;
-import com.example.datn.exception.KhachHangNotFoundException;
+import com.example.datn.exception.CustomException.KhachHangNotFoundException;
 import com.example.datn.response.ThongTinCaNhanResponse;
 import com.example.datn.response.ThongTinToCheckoutResponse;
 import org.springframework.data.domain.Page;
