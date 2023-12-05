@@ -27,7 +27,7 @@ public class ChiTietSanPhamRestController {
         return ResponseEntity.status(HttpStatus.OK).body(chiTietSanPhamService.update(chiTietSanPham));
     }
 
-    @GetMapping("/countSeri/{idChiTietSanPham}")
+    @GetMapping("/countMaDinhDanh/{idChiTietSanPham}")
     ResponseEntity<?> countSeri(@PathVariable("idChiTietSanPham") Integer idChiTietSanPham){
         return ResponseEntity.status(HttpStatus.OK).body(maDinhDanhService.countMaDinhDanh(idChiTietSanPham));
     }

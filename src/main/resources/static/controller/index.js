@@ -3,9 +3,21 @@ myApp.config(function ($routeProvider, $locationProvider,$httpProvider) {
     $httpProvider.interceptors.push('responseObserver');
     $locationProvider.hashPrefix("");
     $routeProvider
-        .when("/",{
-            templateUrl:"/page/trangchu.html",
+        .when("/", {
+            templateUrl: "page/trangchu.html",
             controller :"homeCtrl"
+        })
+        .when("/sanpham", {
+            templateUrl: "page/shop-gird.html",
+            controller: "SanPhamController"
+        })
+        .when("/chitietsanpham/:idSp", {
+            templateUrl: "page/single-product.html",
+            controller: "TrangChiTietSanPhamController"
+        })
+        .when("/cart", {
+            templateUrl: "page/cart.html",
+            controller :"cartCtrl"
         })
         .when("/account", {
             templateUrl: "page/my-account.html",
@@ -21,7 +33,18 @@ myApp.config(function ($routeProvider, $locationProvider,$httpProvider) {
             controller:"loginCtrl"
         })
 
-
+        .when("/success", {
+            templateUrl: "page/success.html",
+            controller: "success"
+        })
+        .when("/fail", {
+            templateUrl: "page/fail.html",
+            controller: "fail"
+        })
+        .when("/checkout", {
+            templateUrl: "page/checkout.html",
+            controller: "ThanhToanCtrl"
+        })
         .when("/my-info", {
             templateUrl: "/page/my-info.html",
             controller: "ThongTinCaNhanController"

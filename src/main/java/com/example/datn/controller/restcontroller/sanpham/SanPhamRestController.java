@@ -47,4 +47,29 @@ public class SanPhamRestController {
         SanPhamDetailResponse result = sanPhamService.getDetailSanPhamById(idSP);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
+    void validDataTimKiem(TimKiemRequest req){
+        if(req.getXeTaId().size()==0)
+            req.setXeTaId(null);
+        if(req.getDanhMucId().size()==0)
+            req.setDanhMucId(null);
+        if(req.getMauSacId().size()==0)
+            req.setMauSacId(null);
+        if(req.getChatLieuId().size()==0)
+            req.setChatLieuId(null);
+        if(req.getKichCoId().size()==0)
+            req.setKichCoId(null);
+        if(req.getCauTrucKhuyId().size()==0)
+            req.setCauTrucKhuyId(null);
+        if(req.getHoaTietId().size()==0)
+            req.setHoaTietId(null);
+        if(req.getKieuDetId().size()==0)
+            req.setKieuDetId(null);
+        if(req.getKieuTuiId().size()==0)
+            req.setKieuTuiId(null);
+        if(req.getLopLotId().size()==0)
+            req.setLopLotId(null);
+        if(req.getVeAoId().size()==0)
+            req.setVeAoId(null);
+
+    }
 }
