@@ -458,10 +458,11 @@ myApp.controller(
         let currentUser = JSON.parse(localStorage.getItem("currentUser"));
         var giaSanPham = 0;
         $scope.getGia = function () {
-            if ($scope.chiTietSanPham.khuyenMai == null) {
-                return giaSanPham = $scope.chiTietSanPham.giaSanPham;
+            if (!$scope.chiTietSanPham || !$scope.chiTietSanPham.khuyenMai) {
+                // Handle the case where chiTietSanPham or khuyenMai is undefined
+                return giaSanPham = $scope.chiTietSanPham ? $scope.chiTietSanPham.giaSanPham : 0;
             } else {
-                if ($scope.chiTietSanPham.khuyenMai.enabled == false) {
+                if ($scope.chiTietSanPham.khuyenMai.enabled === false) {
                     return giaSanPham = $scope.chiTietSanPham.giaSanPham;
                 } else {
                     if ($rootScope.currentDate < $scope.chiTietSanPham.khuyenMai.ngayKetThuc.toString()) {
@@ -472,12 +473,10 @@ myApp.controller(
                         }
                     } else {
                         return giaSanPham = $scope.chiTietSanPham.giaSanPham;
-
-
                     }
                 }
             }
-        }
+        };
 
         $scope.changeTab = function (tab) {
 
@@ -693,8 +692,9 @@ myApp.controller(
             $http
                 .get(`/chi-tiet-san-pham/countMaDinhDanh/${idChiTietSanPham}`)
                 .then(function (response) {
-                    console.log(response.data, "daaaaaaaaaaaaa")
+                    // console.log(response.data, "daaaaaaaaaaaaa")
                     $scope.MaDinhDanhBySP.set(idChiTietSanPham, response.data);
+                    console.log($scope.MaDinhDanhBySP.set(idChiTietSanPham, response.data))
                 })
 
                 .catch(function (error) {

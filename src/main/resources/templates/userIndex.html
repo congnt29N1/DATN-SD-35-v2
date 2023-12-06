@@ -139,24 +139,24 @@
 </script>
 
 <!-- Google Map js -->
-<script src="https://maps.googleapis.com/maps/api/js"></script>
-<script>
-    function initialize() {
-        var mapOptions = {
-            zoom: 8,
-            scrollwheel: false,
-            center: new google.maps.LatLng(35.149868, -90.046678)
-        };
-        var map = new google.maps.Map(document.getElementById('googleMap'),
-            mapOptions);
-        var marker = new google.maps.Marker({
-            position: map.getCenter(),
-            map: map
-        });
+<!--<script src="https://maps.googleapis.com/maps/api/js"></script>-->
+<!--<script>-->
+<!--    function initialize() {-->
+<!--        var mapOptions = {-->
+<!--            zoom: 8,-->
+<!--            scrollwheel: false,-->
+<!--            center: new google.maps.LatLng(35.149868, -90.046678)-->
+<!--        };-->
+<!--        var map = new google.maps.Map(document.getElementById('googleMap'),-->
+<!--            mapOptions);-->
+<!--        var marker = new google.maps.Marker({-->
+<!--            position: map.getCenter(),-->
+<!--            map: map-->
+<!--        });-->
 
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+<!--    }-->
+<!--    google.maps.event.addDomListener(window, 'load', initialize);-->
+<!--</script>-->
 <!-- main js -->
 <script src="/assets/js/main.js"></script>
 </body>

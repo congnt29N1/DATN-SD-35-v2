@@ -1,25 +1,25 @@
-    myApp.controller("cartCtrl", function ($scope,$rootScope, $http,$window,checkOutDataService,$location) {
+myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, checkOutDataService, $location) {
     $scope.cart = [];
     $scope.total = 0;
     $scope.totalSp = 0;
     $scope.totalnavBar = 0;
-    $scope.totalSpnavBar  = 0;
-    $scope.selection=[];
-    $scope.SeriBySP = new Map();
+    $scope.totalSpnavBar = 0;
+    $scope.selection = [];
+    $scope.MaDinhDanhBySP = new Map();
     $scope.errorSelectedSP;
     let currentUser = JSON.parse(localStorage.getItem("currentUser"));
     //load cart
     $rootScope.index = function () {
         $scope.total = 0;
         $scope.totalSp = 0;
-        if(currentUser != null) {
+        if (currentUser != null) {
             $http.get(`/api/giohang/${currentUser.idKhachHang}`).then((resp) => {
                 $scope.cart = resp.data;
                 $scope.cart.forEach(item => {
                     $scope.countSeri(item.chiTietSanPham.idChiTietSanPham)
                 })
             }).catch(error => {
-                if(error.status == 403) {
+                if (error.status == 403) {
                     Swal.fire({
                         icon: "warning",
                         title: "Bạn chưa đăng nhập !",
@@ -31,7 +31,7 @@
                     $window.location.href = '#login';
                 }
             });
-        }else{
+        } else {
             Swal.fire({
                 icon: "warning",
                 title: "Bạn chưa đăng nhập !",
@@ -47,12 +47,12 @@
 
 
     // toorng sp vaf toorng tieefn
-    $scope.setTotalnavBar  = function (item) {
+    $scope.setTotalnavBar = function (item) {
 
         if (item) {
 
-            $scope.totalnavBar  += item.giaBan * item.soLuongSanPham;
-            $scope.totalSpnavBar  +=  item.soLuongSanPham;
+            $scope.totalnavBar += item.giaBan * item.soLuongSanPham;
+            $scope.totalSpnavBar += item.soLuongSanPham;
 
         }
     };
@@ -60,26 +60,24 @@
 
         if (item) {
             $scope.total += item.giaBan * item.soLuongSanPham;
-            $scope.totalSp +=  item.soLuongSanPham;
+            $scope.totalSp += item.soLuongSanPham;
 
 
         }
     };
 
 
-
-
     // api update soLuongtronggiohang
-    $scope.update = function (cart, soLuong){
-            $http.put(`/api/giohang/update/${cart.idChiTietGioHang}?soLuong=${soLuong}`)
-                .then(resp => {
-                    // $scope.cart = resp.data;
-                    // alert("cap nhap thanh cong");
-                    console.log(resp)
-                })
-                .catch(error => {
-                    alert("Loi roi", error);
-                })
+    $scope.update = function (cart, soLuong) {
+        $http.put(`/api/giohang/update/${cart.idChiTietGioHang}?soLuong=${soLuong}`)
+            .then(resp => {
+                // $scope.cart = resp.data;
+                // alert("cap nhap thanh cong");
+                console.log(resp)
+            })
+            .catch(error => {
+                alert("Loi roi", error);
+            })
         // }else{
         //     Swal.fire({
         //         icon: "warning",
@@ -93,76 +91,76 @@
 
 // giam so luong
     $scope.giam = function (item, soLuong) {
-                if (item.soLuongSanPham <= 1) {
+        if (item.soLuongSanPham <= 1) {
+            Swal.fire({
+                title: 'Bạn muốn xóa ?',
+                text: "Xóa sản phẩm này khỏi giỏ hàng",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Xác nhận'
+            }).then((result) => {
+                if (result.isConfirmed) {
                     Swal.fire({
-                        title: 'Bạn muốn xóa ?',
-                        text: "Xóa sản phẩm này khỏi giỏ hàng",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Xác nhận'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            Swal.fire({
-                                title:'Loading',
-                                onOpen: ()=>{
-                                    Swal.showLoading();
-                                },
-                                timer : 2000
-                            })
-
-                            setTimeout(function (){
-                                $scope.delete(item);
-                                var sp = $scope.selection.find((e) => e === item)
-                                if(sp){
-                                    $scope.total -= item.giaBan * item.soLuongSanPham ;
-                                    $scope.totalSp -= item.soLuongSanPham ;
-                                }
-                                $window.location.reload();
-                                return;
-                            },2600)
-
-                        }else {
-                            item.soLuongSanPham = Number(item.soLuongSanPham) + 1;
-                        }
+                        title: 'Loading',
+                        onOpen: () => {
+                            Swal.showLoading();
+                        },
+                        timer: 2000
                     })
-                }else {
-                    item.soLuongSanPham = Number(item.soLuongSanPham) - 1;
-                    soLuong = item.soLuongSanPham;
-                    $scope.update(item, soLuong);
-                    var sp = $scope.selection.find((e) => e === item)
-                    if (sp) {
-                        $scope.total -= item.giaBan;
-                        $scope.totalSp--;
-                    }
-                }
-    };
-    $scope.countSeri = function (idChiTietSanPham){
-            $http
-                .get(`/chi-tiet-san-pham/countMaDinhDanh/${idChiTietSanPham}`)
-                .then(function (response) {
-                    $scope.SeriBySP.set(idChiTietSanPham, response.data);
-                    // console.log(response.data,"daaaaaaaaaaaa")
-                    // $scope.count = response.data;
-                })
 
-                .catch(function (error) {
-                    console.log(error);
-                });
+                    setTimeout(function () {
+                        $scope.delete(item);
+                        var sp = $scope.selection.find((e) => e === item)
+                        if (sp) {
+                            $scope.total -= item.giaBan * item.soLuongSanPham;
+                            $scope.totalSp -= item.soLuongSanPham;
+                        }
+                        $window.location.reload();
+                        return;
+                    }, 2600)
+
+                } else {
+                    item.soLuongSanPham = Number(item.soLuongSanPham) + 1;
+                }
+            })
+        } else {
+            item.soLuongSanPham = Number(item.soLuongSanPham) - 1;
+            soLuong = item.soLuongSanPham;
+            $scope.update(item, soLuong);
+            var sp = $scope.selection.find((e) => e === item)
+            if (sp) {
+                $scope.total -= item.giaBan;
+                $scope.totalSp--;
+            }
         }
-    $scope.tang = function (item,soLuong) {
+    };
+    $scope.MaDinhDanhBySP = function (idChiTietSanPham) {
+        $http
+            .get(`/chi-tiet-san-pham/countMaDinhDanh/${idChiTietSanPham}`)
+            .then(function (response) {
+                $scope.MaDinhDanhBySP.set(idChiTietSanPham, response.data);
+                // console.log(response.data,"daaaaaaaaaaaa")
+                // $scope.count = response.data;
+            })
+
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    $scope.tang = function (item, soLuong) {
 
         if (item) {
-            if(item.soLuongSanPham >= $scope.SeriBySP.get(item.chiTietSanPham.idChiTietSanPham)){
+            if (item.soLuongSanPham >= $scope.MaDinhDanhBySP.get(item.chiTietSanPham.idChiTietSanPham)) {
                 Swal.fire({
-                            icon: "warning",
-                            title: "Thông báo!",
-                            text: "Số lượng có giới hạn ",
-                            timer: 2600,
-                        });
+                    icon: "warning",
+                    title: "Thông báo!",
+                    text: "Số lượng có giới hạn ",
+                    timer: 2600,
+                });
                 return;
-            }else {
+            } else {
                 item.soLuongSanPham = Number(item.soLuongSanPham) + 1;
                 soLuong = item.soLuongSanPham;
                 $scope.update(item, soLuong);
@@ -177,37 +175,37 @@
     };
 
     //api xóa giohang
-    $scope.delete = function (item){
+    $scope.delete = function (item) {
         $http.delete(`/api/giohang/delete/${item.idChiTietGioHang}`)
-            .then(resp =>{
-                const index = $scope.cart.findIndex(p => p.idChiTietGioHang ==  item.idChiTietGioHang);
-                $scope.cart.splice(index,1);
+            .then(resp => {
+                const index = $scope.cart.findIndex(p => p.idChiTietGioHang == item.idChiTietGioHang);
+                $scope.cart.splice(index, 1);
 
             })
-            .catch(error =>{
+            .catch(error => {
                 alert("Loi roi");
-                console.log("eror"+ error);
+                console.log("eror" + error);
             })
     }
 
     //api xóa giohang
-    $scope.deleteAll = function (){
+    $scope.deleteAll = function () {
         $http.delete(`/api/giohang/deleteAll`)
-            .then(resp =>{
-                $scope.cart= [];
+            .then(resp => {
+                $scope.cart = [];
                 // alert("xoa thanh cong");
-                setTimeout(function (){
+                setTimeout(function () {
                     $window.location.reload();
-                },1600)
+                }, 1600)
             })
-            .catch(error =>{
+            .catch(error => {
                 alert("Loi roi");
-                console.log("eror"+ error);
+                console.log("eror" + error);
             })
     }
 
     //xóa sanpham trong giỏ hàng
-    $scope.removeSP= function (item) {
+    $scope.removeSP = function (item) {
         if (item) {
             Swal.fire({
                 title: 'Bạn muốn xóa ?',
@@ -220,22 +218,22 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
-                        title:'Loading',
-                        onOpen: ()=>{
+                        title: 'Loading',
+                        onOpen: () => {
                             Swal.showLoading();
                         },
-                        timer : 2000
+                        timer: 2000
                     })
 
-                    setTimeout(function (){
+                    setTimeout(function () {
                         $scope.delete(item);
                         var sp = $scope.selection.find((e) => e === item)
-                        if(sp){
-                            $scope.total -= item.giaBan * item.soLuongSanPham ;
-                            $scope.totalSp -= item.soLuongSanPham ;
+                        if (sp) {
+                            $scope.total -= item.giaBan * item.soLuongSanPham;
+                            $scope.totalSp -= item.soLuongSanPham;
                         }
-                            $window.location.reload();
-                    },1900)
+                        $window.location.reload();
+                    }, 1900)
                 }
             })
 
@@ -268,7 +266,7 @@
         if (idx > -1) {
             $scope.selection.splice(idx, 1);
             $scope.total -= item.giaBan * item.soLuongSanPham;
-            $scope.totalSp -=  item.soLuongSanPham;
+            $scope.totalSp -= item.soLuongSanPham;
 
         }
         // is newly selected
@@ -278,85 +276,84 @@
         }
 
     };
-        $scope.buycart = () => {
-            $scope.chiTietSanPham=[];
-            $scope.cart.forEach(item=>{
-                $scope.chiTietSanPham.push({
-                    idChiTietSanPham: item.chiTietSanPham.idChiTietSanPham,
-                    giaBan: item.giaBan,
-                    soLuong: item.soLuongSanPham,
-                    chiTietSanPham: item.chiTietSanPham
+    $scope.buycart = () => {
+        $scope.chiTietSanPham = [];
+        $scope.cart.forEach(item => {
+            $scope.chiTietSanPham.push({
+                idChiTietSanPham: item.chiTietSanPham.idChiTietSanPham,
+                giaBan: item.giaBan,
+                soLuong: item.soLuongSanPham,
+                chiTietSanPham: item.chiTietSanPham
+            })
+        })
+        checkOutDataService.setData($scope.chiTietSanPham);
+
+        Swal.fire({
+            title: 'Xác nhận thanh toán?',
+            text: "Bạn hãy xác nhận thanh toán",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xác nhận'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Loading',
+                    onOpen: () => {
+                        Swal.showLoading();
+                    },
+                    timer: 2000
                 })
-            })
-            checkOutDataService.setData($scope.chiTietSanPham);
-
-            Swal.fire({
-                title: 'Xác nhận thanh toán?',
-                text: "Bạn hãy xác nhận thanh toán",
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Xác nhận'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        title:'Loading',
-                        onOpen: ()=>{
-                            Swal.showLoading();
-                        },
-                        timer : 2000
-                    })
-                    setTimeout(function () {
-                        $window.location.href = "#checkout"
-                    }, 1900)
-                }
-            })
-
-        };
-
-        $scope.buy = () => {
-
-            $scope.chiTietSanPham=[];
-            if($scope.selection.length == 0){
-                $scope.errorSelectedSP = "* Vui lòng chọn sản phẩm!";
-                return;
+                setTimeout(function () {
+                    $window.location.href = "#checkout"
+                }, 1900)
             }
-            $scope.selection.forEach(item=>{
-                $scope.chiTietSanPham.push({
-                    idChiTietSanPham: item.chiTietSanPham.idChiTietSanPham,
-                    giaBan: item.giaBan,
-                    soLuong: item.soLuongSanPham,
-                    chiTietSanPham: item.chiTietSanPham
+        })
+
+    };
+
+    $scope.buy = () => {
+
+        $scope.chiTietSanPham = [];
+        if ($scope.selection.length == 0) {
+            $scope.errorSelectedSP = "* Vui lòng chọn sản phẩm!";
+            return;
+        }
+        $scope.selection.forEach(item => {
+            $scope.chiTietSanPham.push({
+                idChiTietSanPham: item.chiTietSanPham.idChiTietSanPham,
+                giaBan: item.giaBan,
+                soLuong: item.soLuongSanPham,
+                chiTietSanPham: item.chiTietSanPham
+            })
+        })
+        checkOutDataService.setData($scope.chiTietSanPham);
+
+        Swal.fire({
+            title: 'Xác nhận thanh toán?',
+            text: "Bạn hãy xác nhận thanh toán",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xác nhận'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Loading',
+                    onOpen: () => {
+                        Swal.showLoading();
+                    },
+                    timer: 1000
                 })
-            })
-            checkOutDataService.setData($scope.chiTietSanPham);
+                setTimeout(function () {
+                    $window.location.href = "#checkout"
+                }, 1900)
+            }
+        })
 
-            Swal.fire({
-                title: 'Xác nhận thanh toán?',
-                text: "Bạn hãy xác nhận thanh toán",
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Xác nhận'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        title: 'Loading',
-                        onOpen: () => {
-                            Swal.showLoading();
-                        },
-                        timer: 1000
-                    })
-                    setTimeout(function () {
-                        $window.location.href = "#checkout"
-                    }, 1900)
-                }
-            })
-
-      };
-
+    };
 
 
 })

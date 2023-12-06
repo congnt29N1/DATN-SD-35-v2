@@ -59,7 +59,7 @@
 						<!-- SINGLE CART_ITEM START -->
 						<tr ng-repeat="item in cart">
 							<td >
-								<span ng-show="SeriBySP.get(item.chiTietSanPham.idChiTietSanPham) > 0">
+								<span ng-show="MaDinhDanhBySP.get(item.chiTietSanPham.idChiTietSanPham) > 0">
 								<input type="checkbox"  ng-checked="selection.indexOf(item) > -1" ng-click="toggleSelection(item)" style="text-align: center"/>
 								</span>
 							</td>
@@ -76,8 +76,8 @@
 									, Vật liệu : {{item.chiTietSanPham.vatLieu.tenVatLieu}} </a></small>
 							</td>
 							<td class="cart-avail">
-								<span  ng-show="SeriBySP.get(item.chiTietSanPham.idChiTietSanPham) > 0" class="label label-success">Còn hàng</span>
-								<span style="background: red; color: whitesmoke" ng-show="SeriBySP.get(item.chiTietSanPham.idChiTietSanPham) == 0">Hết hàng</span>
+								<span  ng-show="MaDinhDanhBySP.get(item.chiTietSanPham.idChiTietSanPham) > 0" class="label label-success">Còn hàng</span>
+								<span style="background: red; color: whitesmoke" ng-show="MaDinhDanhBySP.get(item.chiTietSanPham.idChiTietSanPham) == 0">Hết hàng</span>
 							</td>
 
 							<td class="cart-unit">

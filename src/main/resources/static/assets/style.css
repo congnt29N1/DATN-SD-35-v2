@@ -1762,16 +1762,16 @@ div.client-carousel .owl-item img {
 10. home page 2	
 -------------------------*/
 body.index-2 .welcome-info span, body.index-2 .current-currency strong, body.index-2 .current-lang strong, body.index-2 .languages-choose li a:hover, body.index-2 .currency-list li a:hover, body.index-2 .header-right-menu nav ul li a:hover, body.index-2 span.cross-icon:hover, body.index-2 .shipping-item-text span a.pro-cat:hover, body.index-2 span.pro-quality a:hover, body.index-2 .product-info a:hover, body.index-2 h2.left-title a:hover, body.index-2 .latest-news-area .left-title-area h2.left-title a:hover, body.index-2 .single-latest-post h2 a:hover, body.index-2 .read-more a:hover, body.index-2 .single-facality:hover .facality-text h3, body.index-2 .info-text p a:hover, body.index-2 .single-f-widget ul li a:hover, body.index-2 .copy-right address a, body.index-2 .latest-news-row h2.center-title a:hover, body.index-2 .drodown-mega-menu .mega-menu-list a:hover{
-	color:#FF4F4F;
+	color:rgb(142, 116, 77);
 }
 body.index-2 .search-button, body.index-2 .header-right-callus::before, body.index-2 .ajax-cart-quantity, body.index-2 a.shop-link:hover span.ajax-cart-quantity, body.index-2 .ajax-cart-quantity:hover, body.index-2 .shipping-checkout-btn a:hover, body.index-2 .nivo-caption a:hover, body.index-2 div.nivo-controlNav a.active, body.index-2 .slider-bolut:hover, body.index-2 div.nivo-controlNav a.nivo-control:hover, body.index-2 .new-mark-box, body.index-2 .overlay-content ul li a:hover, body.index-2 .single-facality:hover .facality-icon, body.index-2 .newsletter-area, body.index-2 .flow-us-link li a:hover, body.index-2 .bstore-scrollertop:hover{
-	background:#FF4F4F;
+	background:red;
 }
 body.index-2 .search-button:hover{
-	background:#3A3D42;
+	background:rgb(142, 116, 77);
 }
 body.index-2 .drodown-mega-menu{
-	border-bottom:3px solid #FF4F4F;
+	border-bottom:3px solid rgb(142, 116, 77);;
 }
 body.index-2 .new-product-area{
 	margin-top:50px;
@@ -4498,7 +4498,7 @@ p.small-title{
 	margin-right:0;
 }
 .more-info-tab > li.active > a, .more-info-tab > li.active > a:focus, .more-info-tab > li.active > a:hover {
-	background-color: #ff4f4f;
+	background-color: rgb(142, 116, 77);
 	border-color: #ddd #ddd transparent;
 	border: none;
 	color: #fff;

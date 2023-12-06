@@ -91,7 +91,7 @@
                                         <p>Mã: <span>{{chiTietSanPham.maChiTietSanPham}}</span></p>
                                     </div>
                                     <div class="single-product-price">
-                                        <h2><span ng-bind="getGia() | number"></span>đ</h2>
+                                        <h2><span ng-bind="getGia() | number"></span> đ</h2>
                                     </div>
                                 </div>
                                 <div ng-if="chiTietSanPham.giaSanPham != getGia()">
@@ -270,11 +270,9 @@
                                                     <td class="td-bg">{{sanPhamDetail.danhMuc.ten}}</td>
                                                     <td></td>
                                                 </tr>
-                                                </tr>
                                                 <tr class="odd">
                                                     <td>Sơ Mi Phù Hợp</td>
                                                     <td>{{chiTietSanPham.soMiPhuHop}}</td>
-                                                </tr>
                                                 </tr>
                                                 <tr class="odd">
                                                     <td>Giày Phù Hợp</td>
@@ -321,7 +319,6 @@
                                                     <td>{{chiTietSanPham.xeTa.tenXeTa}}</td>
                                                     <td>{{chiTietSanPham.xeTa.moTaXeTa}}</td>
                                                 </tr>
-
                                                 <tr class="odd">
                                                     <td>Tình trạng</td>
                                                     <td>{{chiTietSanPham.trangThai == 1 ? "Đang bán": "Ngưng bán"}}</td>
