@@ -96,12 +96,20 @@
 <script src="/assets/angular/angular.js"></script>
 <script src="/assets/angular/angular-route.js"></script>
 <script src="/controller/index.js"></script>
+<script src="/controller/sanpham.js"></script>
+<script src="/controller/trangchitietsanpham.js"></script>
+<script src="/controller/thanhtoan.js"></script>
+<script src="/controller/trangchu.js"></script>
+<script src="/controller/giohang.js"></script>
 <script src="/controller/login.js"></script>
 <script src="/controller/register.js"></script>
+
+<script src="/controller/fail.js"></script>
+<script src="/controller/success.js"></script>
 <script src="/controller/thongtincanhan.js"></script>
+<script src="/controller/service/checkoutservice.js"></script>
+<script src="/controller/service/timkiemservice.js"></script>
 <script src="/controller/history.js"></script>
-
-
 
 <!-- fancybox js -->
 <script src="/assets/js/jquery.fancybox.js"></script>
@@ -131,24 +139,24 @@
 </script>
 
 <!-- Google Map js -->
-<script src="https://maps.googleapis.com/maps/api/js"></script>
-<script>
-    function initialize() {
-        var mapOptions = {
-            zoom: 8,
-            scrollwheel: false,
-            center: new google.maps.LatLng(35.149868, -90.046678)
-        };
-        var map = new google.maps.Map(document.getElementById('googleMap'),
-            mapOptions);
-        var marker = new google.maps.Marker({
-            position: map.getCenter(),
-            map: map
-        });
+<!--<script src="https://maps.googleapis.com/maps/api/js"></script>-->
+<!--<script>-->
+<!--    function initialize() {-->
+<!--        var mapOptions = {-->
+<!--            zoom: 8,-->
+<!--            scrollwheel: false,-->
+<!--            center: new google.maps.LatLng(35.149868, -90.046678)-->
+<!--        };-->
+<!--        var map = new google.maps.Map(document.getElementById('googleMap'),-->
+<!--            mapOptions);-->
+<!--        var marker = new google.maps.Marker({-->
+<!--            position: map.getCenter(),-->
+<!--            map: map-->
+<!--        });-->
 
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+<!--    }-->
+<!--    google.maps.event.addDomListener(window, 'load', initialize);-->
+<!--</script>-->
 <!-- main js -->
 <script src="/assets/js/main.js"></script>
 </body>
