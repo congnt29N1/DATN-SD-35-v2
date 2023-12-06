@@ -6,6 +6,15 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        position: fixed; /* Thêm fixed-top */
+        width: 100%; /* Đảm bảo menu chiếm toàn bộ chiều rộng của trang */
+        top: 0; /* Đặt menu ở đầu trang */
+        z-index: 1000; /* Đảm bảo menu hiển thị trên các phần tử khác */
+    }
+
+    /* Thêm padding-top để tránh che phủ nội dung trang */
+    body {
+        padding-top: 75px;
     }
 
     .header-right-menu {
@@ -89,11 +98,12 @@
     }
 
 
+
 </style>
 <!-- HEADER-TOP START -->
 <div class="header-top">
     <div class="container">
-        <div class="row">
+        <div class="row ">
             <!-- HEADER-LEFT-MENU START -->
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                 <div class="logo" >
@@ -103,17 +113,17 @@
             <!-- HEADER-LEFT-MENU END -->
             <!-- HEADER-RIGHT-MENU START -->
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-                <div class="header-right-menu">
+                <div class="header-right-menu ">
                     <nav>
                         <ul class="list-inline" ng-if="currentUser.username == null">
-                            <li class="active"><a href="#index">TRANG CHỦ</a> </li>
+                            <li class="active"><a href="#index" style="">TRANG CHỦ</a> </li>
                              <li><a href="#">MAY ĐO ONLINE</a></li>
                             <li>
-                                <a href="#sanPham">SẢN PHẨM</a>
+                                <a href="#sanpham">SẢN PHẨM</a>
                             </li>
 
                             <li> <a href="#chinhSach">CHÍNH SÁCH</a></li>
-                            <li><a href="#cart">GIỎ HÀNG</a></li>
+                            <li><a href="#checkout">GIỎ HÀNG</a></li>
                             <li><a href="#login">ĐĂNG NHẬP</a></li>
                             <li><a href="#signup">ĐĂNG KÝ</a></li>
                         </ul>
@@ -121,12 +131,12 @@
                             <li class="active"><a href="#index">TRANG CHỦ</a> </li>
                             <li><a href="#">MAY ĐO ONLINE</a></li>
                             <li>
-                                <a href="#sanPham">SẢN PHẨM</a>
+                                <a href="#sanpham">SẢN PHẨM</a>
                             </li>
 
                             <li> <a href="#chinhSach">CHÍNH SÁCH</a></li>
-                            <li><a style="cursor: pointer"  data-toggle="modal" data-target="#myModal10" >ĐĂNG XUẤT</a></li>
-                            <li><a href="#cart">GIỎ HÀNG</a></li>
+<!--                            <li><a style="cursor: pointer"  data-toggle="modal" data-target="#myModal10" >ĐĂNG XUẤT</a></li>-->
+                            <li><a href="#checkout">GIỎ HÀNG </a></li>
                             <li >
                                 <ul class="dropdown" style=" list-style: none;">
                                     <li style="color: black;font-weight: bold;text-decoration: none;">TÀI KHOẢN</li>
@@ -134,13 +144,15 @@
                                         <li><a href="#changePass">Đổi mật khẩu</a></li>
                                         <li><a href="#my-address">Địa chỉ</a></li>
                                         <li><a href="#my-info">Thông tin cá nhân</a></li>
+                                        <li><a href="#history/all">Đơn hàng</a></li>
+                                        <li><a style="cursor: pointer"  ng-click="logouts()" >Đăng xuất <i class="fa fa-sign-out"></i></a></li>
                                     </ul>
                                 </ul>
                             </li>
 
                                 <li>Hi {{currentUser.username}} </li>
                                 <!-- Modal -->
-                                <div class="modal fade" id="myModal10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="indexCtrl" >
+                                <div class="modal fade" id="myModal10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="historyChoCtrl" >
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content" style="margin-top: 40%;width: 69%;margin-left: 14%;">
                                             <div class="modal-header">

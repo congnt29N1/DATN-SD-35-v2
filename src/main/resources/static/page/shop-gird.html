@@ -1,0 +1,224 @@
+<style>
+	/* Thêm đoạn mã CSS để tạo viền cho phần select */
+	.product-shooting-bar select {
+		border: 1px solid #ddd; /* Màu viền và kích thước của nó có thể được điều chỉnh theo nhu cầu của bạn */
+		padding: 5px; /* Điều chỉnh giãn giữa nội dung và viền */
+		border-radius: 4px; /* Bo góc */
+		height: 33px;
+	}
+
+	/* Nếu bạn muốn thay đổi màu sắc khi focus */
+	.product-shooting-bar select:focus {
+		border-color: #8E744D; /* Màu sắc khi focus */
+		outline: 0; /* Loại bỏ đường viền khi focus */
+	}
+
+</style>
+<section class="main-content-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<!-- BSTORE-BREADCRUMB START -->
+				<div class="bstore-breadcrumb">
+					<a href="#index">Trang chủ</a>
+					<span><i class="fa fa-caret-right"></i></span>
+					<span>Sản phẩm</span>
+				</div>
+				<!-- BSTORE-BREADCRUMB END -->
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+				<button class="btn " ng-click="searchList()" style="float: none">
+					Tìm kiếm
+					<i class="fa fa-chevron-right"></i>
+				</button>
+				<!-- PRODUCT-LEFT-SIDEBAR START -->
+				<div class="product-left-sidebar">
+
+					<!-- SINGLE SIDEBAR ENABLED FILTERS START -->
+					<div class="product-single-sidebar">
+						<span class="sidebar-title">Tên</span>
+						<input type="text"  name="ten" ng-model="tenSanPham" class="form-control input-feild" >
+					</div>
+					<!-- SINGLE SIDEBAR ENABLED FILTERS END -->
+					<!-- SINGLE SIDEBAR CATEGORIES START -->
+					<div class="product-single-sidebar">
+						<span class="sidebar-title">Danh Mục</span>
+						<ul>
+							<li ng-repeat="danhMuc in listSetting.listDanhMuc" >
+								<label class="cheker">
+									<input type="checkbox" name ="danhMuc" id="{{danhMuc.id}}" ng-model="danhMuc.checked" ng-change="changeDanhMucs()"/>
+									<span></span>
+								</label>
+								<a href="#">{{danhMuc.ten}}</a>
+							</li>
+						</ul>
+					</div>
+					<!-- SINGLE SIDEBAR CATEGORIES END -->
+
+					<!-- SINGLE SIDEBAR SIZE START -->
+					<div class="product-single-sidebar">
+						<span class="sidebar-title">Kích cỡ</span>
+						<ul>
+							<li ng-repeat="kichCo in listSetting.listKichCo">
+								<label class="cheker">
+									<input type="checkbox" name ="kichCo" id="{{kichCo.idKichCo}}" ng-model="kichCo.checked" ng-change="changeKichCos()"/>
+									<span></span>
+								</label>
+								<a href="#">{{kichCo.tenKichCo}}</a>
+							</li>
+						</ul>
+					</div>
+					<!-- SINGLE SIDEBAR SIZE END -->
+					<!-- SINGLE SIDEBAR COLOR START -->
+					<div class="product-single-sidebar">
+						<span class="sidebar-title">Màu sắc</span>
+						<ul class="product-color-var">
+							<li  ng-repeat="mauSac in listSetting.listMauSac">
+								<label class="cheker">
+									<input type="checkbox" name ="mauSac" id="{{mauSac.idMauSac}}" ng-model="mauSac.checked" ng-change="changeMauSacs()"/>
+									<span></span>
+								</label>
+								<a href="#">{{mauSac.tenMauSac}}</a>
+							</li>
+						</ul>
+					</div>
+					<!-- SINGLE SIDEBAR COLOR END -->
+
+				</div>
+				<!-- PRODUCT-LEFT-SIDEBAR END -->
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+				<div class="right-all-product">
+					<div class="product-category-title">
+						<!-- PRODUCT-CATEGORY-TITLE START -->
+						<h1>
+							<span class="cat-name">Sản phẩm</span>
+						</h1>
+						<!-- PRODUCT-CATEGORY-TITLE END -->
+					</div>
+					<div class="product-shooting-area">
+						<div class="product-shooting-bar">
+							<!-- SHOORT-BY START -->
+							<div class="shoort-by">
+								<label for="productShort">Sắp xếp theo</label>
+								<div class="short-select-option">
+									<select name="sortby" id="productShort" ng-model="selectedSortOption" ng-change="handleSortChange()">
+										<option value="0">--</option>
+										<option value="1">Giá tăng dần</option>
+										<option value="2">Giá giảm dần</option>
+										<option value="3">Tên sản phẩm: A to Z</option>
+										<option value="4">Tên sản phẩm: Z to A</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ALL GATEGORY-PRODUCT START -->
+				<div class="all-gategory-product">
+					<div class="row">
+						<ul class="gategory-product">
+							<!-- SINGLE ITEM START -->
+							<li class="gategory-product-list col-lg-3 col-md-4 col-sm-6 col-xs-12" style="height: 390px;margin-bottom: 3px" ng-repeat="sp in displayedItems">
+								<div class="single-product-item">
+									<div class="product-image">
+										<a href="#/chitietsanpham/{{sp.sanPhamID}}"><img src="../assets/images/{{sp.listAnhSanPham[0].link}}" alt="product-image" style="width: 200px;height: 250px" /></a>
+										<!--            Khuyen mai-->
+										<span ng-repeat="p in sp.listChiTietSanPham ">
+                                                <span ng-if="p.khuyenMai == null "></span>
+                                                <span ng-if="p.khuyenMai != null ">
+                                                    <span ng-if="p.khuyenMai.enabled == false"></span>
+                                                    <span ng-if="p.khuyenMai.enabled == true">
+                                                        <span ng-if="currentDate >  p.khuyenMai.ngayKetThuc.toString() "></span>
+                                                        <span ng-if="currentDate < p.khuyenMai.ngayKetThuc.toString()">
+                                                            <span ng-if="currentDate < p.khuyenMai.ngayBatDau.toString()"></span>
+                                                            <span ng-if="currentDate > p.khuyenMai.ngayBatDau.toString()">
+                                                                <a href="#" class="new-mark-box">{{p.khuyenMai.chietKhau}} %</a>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                            </span>
+										<!--            Ket thuc Khuyen mai -->
+										<div class="overlay-content" >
+											<ul>
+												<li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
+												<li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
+												<li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="product-info">
+										<div class="customar-comments-box">
+											<div class="rating-box">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star-half-empty"></i>
+											</div>
+											<div class="review-box">
+												<span>1 Review(s)</span>
+											</div>
+										</div>
+										<a href="#/chitietsanpham/{{sp.sanPhamID}}">{{sp.tenSanPham}}</a>
+										<div class="price-box">
+                                                                  <span ng-if="sp.listChiTietSanPham.length == 1">
+                                                                      <span ng-if=" itemWithGiaNN.get(sp.sanPhamID) == getGiaNNOld(sp.listChiTietSanPham)">
+                                                                          <span class="price" style="font-size: 13px;color: #ff5858"> {{ itemWithGiaNN.get(sp.sanPhamID) | number}} đ </span>
+                                                                      </span>
+                                                                      <span ng-if=" itemWithGiaNN.get(sp.sanPhamID) != getGiaNNOld(sp.listChiTietSanPham)">
+                                                                          <span class="price"  style="font-size: 13px;color: #ff5858"> {{ itemWithGiaNN.get(sp.sanPhamID) | number}} đ </span>
+                                                                          <span class="old-price"> <span ng-bind="getGiaNNOld(sp.listChiTietSanPham) | number"></span>đ</span>
+                                                                      </span>
+                                                                  </span>
+											<span ng-if="sp.listChiTietSanPham.length > 1">
+                                                                        <span ng-if=" itemWithGiaNN.get(sp.sanPhamID) == getGiaNNOld(sp.listChiTietSanPham) && itemWithGiaLN.get(sp.sanPhamID) == getGiaLNOld(sp.listChiTietSanPham)">
+                                                                            <span class="price"  style="font-size: 13px ; margin-right: 0; color: #ff5858"> {{ itemWithGiaNN.get(sp.sanPhamID) | number}} đ ~</span>
+                                                                            <span class="price"  style="font-size: 13px; color: #ff5858"> {{ itemWithGiaLN.get(sp.sanPhamID) | number}} đ</span>
+                                                                         </span>
+                                                                        <span ng-if=" itemWithGiaNN.get(sp.sanPhamID) != getGiaNNOld(sp.listChiTietSanPham) || itemWithGiaLN.get(sp.sanPhamID) != getGiaLNOld(sp.listChiTietSanPham)">
+                                                                            <span class="price"  style="font-size: 13px ;color: #ff5858; margin-right: 0"> {{ itemWithGiaNN.get(sp.sanPhamID) | number}} đ ~</span>
+                                                                            <span class="price"  style="font-size: 13px;color: #ff5858"> {{ itemWithGiaLN.get(sp.sanPhamID) | number}} đ</span>
+                                                                            <span class="old-price"> <span  ng-bind="getGiaNNOld(sp.listChiTietSanPham) | number"></span>đ</span> ~
+                                                                            <span class="old-price"> <span ng-bind="getGiaLNOld(sp.listChiTietSanPham) | number"></span>đ</span>
+                                                                         </span>
+                                                                  </span>
+										</div>
+									</div>
+								</div>
+							</li>
+							<!-- SINGLE ITEM END -->
+						</ul>
+					</div>
+				</div>
+				<!-- ALL GATEGORY-PRODUCT END -->
+				<!-- PRODUCT-SHOOTING-RESULT START -->
+				<div class="product-shooting-result product-shooting-result-border "style="margin-top: 10px">
+					<div class="showing-item">
+					</div>
+					<div class="showing-next-prev">
+						<ul class="pagination-bar">
+							<li ng-class="{ 'disabled' : isFirstPage }">
+								<a  ng-click="previousPage()" style="cursor: pointer"><i class="fa fa-chevron-left "></i>Trước</a>
+							</li>
+							<li ng-class="{ 'active' : page == currentPage }" ng-repeat="page in pages" ng-click="changePage(page)">
+								<span><a class="pagi-num"style="cursor: pointer" >{{ page }}</a></span>
+							</li>
+							<li ng-class="{ 'disabled' : isLastPage }">
+								<a ng-click="nextPage()" style="cursor: pointer">Sau<i class="fa fa-chevron-right" ></i></a>
+							</li>
+						</ul>
+						<form action="#">
+							<button class="btn showall-button">Tất cả</button>
+						</form>
+					</div>
+				</div>
+				<!-- PRODUCT-SHOOTING-RESULT END -->
+			</div>
+		</div>
+	</div>
+</section>
+<!-- MAIN-CONTENT-SECTION END -->

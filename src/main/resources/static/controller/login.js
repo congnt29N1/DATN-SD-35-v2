@@ -1,4 +1,4 @@
-myApp.controller("loginCtrl", function ($scope,$rootScope ,$http,$location, $window) {
+myApp.controller("loginCtrl", function ($scope,$rootScope ,$http,$location, $window,) {
 
     $scope.errorMessages="";
 
@@ -22,22 +22,20 @@ myApp.controller("loginCtrl", function ($scope,$rootScope ,$http,$location, $win
                 $rootScope.currentUser =$scope.currentUser;
                 $window.localStorage.setItem('currentUser', JSON.stringify($scope.currentUser));
                 $http.defaults.headers.common.Authorization = "Bearer " + resp.data.token;
-                console.log(currentUser);
                 Swal.fire({
                     icon: "success",
                     title:  resp.data.message,
                     text: "Quay lại trang chủ!",
                     timer: 5600,
                 });
-
-                $window.location.href = '#index';
-                $window.location.reload();
+                $location.path("/");
+                $location.reload();
                 $scope.error = false;
             }
         }).catch(error =>{
             $scope.errorMessages = error.data.message;
             $rootScope.authenticated = false;
-            $location.path("/login");
+            $location.path("/");
             $scope.error = true;
 
         });
