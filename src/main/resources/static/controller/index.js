@@ -142,10 +142,10 @@ myApp.controller("indexCtrl", function ($rootScope,$scope, $http,$window, $locat
             allowOutsideClick: false,
             timer: 1600,
         });
+        $location.path("/login")
         setTimeout(function (){
-            $location.path("/login")
             $window.location.reload();
-        },2000)
+        },1000)
 
     }
 })

@@ -135,7 +135,7 @@
                             </li>
 
                             <li> <a href="#chinhSach">CHÍNH SÁCH</a></li>
-                            <li><a style="cursor: pointer"  data-toggle="modal" data-target="#myModal10" >ĐĂNG XUẤT</a></li>
+<!--                            <li><a style="cursor: pointer"  data-toggle="modal" data-target="#myModal10" >ĐĂNG XUẤT</a></li>-->
                             <li><a href="#checkout">GIỎ HÀNG </a></li>
                             <li >
                                 <ul class="dropdown" style=" list-style: none;">
@@ -145,13 +145,14 @@
                                         <li><a href="#my-address">Địa chỉ</a></li>
                                         <li><a href="#my-info">Thông tin cá nhân</a></li>
                                         <li><a href="#history/all">Đơn hàng</a></li>
+                                        <li><a style="cursor: pointer"  ng-click="logouts()" >Đăng xuất <i class="fa fa-sign-out"></i></a></li>
                                     </ul>
                                 </ul>
                             </li>
 
                                 <li>Hi {{currentUser.username}} </li>
                                 <!-- Modal -->
-                                <div class="modal fade" id="myModal10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="indexCtrl" >
+                                <div class="modal fade" id="myModal10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="historyChoCtrl" >
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content" style="margin-top: 40%;width: 69%;margin-left: 14%;">
                                             <div class="modal-header">
