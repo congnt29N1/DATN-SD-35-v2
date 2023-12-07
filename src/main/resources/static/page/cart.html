@@ -45,7 +45,6 @@
 							<th class="cart-product"></th>
 							<th class="cart-product">Sản phẩm</th>
 							<th class="cart-description">Mô tả</th>
-							<th class="cart-avail text-center">Tình trạng</th>
 							<th class="cart-unit text-right" style="width: 10%">Giá bán</th>
 							<th class="cart_quantity text-center">Số lượng</th>
 							<th class="cart-delete">&nbsp;</th>
@@ -72,12 +71,14 @@
 								<small>Mã :{{item.chiTietSanPham.maChiTietSanPham}}</small>
 								<small><a href="#">Kích thước :{{item.chiTietSanPham.kichCo.tenKichCo}}
 									, Màu : {{item.chiTietSanPham.mauSac.tenMauSac}} </a></small>
-								<small><a href="#">Dây đeo :{{item.chiTietSanPham.dayDeo.tenDayDeo}}
-									, Vật liệu : {{item.chiTietSanPham.vatLieu.tenVatLieu}} </a></small>
-							</td>
-							<td class="cart-avail">
-								<span  ng-show="MaDinhDanhBySP.get(item.chiTietSanPham.idChiTietSanPham) > 0" class="label label-success">Còn hàng</span>
-								<span style="background: red; color: whitesmoke" ng-show="MaDinhDanhBySP.get(item.chiTietSanPham.idChiTietSanPham) == 0">Hết hàng</span>
+								<small><a href="#">Cấu trúc khuy :{{item.chiTietSanPham.cauTrucKhuy.tenCauTrucKhuy}}
+									, Chất liệu : {{item.chiTietSanPham.chatLieu.tenChatLieu}} </a></small>
+								<small><a href="#">Lớp lót :{{item.chiTietSanPham.lopLot.tenLopLot}}
+									, Hoạ Tiết : {{item.chiTietSanPham.hoaTiet.tenHoaTiet}} </a></small>
+								<small><a href="#">Kiểu túi :{{item.chiTietSanPham.kieuTui.tenKieuTui}}
+									, Kiểu dệt : {{item.chiTietSanPham.kieuDet.tenKieuDet}} </a></small>
+								<small><a href="#">Ve áo :{{item.chiTietSanPham.veAo.tenVeAo}}
+									, Xẻ tà : {{item.chiTietSanPham.xeTa.tenXeTa}} </a></small>
 							</td>
 
 							<td class="cart-unit">

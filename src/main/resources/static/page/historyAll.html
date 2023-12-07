@@ -32,20 +32,20 @@
                     <div style="text-align: center; margin: 10px 0">Chưa có đơn hàng </div>
                 </div>
                     <div ng-if="donHang.length > 0">
-                    <div class="shipping-cart"  when-scrolled="more()" style=" height:550px; color: red; overflow-x:auto;">
+                    <div class="shipping-cart"  when-scrolled="more()" style=" height:550px; color: black; overflow-x:auto;">
                         <div ng-repeat="item in donHang " style="padding: 10px 0; margin: 20px 0; box-shadow: black 1px 1px 4px;">
                             <br>
                             <div style="font-size: medium; padding: 0 10px;position: relative">
                                 <div >Mã đơn hàng : {{item.maDonHang}}</div>
                                 <div >Ngày Tạo : {{item.ngayTao | date : "short"}}</div>
                                 <div ng-show="item.diaChi != null">Địa Chỉ : {{item.diaChi}}, {{item.phuongXa}} - {{item.quanHuyen}} -  {{item.tinhThanh}}</div>
-                                <span ng-if="item.trangThaiDonHang == 0" style="position: absolute; right: 32px;top: 10px;color: #3ab19c;text-transform: uppercase;">Đơn hàng chờ xác nhận</span>
-                                <span ng-if="item.trangThaiDonHang == 1" style="position: absolute; right: 32px;top: 10px;color: #3ab19c;text-transform: uppercase;">Người bán đang chuẩn bị đơn hàng</span>
-                                <span ng-if="item.trangThaiDonHang == 2" style="position: absolute; right: 32px;top: 10px;color: #3ab19c;text-transform: uppercase;">Đan hàng đang giao</span>
-                                <span ng-if="item.trangThaiDonHang == 3" style="position: absolute; right: 32px;top: 10px;color: #3ab19c;text-transform: uppercase;">Đơn hàng giao thành công</span>
-                                <span ng-if="item.trangThaiDonHang == 4" style="position: absolute; right: 32px;top: 10px;color: red;text-transform: uppercase;">Đơn hàng đã hủy</span>
-                                <span ng-if="item.trangThaiDonHang == 5" style="position: absolute; right: 32px;top: 10px;color: red;text-transform: uppercase;">Yêu cầu trả hàng  hoàn tiền</span>
-                                <span ng-if="item.trangThaiDonHang == 6" style="position: absolute; right: 32px;top: 10px;color: red;text-transform: uppercase;">Đơn đã hoàn tiền</span>
+                                <span ng-if="item.trangThaiDonHang == 0" style="position: absolute; right: 32px;top: 10px;color: black;text-transform: uppercase;">Đơn hàng chờ xác nhận</span>
+                                <span ng-if="item.trangThaiDonHang == 1" style="position: absolute; right: 32px;top: 10px;color: black;text-transform: uppercase;">Người bán đang chuẩn bị đơn hàng</span>
+                                <span ng-if="item.trangThaiDonHang == 2" style="position: absolute; right: 32px;top: 10px;color: black;text-transform: uppercase;">Đan hàng đang giao</span>
+                                <span ng-if="item.trangThaiDonHang == 3" style="position: absolute; right: 32px;top: 10px;color: black;text-transform: uppercase;">Đơn hàng giao thành công</span>
+                                <span ng-if="item.trangThaiDonHang == 4" style="position: absolute; right: 32px;top: 10px;color: black;text-transform: uppercase;">Đơn hàng đã hủy</span>
+                                <span ng-if="item.trangThaiDonHang == 5" style="position: absolute; right: 32px;top: 10px;color: black;text-transform: uppercase;">Yêu cầu trả hàng  hoàn tiền</span>
+                                <span ng-if="item.trangThaiDonHang == 6" style="position: absolute; right: 32px;top: 10px;color: black;text-transform: uppercase;">Đơn đã hoàn tiền</span>
                             </div>
                         <div class="shipping-item"  ng-repeat="h in item.hoaDonChiTiets" style="line-height: 22px; padding: 10px;">
                             <div class=" shipping-item-image" style="width: 10%">
@@ -54,7 +54,12 @@
                             <div class="shipping-item-text"  style="width: 87%; float: right">
                                  <a href="#/chitietsanpham/{{h.chiTietSanPham.sanPham.idSanPham}}" class="pro-cat" style="font-size: 17px">{{h.chiTietSanPham.sanPham.tenSanPham}} </a>
                                 <div>{{h.soLuong}} <span class="pro-quan-x">x</span></div>
-                                <span class="pro-quality"><a href="#sanpham">Phân loại : {{h.chiTietSanPham.kichCo.tenKichCo}},{{h.chiTietSanPham.mauSac.tenMauSac}},{{h.chiTietSanPham.dayDeo.tenDayDeo}},{{h.chiTietSanPham.vatLieu.tenVatLieu}}</a></span>
+                                <span class="pro-quality">
+                                    <a href="#sanpham">Kích cỡ:{{h.chiTietSanPham.kichCo.tenKichCo}}, Màu Sắc:{{h.chiTietSanPham.mauSac.tenMauSac}}, Cấu trúc khuy:{{h.chiTietSanPham.cauTrucKhuy.tenCauTrucKhuy}}, Chất liệu:{{h.chiTietSanPham.chatLieu.tenChatLieu}}</a><br>
+                                    <a href="#sanpham">Hoạ tiết:{{h.chiTietSanPham.hoaTiet.tenHoaTiet}}, Kiểu dệt:{{h.chiTietSanPham.kieuDet.tenKieuDet}}, Kiểu túi:{{h.chiTietSanPham.kieuTui.tenKieuTui}}</a><br>
+                                    <a href="#sanpham">Lớp lóp:{{h.chiTietSanPham.lopLot.tenLopLot}}, ve áo:{{h.chiTietSanPham.veAo.tenVeAo}}, Xẻ tà:{{h.chiTietSanPham.xeTa.tenXeTa}}</a>
+
+                                </span>
                                 <ul class="price text-right" style="    position: absolute; right: 20px;top: 7px; " >
                                     <li class="price special-price"> {{h.giaBan * h.soLuong | number}} đ </li>
                                     <span ng-if="h.chietKhau == null"></span>

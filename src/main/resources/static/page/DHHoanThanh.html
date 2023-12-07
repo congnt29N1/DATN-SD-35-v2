@@ -28,7 +28,7 @@
                         <div style="text-align: center; margin: 10px 0">Chưa có đơn hàng </div>
                     </div>
                 <div ng-if="donHang.length > 0">
-                    <div class="shipping-cart"  when-scrolled="more()" style=" height:550px; color: red; overflow-y:auto; width: 977px;
+                    <div class="shipping-cart"  when-scrolled="more()" style=" height:550px; color: black; overflow-y:auto; width: 977px;
     margin-left: -16px; ">
                         <div ng-repeat="item in donHang " style="padding: 10px 0; margin: 20px 0; box-shadow: black 1px 1px 4px;">
                             <br>
@@ -36,7 +36,7 @@
                                 <div >Mã đơn hàng : {{item.maDonHang}}</div>
                                 <div >Ngày Tạo : {{item.ngayTao | date : "short"}}</div>
                                 <div ng-show="item.diaChi != null">Địa Chỉ : {{item.diaChi}}, {{item.phuongXa}} - {{item.quanHuyen}} -  {{item.tinhThanh}}</div>
-                                <span style="position: absolute; right: 32px;top: 10px;color: #3ab19c;text-transform: uppercase;">Đơn Hàng Giao thành công</span>
+                                <span style="position: absolute; right: 32px;top: 10px;color: black;text-transform: uppercase;">Đơn Hàng Giao thành công</span>
                             </div>
 
 
@@ -48,7 +48,11 @@
                                 <div class="shipping-item-text"  style="width: 87%; float: right">
                                     <a href="#/chitietsanpham/{{h.chiTietSanPham.sanPham.idSanPham}}" class="pro-cat" style="font-size: 17px">{{h.chiTietSanPham.sanPham.tenSanPham}} </a>
                                     <div>{{h.soLuong}} <span class="pro-quan-x">x</span></div>
-                                    <span class="pro-quality"><a href="#sanpham">Phân loại : {{h.chiTietSanPham.kichCo.tenKichCo}},{{h.chiTietSanPham.mauSac.tenMauSac}},{{h.chiTietSanPham.dayDeo.tenDayDeo}},{{h.chiTietSanPham.vatLieu.tenVatLieu}}</a></span>
+                                    <span class="pro-quality">
+                                     <a href="#sanpham">Kích cỡ:{{h.chiTietSanPham.kichCo.tenKichCo}}, Màu Sắc:{{h.chiTietSanPham.mauSac.tenMauSac}}, Cấu trúc khuy:{{h.chiTietSanPham.cauTrucKhuy.tenCauTrucKhuy}}, Chất liệu:{{h.chiTietSanPham.chatLieu.tenChatLieu}}</a><br>
+                                    <a href="#sanpham">Hoạ tiết:{{h.chiTietSanPham.hoaTiet.tenHoaTiet}}, Kiểu dệt:{{h.chiTietSanPham.kieuDet.tenKieuDet}}, Kiểu túi:{{h.chiTietSanPham.kieuTui.tenKieuTui}}</a><br>
+                                    <a href="#sanpham">Lớp lóp:{{h.chiTietSanPham.lopLot.tenLopLot}}, ve áo:{{h.chiTietSanPham.veAo.tenVeAo}}, Xẻ tà:{{h.chiTietSanPham.xeTa.tenXeTa}}</a>
+                                    </span>
                                     <ul class="price text-right" style="    position: absolute; right: 20px;top: 7px; " >
                                         <li class="price special-price"> {{h.giaBan * h.soLuong | number}} đ </li>
                                         <span ng-if="h.chietKhau == null"></span>

@@ -692,11 +692,8 @@ myApp.controller(
             $http
                 .get(`/chi-tiet-san-pham/countMaDinhDanh/${idChiTietSanPham}`)
                 .then(function (response) {
-                    // console.log(response.data, "daaaaaaaaaaaaa")
                     $scope.MaDinhDanhBySP.set(idChiTietSanPham, response.data);
-                    console.log($scope.MaDinhDanhBySP.set(idChiTietSanPham, response.data))
                 })
-
                 .catch(function (error) {
                     console.log(error);
                 });

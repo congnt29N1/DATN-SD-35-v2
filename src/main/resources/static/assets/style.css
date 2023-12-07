@@ -171,7 +171,7 @@ span.mobile-menu-title, .drodown-mega-menu .mega-menu-list ul li a, .new-mark-bo
 	text-transform: uppercase;
 }
 .bstore-breadcrumb a:hover{
-	color:#ff4f4f;
+	color:rgb(142, 116, 77);
 }
 .bstore-breadcrumb span i{
 	color: #333;
@@ -1026,11 +1026,11 @@ div.nivo-controlNav{
 	z-index:999999;
 }
 div.nivo-controlNav a.nivo-control:hover{
-	background:#FF4F4F;
+	background:rgb(142, 116, 77);
 	border:1px solid #fff;
 }
 div.nivo-controlNav a.active{
-	background:#FF4F4F;
+	background:rgb(142, 116, 77);
 	border:1px solid #fff;
 }
 .nivo-caption{
@@ -1111,40 +1111,46 @@ div.nivo-controlNav a.active{
 	top: 5px;
 	z-index: 10;	
 }
-.overlay-content{
+.overlay-content {
 	height: 100%;
 	position: absolute;
-	right: -65px;
-	top: 0;
-	transition: all 800ms ease 0s;
-	opacity:0;
+	right: 0;
+	bottom: -100%; /* Set initial position to bottom */
+	transition: bottom 800ms ease 0s, opacity 800ms ease 0s;
+	opacity: 0;
 }
-.single-product-item:hover .overlay-content{
-	right:0;
-	opacity:1;
+
+.single-product-item:hover .overlay-content {
+	bottom: 0; /* Slide in from the bottom on hover */
+	opacity: 1;
 }
-.overlay-content ul{
+
+.overlay-content ul {
 	height: 100%;
 }
-.overlay-content ul li{
+
+.overlay-content ul li {
 	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 	height: 25%;
 }
-.overlay-content ul li:last-child{
+
+.overlay-content ul li:last-child {
 	border-bottom: 0px solid #555;
 }
-.overlay-content ul li a{
+
+.overlay-content ul li a {
 	background: rgba(70, 70, 70, 0.5) none repeat scroll 0 0;
 	color: #fff;
 	display: block;
 	text-align: center;
 	width: 65px;
-	height:100%;
-	font-size:21px;
+	height: 100%;
+	font-size: 21px;
 	transition: all 0.3s ease 0s;
-	position:relative;
+	position: relative;
 }
-.overlay-content ul li a i{
+
+.overlay-content ul li a i {
 	bottom: 0;
 	display: block;
 	height: 25px;
@@ -1155,10 +1161,13 @@ div.nivo-controlNav a.active{
 	top: 0;
 	width: 25px;
 }
-.overlay-content ul li a:hover{
-	color:#fff;
-	background:#FF5858;
+
+.overlay-content ul li a:hover {
+	color: #fff;
+	background: rgb(142, 116, 77);
 }
+
+
 .product-info{}
 .product-info a{
 	color: #000;
@@ -1764,14 +1773,14 @@ div.client-carousel .owl-item img {
 body.index-2 .welcome-info span, body.index-2 .current-currency strong, body.index-2 .current-lang strong, body.index-2 .languages-choose li a:hover, body.index-2 .currency-list li a:hover, body.index-2 .header-right-menu nav ul li a:hover, body.index-2 span.cross-icon:hover, body.index-2 .shipping-item-text span a.pro-cat:hover, body.index-2 span.pro-quality a:hover, body.index-2 .product-info a:hover, body.index-2 h2.left-title a:hover, body.index-2 .latest-news-area .left-title-area h2.left-title a:hover, body.index-2 .single-latest-post h2 a:hover, body.index-2 .read-more a:hover, body.index-2 .single-facality:hover .facality-text h3, body.index-2 .info-text p a:hover, body.index-2 .single-f-widget ul li a:hover, body.index-2 .copy-right address a, body.index-2 .latest-news-row h2.center-title a:hover, body.index-2 .drodown-mega-menu .mega-menu-list a:hover{
 	color:rgb(142, 116, 77);
 }
-body.index-2 .search-button, body.index-2 .header-right-callus::before, body.index-2 .ajax-cart-quantity, body.index-2 a.shop-link:hover span.ajax-cart-quantity, body.index-2 .ajax-cart-quantity:hover, body.index-2 .shipping-checkout-btn a:hover, body.index-2 .nivo-caption a:hover, body.index-2 div.nivo-controlNav a.active, body.index-2 .slider-bolut:hover, body.index-2 div.nivo-controlNav a.nivo-control:hover, body.index-2 .new-mark-box, body.index-2 .overlay-content ul li a:hover, body.index-2 .single-facality:hover .facality-icon, body.index-2 .newsletter-area, body.index-2 .flow-us-link li a:hover, body.index-2 .bstore-scrollertop:hover{
+body.index-2 .search-button, body.index-2 .header-right-callus::before, body.index-2 .ajax-cart-quantity, body.index-2 a.shop-link:hover span.ajax-cart-quantity, body.index-2 .ajax-cart-quantity:hover, body.index-2 .shipping-checkout-btn a:hover, body.index-2 .nivo-caption a:hover, body.index-2 .slider-bolut:hover,  body.index-2 .new-mark-box, body.index-2 .overlay-content ul li a:hover, body.index-2 .single-facality:hover .facality-icon, body.index-2 .newsletter-area, body.index-2 .flow-us-link li a:hover, body.index-2 .bstore-scrollertop:hover{
 	background:red;
 }
 body.index-2 .search-button:hover{
 	background:rgb(142, 116, 77);
 }
 body.index-2 .drodown-mega-menu{
-	border-bottom:3px solid rgb(142, 116, 77);;
+	border-bottom:3px solid rgb(142, 116, 77);
 }
 body.index-2 .new-product-area{
 	margin-top:50px;
@@ -3117,8 +3126,8 @@ form.error-ser-form .error-ser-btn:hover{
 	box-shadow:none;
 }
 .main-btn{
-	background: #ff4f4f none repeat scroll 0 0;
-	border: 1px solid #ff4f4f;
+	background: rgb(142, 116, 77) none repeat scroll 0 0;
+	border: 1px solid rgb(142, 116, 77);
 	border-radius: 0;
 	color: #fff;
 	font-size: 17px;
@@ -3759,7 +3768,7 @@ a.cart_quantity_delete i:hover{
 }
 .price {
 	color: #777;
-	font-size: 13px;
+	font-size: 14px;
 	white-space: nowrap;
 }
 .cart-unit ul.price{
@@ -3839,7 +3848,7 @@ ul.address li span{
 	margin-right: 11px;
 }
 .returne-continue-shop a.procedtocheckout{
-	background: #ff4f4f none repeat scroll 0 0;
+	background: #ab8e63 none repeat scroll 0 0;
 	border-radius: 4px;
 	color: #fff;
 	display: block;
@@ -3850,8 +3859,8 @@ ul.address li span{
 	transition: all 500ms ease 0s;
 }
 .returne-continue-shop a.procedtocheckout:hover{
-	background: #3a3d42 none repeat scroll 0 0;
-	border-color: #3a3d42;	
+	background:rgb(142, 116, 77) none repeat scroll 0 0;
+	border-color: rgb(142, 116, 77);
 }
 .returne-continue-shop a.procedtocheckout i{
 	font-size: 25px;
@@ -4273,11 +4282,16 @@ span.large-btn:hover i{
 	background:#E04B34;
 	color:#fff;
 }
-.single-product-social-share ul li a.pin-link i{color:#CE1F21;}
-.single-product-social-share ul li a.pin-link:hover, .single-product-social-share ul li a.pin-link:hover i{
-	background:#CE1F21;
-	color:#fff;
+.single-product-social-share ul li a.ig-link i {
+	color: rgba(88, 80, 138, 0.76); /* Instagram color or any color you prefer */
 }
+
+.single-product-social-share ul li a.ig-link:hover,
+.single-product-social-share ul li a.ig-link:hover i {
+	background:linear-gradient(to right, rgb(225, 64, 180), rgb(126, 43, 237)); /* Instagram color or any color you prefer */
+	color: #fff;
+}
+
 .single-product-review-box{
 	display: block;
 	margin: 5px 0 10px;
@@ -4321,19 +4335,23 @@ span.large-btn:hover i{
 	font-size:13px;
 	font-weight:normal;
 }
-.single-product-price{
-	border-bottom: 1px solid #eee;
-	border-top: 1px solid #eee;
-	margin: 5px 0 15px;
-	padding: 17px 0 11px;
-}
-.single-product-price h2{
-	color: #ff5858;
-	/*font-family: 'Bitter', serif;*/
-	font-size: 25px;
-	font-weight: 700;
-	line-height: 30px;
-	margin:0;
+/*.single-product-price{*/
+/*	border-bottom: 1px solid #eee;*/
+/*	border-top: 1px solid #eee;*/
+/*	margin: 5px 0 15px;*/
+/*	padding: 17px 0 11px;*/
+/*}*/
+/*.single-product-price h2{*/
+/*	color: rgb(142, 116, 77);*/
+/*	!*font-family: 'Bitter', serif;*!*/
+/*	font-size: 25px;*/
+/*	font-weight: 700;*/
+/*	line-height: 30px;*/
+/*	margin:0;*/
+/*}*/
+.single-product-price h2 span::after {
+	content: " đ";
+	text-transform: none; /* or text-transform: initial; */
 }
 .single-product-desc{}
 .single-product-desc p{
@@ -4387,6 +4405,13 @@ span.large-btn:hover i{
 	float: left;
 	margin-right: 15.5%;
 }
+.single-product-quantity > span {
+	display: inline-block;
+	float: left;
+	margin-right: 15.5%;
+	margin-top: 3px;
+	padding-left: 10px;
+}
 .sing-pro-qty{
 	float: left;
 	margin-right: 5px;
@@ -4433,7 +4458,7 @@ p.small-title{
 }
 .single-product-size select option{}
 .single-product-color{
-	margin-bottom: 15px;
+	margin-bottom: 3px;
 	overflow:hidden;
 }
 .single-product-color p{
@@ -4459,7 +4484,7 @@ p.small-title{
 .color-white{}
 .single-product-add-cart{}
 .add-cart-text{
-	background: #3e3e3e none repeat scroll 0 0;
+	background: #ab8e63 none repeat scroll 0 0;
 	border: 0 none;
 	color: #fff;
 	display: inline-block;
@@ -4472,7 +4497,7 @@ p.small-title{
 	transition: all 300ms ease 0s;
 }
 .add-cart-text:hover{
-	background: #FF4F4F none repeat scroll 0 0;
+	background: rgb(142, 116, 77) none repeat scroll 0 0;
 	color:#fff;
 }
 .product-more-info-tab{
@@ -4708,7 +4733,6 @@ a.write-review-btn{
 	display: inline-block;
 	padding: 8px 16px;
 	background-color: #f1f1f1;
-	border: 2px solid black;
 	border-radius: 5px;
 	cursor: pointer;
 	user-select: none;
@@ -4716,7 +4740,7 @@ a.write-review-btn{
 
 /* Style khi radio được chọn (selected) */
 .custom-radio:checked + .custom-button-radio {
-	background-color: black;
+	background-color: rgb(142, 116, 77);
 	color: white;
 	border-color: white;
 }
