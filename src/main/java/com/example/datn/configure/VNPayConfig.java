@@ -23,8 +23,8 @@ public class VNPayConfig {
     public static final String order_type = "other";
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     public static String vnp_Returnurl = "http://localhost:8080/don-hang/thong-tin-thanh-toan";
-    public static String vnp_TmnCode = "Q0M81PPD";
-    public static String vnp_HashSecret = "NRYJBFMTSNTGMVQLVKMUMUZHNONBRGKZ";
+    public static String vnp_TmnCode = "03KRICMM";
+    public static String vnp_HashSecret = "HIQBBLESLMVFSRNZXTPDFVGKLDIPZARJ";
     public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
 
     public static String md5(String message) {

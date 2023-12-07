@@ -161,7 +161,6 @@
 						<tr>
 							<th class="cart-product">Sản phẩm</th>
 							<th class="cart-description">Mô tả</th>
-							<th class="cart-availability text-center">Availability</th>
 							<th class="cart-unit text-right">Giá bán</th>
 							<th class="cart_quantity text-center">Số lượng</th>
 							<th class="cart-total text-right">Tổng tiền</th>
@@ -179,12 +178,16 @@
 							</td>
 							<td class="cart-description">
 								<p class="product-name"><a href="#">{{item.chiTietSanPham.sanPham.tenSanPham}}</a></p>
-								<small>Vật Liệu : {{item.chiTietSanPham.vatLieu.tenVatLieu}}</small>
-								<small>Dây đeo : {{item.chiTietSanPham.dayDeo.tenDayDeo}}</small>
-								<small><a href="#">Size : {{item.chiTietSanPham.kichCo.tenKichCo}}, Màu : {{item.chiTietSanPham.mauSac.tenMauSac}}</a></small>
-							</td>
-							<td class="cart-avail">
-								<span class="label label-success">In stock</span>
+								<small><a href="#">Kích thước :{{item.chiTietSanPham.kichCo.tenKichCo}}
+									, Màu : {{item.chiTietSanPham.mauSac.tenMauSac}} </a></small>
+								<small><a href="#">Cấu trúc khuy :{{item.chiTietSanPham.cauTrucKhuy.tenCauTrucKhuy}}
+									, Chất liệu : {{item.chiTietSanPham.chatLieu.tenChatLieu}} </a></small>
+								<small><a href="#">Lớp lót :{{item.chiTietSanPham.lopLot.tenLopLot}}
+									, Hoạ Tiết : {{item.chiTietSanPham.hoaTiet.tenHoaTiet}} </a></small>
+								<small><a href="#">Kiểu túi :{{item.chiTietSanPham.kieuTui.tenKieuTui}}
+									, Kiểu dệt : {{item.chiTietSanPham.kieuDet.tenKieuDet}} </a></small>
+								<small><a href="#">Ve áo :{{item.chiTietSanPham.veAo.tenVeAo}}
+									, Xẻ tà : {{item.chiTietSanPham.xeTa.tenXeTa}} </a></small>
 							</td>
 							<!--Todo xử lý khuyến mại-->
 							<td class="cart-unit" >
@@ -211,7 +214,7 @@
 							<td class="price" colspan="2">{{tongTien}}</td>
 						</tr>
 						<tr>
-							<td class="text-right" colspan="4">Tiền ship</td>
+							<td class="text-right" colspan="4">Tiền ship dự kiến</td>
 							<td class="price" colspan="2">{{fee}} đ</td>
 						</tr>
 						<tr>

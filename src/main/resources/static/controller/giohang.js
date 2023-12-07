@@ -1,10 +1,10 @@
-myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, checkOutDataService, $location) {
+myApp.controller("cartCtrl", function ($scope,$rootScope, $http,$window,checkOutDataService,$location) {
     $scope.cart = [];
     $scope.total = 0;
     $scope.totalSp = 0;
     $scope.totalnavBar = 0;
-    $scope.totalSpnavBar = 0;
-    $scope.selection = [];
+    $scope.totalSpnavBar  = 0;
+    $scope.selection=[];
     $scope.MaDinhDanhBySP = new Map();
     $scope.errorSelectedSP;
     let currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -12,14 +12,15 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
     $rootScope.index = function () {
         $scope.total = 0;
         $scope.totalSp = 0;
-        if (currentUser != null) {
+        if(currentUser != null) {
             $http.get(`/api/giohang/${currentUser.idKhachHang}`).then((resp) => {
                 $scope.cart = resp.data;
                 $scope.cart.forEach(item => {
-                    $scope.countSeri(item.chiTietSanPham.idChiTietSanPham)
-                })
+                    $scope.countMDD(item.chiTietSanPham.idChiTietSanPham)
+                });
+                $scope.setTotalnavBar();
             }).catch(error => {
-                if (error.status == 403) {
+                if(error.status == 403) {
                     Swal.fire({
                         icon: "warning",
                         title: "Bạn chưa đăng nhập !",
@@ -31,7 +32,7 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
                     $window.location.href = '#login';
                 }
             });
-        } else {
+        }else{
             Swal.fire({
                 icon: "warning",
                 title: "Bạn chưa đăng nhập !",
@@ -45,30 +46,38 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
     };
     $rootScope.index();
 
+    $scope.setTotalnavBar = function () {
+        $scope.totalSpnavBar = 0;
+        $scope.cart.forEach(item => {
+            $scope.totalSpnavBar += item.soLuongSanPham;
+        });
+    };
 
     // toorng sp vaf toorng tieefn
-    $scope.setTotalnavBar = function (item) {
-
-        if (item) {
-
-            $scope.totalnavBar += item.giaBan * item.soLuongSanPham;
-            $scope.totalSpnavBar += item.soLuongSanPham;
-
-        }
-    };
+    // $scope.setTotalnavBar  = function (item) {
+    //
+    //     if (item) {
+    //
+    //         $scope.totalnavBar  += item.giaBan * item.soLuongSanPham;
+    //         $scope.totalSpnavBar  +=  item.soLuongSanPham;
+    //
+    //     }
+    // };
     $scope.setTotals = function (item) {
 
         if (item) {
             $scope.total += item.giaBan * item.soLuongSanPham;
-            $scope.totalSp += item.soLuongSanPham;
+            $scope.totalSp +=  item.soLuongSanPham;
 
 
         }
     };
 
 
+
+
     // api update soLuongtronggiohang
-    $scope.update = function (cart, soLuong) {
+    $scope.update = function (cart, soLuong){
         $http.put(`/api/giohang/update/${cart.idChiTietGioHang}?soLuong=${soLuong}`)
             .then(resp => {
                 // $scope.cart = resp.data;
@@ -88,7 +97,6 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
         // }
     }
 
-
 // giam so luong
     $scope.giam = function (item, soLuong) {
         if (item.soLuongSanPham <= 1) {
@@ -103,29 +111,31 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
-                        title: 'Loading',
-                        onOpen: () => {
+                        title:'Loading',
+                        onOpen: ()=>{
                             Swal.showLoading();
                         },
-                        timer: 2000
+                        timer : 2000
                     })
 
-                    setTimeout(function () {
+                    setTimeout(function (){
                         $scope.delete(item);
                         var sp = $scope.selection.find((e) => e === item)
-                        if (sp) {
-                            $scope.total -= item.giaBan * item.soLuongSanPham;
-                            $scope.totalSp -= item.soLuongSanPham;
+                        if(sp){
+                            $scope.total -= item.giaBan * item.soLuongSanPham ;
+                            $scope.totalSp -= item.soLuongSanPham ;
+                            // Gọi hàm để cập nhật totalSpnavBar
+                            $scope.setTotalnavBar();
                         }
                         $window.location.reload();
                         return;
-                    }, 2600)
+                    },2600)
 
-                } else {
+                }else {
                     item.soLuongSanPham = Number(item.soLuongSanPham) + 1;
                 }
             })
-        } else {
+        }else {
             item.soLuongSanPham = Number(item.soLuongSanPham) - 1;
             soLuong = item.soLuongSanPham;
             $scope.update(item, soLuong);
@@ -133,10 +143,12 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
             if (sp) {
                 $scope.total -= item.giaBan;
                 $scope.totalSp--;
+                // Gọi hàm để cập nhật totalSpnavBar
+                $scope.setTotalnavBar();
             }
         }
     };
-    $scope.MaDinhDanhBySP = function (idChiTietSanPham) {
+    $scope.countMDD = function (idChiTietSanPham){
         $http
             .get(`/chi-tiet-san-pham/countMaDinhDanh/${idChiTietSanPham}`)
             .then(function (response) {
@@ -149,10 +161,10 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
                 console.log(error);
             });
     }
-    $scope.tang = function (item, soLuong) {
+    $scope.tang = function (item,soLuong) {
 
         if (item) {
-            if (item.soLuongSanPham >= $scope.MaDinhDanhBySP.get(item.chiTietSanPham.idChiTietSanPham)) {
+            if(item.soLuongSanPham >= $scope.MaDinhDanhBySP.get(item.chiTietSanPham.idChiTietSanPham)){
                 Swal.fire({
                     icon: "warning",
                     title: "Thông báo!",
@@ -160,7 +172,7 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
                     timer: 2600,
                 });
                 return;
-            } else {
+            }else {
                 item.soLuongSanPham = Number(item.soLuongSanPham) + 1;
                 soLuong = item.soLuongSanPham;
                 $scope.update(item, soLuong);
@@ -168,6 +180,8 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
                 if (sp) {
                     $scope.total += item.giaBan;
                     $scope.totalSp++;
+                    // Gọi hàm để cập nhật totalSpnavBar
+                    // $scope.setTotalnavBar();````
                 }
             }
 
@@ -175,37 +189,37 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
     };
 
     //api xóa giohang
-    $scope.delete = function (item) {
+    $scope.delete = function (item){
         $http.delete(`/api/giohang/delete/${item.idChiTietGioHang}`)
-            .then(resp => {
-                const index = $scope.cart.findIndex(p => p.idChiTietGioHang == item.idChiTietGioHang);
-                $scope.cart.splice(index, 1);
+            .then(resp =>{
+                const index = $scope.cart.findIndex(p => p.idChiTietGioHang ==  item.idChiTietGioHang);
+                $scope.cart.splice(index,1);
 
             })
-            .catch(error => {
+            .catch(error =>{
                 alert("Loi roi");
-                console.log("eror" + error);
+                console.log("eror"+ error);
             })
     }
 
     //api xóa giohang
-    $scope.deleteAll = function () {
+    $scope.deleteAll = function (){
         $http.delete(`/api/giohang/deleteAll`)
-            .then(resp => {
-                $scope.cart = [];
+            .then(resp =>{
+                $scope.cart= [];
                 // alert("xoa thanh cong");
-                setTimeout(function () {
+                setTimeout(function (){
                     $window.location.reload();
-                }, 1600)
+                },1600)
             })
-            .catch(error => {
+            .catch(error =>{
                 alert("Loi roi");
-                console.log("eror" + error);
+                console.log("eror"+ error);
             })
     }
 
     //xóa sanpham trong giỏ hàng
-    $scope.removeSP = function (item) {
+    $scope.removeSP= function (item) {
         if (item) {
             Swal.fire({
                 title: 'Bạn muốn xóa ?',
@@ -218,22 +232,22 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
-                        title: 'Loading',
-                        onOpen: () => {
+                        title:'Loading',
+                        onOpen: ()=>{
                             Swal.showLoading();
                         },
-                        timer: 2000
+                        timer : 2000
                     })
 
-                    setTimeout(function () {
+                    setTimeout(function (){
                         $scope.delete(item);
                         var sp = $scope.selection.find((e) => e === item)
-                        if (sp) {
-                            $scope.total -= item.giaBan * item.soLuongSanPham;
-                            $scope.totalSp -= item.soLuongSanPham;
+                        if(sp){
+                            $scope.total -= item.giaBan * item.soLuongSanPham ;
+                            $scope.totalSp -= item.soLuongSanPham ;
                         }
                         $window.location.reload();
-                    }, 1900)
+                    },1900)
                 }
             })
 
@@ -266,7 +280,7 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
         if (idx > -1) {
             $scope.selection.splice(idx, 1);
             $scope.total -= item.giaBan * item.soLuongSanPham;
-            $scope.totalSp -= item.soLuongSanPham;
+            $scope.totalSp -=  item.soLuongSanPham;
 
         }
         // is newly selected
@@ -277,8 +291,8 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
 
     };
     $scope.buycart = () => {
-        $scope.chiTietSanPham = [];
-        $scope.cart.forEach(item => {
+        $scope.chiTietSanPham=[];
+        $scope.cart.forEach(item=>{
             $scope.chiTietSanPham.push({
                 idChiTietSanPham: item.chiTietSanPham.idChiTietSanPham,
                 giaBan: item.giaBan,
@@ -299,11 +313,11 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                    title: 'Loading',
-                    onOpen: () => {
+                    title:'Loading',
+                    onOpen: ()=>{
                         Swal.showLoading();
                     },
-                    timer: 2000
+                    timer : 2000
                 })
                 setTimeout(function () {
                     $window.location.href = "#checkout"
@@ -315,12 +329,12 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
 
     $scope.buy = () => {
 
-        $scope.chiTietSanPham = [];
-        if ($scope.selection.length == 0) {
+        $scope.chiTietSanPham=[];
+        if($scope.selection.length == 0){
             $scope.errorSelectedSP = "* Vui lòng chọn sản phẩm!";
             return;
         }
-        $scope.selection.forEach(item => {
+        $scope.selection.forEach(item=>{
             $scope.chiTietSanPham.push({
                 idChiTietSanPham: item.chiTietSanPham.idChiTietSanPham,
                 giaBan: item.giaBan,
@@ -354,6 +368,7 @@ myApp.controller("cartCtrl", function ($scope, $rootScope, $http, $window, check
         })
 
     };
+
 
 
 })
