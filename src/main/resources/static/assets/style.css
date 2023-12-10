@@ -3799,7 +3799,7 @@ a.cart_quantity_delete i:hover{
 }
 .table tfoot tr {
 	background: #fbfbfb none repeat scroll 0 0;
-	text-align:right;
+	text-align:center;
 }
 .cart-total-price .cart_voucher{
 	border-bottom:1px solid #fff;
@@ -4066,9 +4066,13 @@ table.delivery-table tr td .carrey-cost{}
 .four-payment-method{
 	margin-bottom:10px;
 	overflow:hidden;
+	width: 500px;
+
 } 
 .single-payment-method{
 	margin-bottom:10px;
+	display: inline-block;
+
 } 
 .single-payment-method a{
 	display: block;
@@ -4086,9 +4090,7 @@ table.delivery-table tr td .carrey-cost{}
 .single-payment-method a:hover{
 	background:rgba(51, 46, 46, 0.05);
 }
-.single-payment-method span{
-    color: #777;
-} 
+
 .single-payment-method i{
 	color: #777;
 	font-size: 26px;
@@ -4096,18 +4098,7 @@ table.delivery-table tr td .carrey-cost{}
 	position: absolute;
 	right: 15px;
 } 
-.payment-method-one{
-	background: rgba(0, 0, 0, 0) url("img/bankwire.png") no-repeat scroll 12px 15px;
-} 
-.payment-method-two{
-	background: rgba(0, 0, 0, 0) url("img/cheque.png") no-repeat scroll 12px 15px;
-} 
-.payment-method-three{
-	background: rgba(0, 0, 0, 0) url("img/paypal-icon.png") no-repeat scroll 12px 15px;
-} 
-.payment-method-four{
-	background: rgba(0, 0, 0, 0) url("img/Master-Card-icon.png") no-repeat scroll 12px 15px;
-} 
+
 /*----------------------------------------
 25. single product page
 ------------------------------------------*/

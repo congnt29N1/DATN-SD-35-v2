@@ -210,15 +210,15 @@
 						<!-- TABLE FOOTER START -->
 						<tfoot>
 						<tr>
-							<td class="text-right" colspan="4">Tổng tiền sản phẩm</td>
+							<td class="text-center" colspan="4">Tổng tiền sản phẩm</td>
 							<td class="price" colspan="2">{{tongTien}}</td>
 						</tr>
 						<tr>
-							<td class="text-right" colspan="4">Tiền ship dự kiến</td>
+							<td class="text-center" colspan="4">Tiền ship dự kiến</td>
 							<td class="price" colspan="2">{{fee}} đ</td>
 						</tr>
 						<tr>
-							<td class="total-price-container text-right" colspan="4">
+							<td class="total-price-container text-center" colspan="4">
 								<span>Tổng thanh toán</span>
 							</td>
 							<td id="total-price-container" class="price" colspan="2">
@@ -234,15 +234,15 @@
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<!-- FOUR-PAYMENT-METHOD START -->
-				<div class="four-payment-method">
+				<div class=" four-payment-method">
 					<!-- SINGLE-PAYMENT-METHOD START -->
 					<div class="single-payment-method payment-method-two">
-						<a style="cursor: pointer" ng-click="thanhToan(false)">Thanh toán sau<span> (xử lý đơn hàng sẽ lâu hơn)</span><i class="fa fa-chevron-right"></i></a>
+						<a style="cursor: pointer" ng-click="thanhToan(false)">Đặt hàng<i class="fa fa-chevron-right"></i></a>
 					</div>
 					<!-- SINGLE-PAYMENT-METHOD END -->
 					<!-- SINGLE-PAYMENT-METHOD START -->
 					<div class="single-payment-method payment-method-three">
-						<a style="cursor: pointer" ng-click="thanhToan(true)">Thanh toán VNPay<span> (xử lý đơn hàng sẽ nhanh hơn)</span><i class="fa fa-chevron-right"></i></a>
+						<a style="cursor: pointer" ng-click="thanhToan(true)">Thanh toán VNPay<i class="fa fa-chevron-right"></i></a>
 					</div>
 					<!-- SINGLE-PAYMENT-METHOD END -->
 				</div>

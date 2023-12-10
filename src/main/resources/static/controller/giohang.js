@@ -87,14 +87,6 @@ myApp.controller("cartCtrl", function ($scope,$rootScope, $http,$window,checkOut
             .catch(error => {
                 alert("Loi roi", error);
             })
-        // }else{
-        //     Swal.fire({
-        //         icon: "warning",
-        //         title: "Bạn chưa đăng nhập !",
-        //         text: "Hãy đăng nhập để tiếp tục shopping!",
-        //         timer: 1600,
-        //     });
-        // }
     }
 
 // giam so luong
@@ -125,7 +117,7 @@ myApp.controller("cartCtrl", function ($scope,$rootScope, $http,$window,checkOut
                             $scope.total -= item.giaBan * item.soLuongSanPham ;
                             $scope.totalSp -= item.soLuongSanPham ;
                             // Gọi hàm để cập nhật totalSpnavBar
-                            $scope.setTotalnavBar();
+                            $scope.$apply.setTotalnavBar();
                         }
                         $window.location.reload();
                         return;
@@ -144,7 +136,7 @@ myApp.controller("cartCtrl", function ($scope,$rootScope, $http,$window,checkOut
                 $scope.total -= item.giaBan;
                 $scope.totalSp--;
                 // Gọi hàm để cập nhật totalSpnavBar
-                $scope.setTotalnavBar();
+                $scope.$apply.setTotalnavBar();
             }
         }
     };
@@ -153,8 +145,6 @@ myApp.controller("cartCtrl", function ($scope,$rootScope, $http,$window,checkOut
             .get(`/chi-tiet-san-pham/countMaDinhDanh/${idChiTietSanPham}`)
             .then(function (response) {
                 $scope.MaDinhDanhBySP.set(idChiTietSanPham, response.data);
-                // console.log(response.data,"daaaaaaaaaaaa")
-                // $scope.count = response.data;
             })
 
             .catch(function (error) {
@@ -181,7 +171,7 @@ myApp.controller("cartCtrl", function ($scope,$rootScope, $http,$window,checkOut
                     $scope.total += item.giaBan;
                     $scope.totalSp++;
                     // Gọi hàm để cập nhật totalSpnavBar
-                    // $scope.setTotalnavBar();````
+                    $scope.$apply.setTotalnavBar();
                 }
             }
 
