@@ -98,12 +98,12 @@
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             <h3 class="card-title">[[${cat.chiTietSanPham.sanPham.tenSanPham}]]</h3>
-                                            <p class="card-text">[[${cat.chiTietSanPham.vatLieu.tenVatLieu}]],[[${cat.chiTietSanPham.mauSac.tenMauSac}]],[[${cat.chiTietSanPham.dayDeo.tenDayDeo}]],[[${cat.chiTietSanPham.kichCo.tenKichCo}]]</p>
+                                            <p class="card-text">[[${cat.chiTietSanPham.chatLieu.tenChatLieu}]],[[${cat.chiTietSanPham.mauSac.tenMauSac}]],[[${cat.chiTietSanPham.kichCo.tenKichCo}]]</p>
                                             <h5 class="card-text" th:text="${#numbers.formatDecimal(cat.giaBan, 0, 'COMMA', 0, 'POINT')} +
                          ' đ'">Giá: [[${cat.giaBan}]]</h5>
                                             <p class="card-text">Số lượng: x [[${cat.soLuong}]]</p>
                                             <div>
-                                                <p th:each="seri :${cat.getListSeri()}">[[${seri.idImei}]]</p>
+                                                <p th:each="mdd :${cat.getListMDD()}">[[${mdd.maDinhDanh}]]</p>
                                             </div>
                                         </div>
                                     </div>
@@ -188,7 +188,7 @@
                                         <td th:text="${__${iterStat.index + 1}__}">1</td>
                                         <td>
                                             <span style="font-weight: 500"> [[${cat.chiTietSanPham.sanPham.tenSanPham}]]</span>
-                                            <span>Phân loại : [[${cat.chiTietSanPham.vatLieu.tenVatLieu}]], [[${cat.chiTietSanPham.mauSac.tenMauSac}]]</span>
+                                            <span>Phân loại : [[${cat.chiTietSanPham.chatLieu.tenChatLieu}]], [[${cat.chiTietSanPham.mauSac.tenMauSac}]]</span>
                                         </td>
                                         <td>x[[${cat.soLuong}]]</td>
                                         <td th:text="${#numbers.formatDecimal(cat.giaBan, 0, 'COMMA', 0, 'POINT')} +
