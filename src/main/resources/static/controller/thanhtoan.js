@@ -117,7 +117,7 @@ myApp.controller(
       };
       if (isVNPAY==true) {
           Swal.fire({
-              title: 'Bạn muốn thanh toán VNPay?',
+              title: 'Bạn muốn đặt hàng ?',
               text: "Thanh toán với phương thức VNPay ",
               icon: 'info',
               showCancelButton: true,
@@ -150,7 +150,7 @@ myApp.controller(
 
       } else {
           Swal.fire({
-              title: 'Bạn muốn thanh toán trả sau?',
+              title: 'Bạn muốn đặt hàng ?',
               text: "Thanh toán với phương thức trả sau khi nhận hàng ",
               icon: 'info',
               showCancelButton: true,

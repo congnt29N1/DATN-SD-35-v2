@@ -1,158 +1,202 @@
-
-
 <div ng-controller="cartCtrl">
-<!-- MAIN-CONTENT-SECTION START -->
-<section class="main-content-section" >
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<!-- BSTORE-BREADCRUMB START -->
-				<div class="bstore-breadcrumb">
-					<a href="#index">Trang chủ</a>
-					<span><i class="fa fa-caret-right	"></i></span>
-					<span>Giỏ hàng của bạn</span>
-				</div>
-				<!-- BSTORE-BREADCRUMB END -->
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<!-- SHOPPING-CART SUMMARY START -->
-				<h2 class="page-title">Giỏ hàng<span class="shop-pro-item">Số sản phẩm trong giỏ hàng của bạn : {{totalSpnavBar}}</span></h2>
-				<!-- SHOPPING-CART SUMMARY END -->
-			</div>
+    <!-- MAIN-CONTENT-SECTION START -->
+    <section class="main-content-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- BSTORE-BREADCRUMB START -->
+                    <div class="bstore-breadcrumb">
+                        <a href="#index">Trang chủ</a>
+                        <span><i class="fa fa-caret-right	"></i></span>
+                        <span>Giỏ hàng của bạn</span>
+                    </div>
+                    <!-- BSTORE-BREADCRUMB END -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- SHOPPING-CART SUMMARY START -->
+                    <h2 class="page-title">Giỏ hàng<span class="shop-pro-item">Số sản phẩm trong giỏ hàng của bạn : {{totalSpnavBar}}</span>
+                    </h2>
+                    <!-- SHOPPING-CART SUMMARY END -->
+                </div>
 
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<!-- SHOPING-CART-MENU START -->
-				<div class="shoping-cart-menu">
-					<ul class="step">
-						<li class="step-current first">
-							<span>01. Giỏ hàng</span>
-						</li>
-						<li class="step-todo last" id="step_end">
-							<span>02. Thanh toán</span>
-						</li>
-					</ul>
-				</div>
-				<!-- SHOPING-CART-MENU END -->
-				<!-- CART TABLE_BLOCK START -->
-				<div class="table-responsive">
-					<!-- TABLE START -->
-					<table class="table table-bordered" id="cart-summary">
-						<!-- TABLE HEADER START -->
-						<thead>
-						<tr>
-							<th class="cart-product"></th>
-							<th class="cart-product">Sản phẩm</th>
-							<th class="cart-description">Mô tả</th>
-							<th class="cart-avail text-center">Tình trạng</th>
-							<th class="cart-unit text-right" style="width: 10%">Giá bán</th>
-							<th class="cart_quantity text-center">Số lượng</th>
-							<th class="cart-delete">&nbsp;</th>
-							<th class="cart-total text-right">Tổng tiền </th>
-						</tr>
-						</thead>
-						<!-- TABLE HEADER END -->
-						<!-- TABLE BODY START -->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- SHOPING-CART-MENU START -->
+                    <div class="shoping-cart-menu">
+                        <ul class="step">
+                            <li class="step-current first">
+                                <span>01. Giỏ hàng</span>
+                            </li>
+                            <li class="step-todo last" id="step_end">
+                                <span>02. Thanh toán</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- SHOPING-CART-MENU END -->
+                    <!-- CART TABLE_BLOCK START -->
+                    <div class="table-responsive">
+                        <!-- TABLE START -->
+                        <table class="table table-bordered" id="cart-summary">
+                            <!-- TABLE HEADER START -->
+                            <thead>
+                            <tr>
+                                <th class="cart-product"></th>
+                                <th class="cart-product">Sản phẩm</th>
+                                <th class="cart-description">Mô tả</th>
+                                <th class="cart-unit text-right" style="width: 10%">Giá bán</th>
+                                <th class="cart_quantity text-center">Số lượng</th>
+                                <th class="cart-total text-right">Tổng tiền</th>
+                                <th class="cart-delete">Thao tác</th>
 
-						<tbody>
-						<!-- SINGLE CART_ITEM START -->
-						<tr ng-repeat="item in cart">
-							<td >
+                            </tr>
+                            </thead>
+                            <!-- TABLE HEADER END -->
+                            <!-- TABLE BODY START -->
+
+                            <tbody>
+                            <!-- SINGLE CART_ITEM START -->
+                            <tr ng-repeat="item in cart">
+                                <td>
 								<span ng-show="MaDinhDanhBySP.get(item.chiTietSanPham.idChiTietSanPham) > 0">
-								<input type="checkbox"  ng-checked="selection.indexOf(item) > -1" ng-click="toggleSelection(item)" style="text-align: center"/>
+								<input type="checkbox" ng-checked="selection.indexOf(item) > -1"
+                                       ng-click="toggleSelection(item)" style="text-align: center"/>
 								</span>
-							</td>
+                                </td>
 
-							<td class="cart-product">
-								<a href="#/chitietsanpham/{{item.chiTietSanPham.sanPham.idSanPham}}"><img alt="Blouse" src="/assets/images/{{item.chiTietSanPham.sanPham.listAnhSanPham[0].link}}" width="80%"></a>
-							</td>
-							<td class="cart-description">
-								<p class="product-name"><a href="#/chitietsanpham/{{item.chiTietSanPham.sanPham.idSanPham}}">{{item.chiTietSanPham.sanPham.tenSanPham}} </a></p>
-								<small>Mã :{{item.chiTietSanPham.maChiTietSanPham}}</small>
-								<small><a href="#">Kích thước :{{item.chiTietSanPham.kichCo.tenKichCo}}
-									, Màu : {{item.chiTietSanPham.mauSac.tenMauSac}} </a></small>
-								<small><a href="#">Dây đeo :{{item.chiTietSanPham.dayDeo.tenDayDeo}}
-									, Vật liệu : {{item.chiTietSanPham.vatLieu.tenVatLieu}} </a></small>
-							</td>
-							<td class="cart-avail">
-								<span  ng-show="MaDinhDanhBySP.get(item.chiTietSanPham.idChiTietSanPham) > 0" class="label label-success">Còn hàng</span>
-								<span style="background: red; color: whitesmoke" ng-show="MaDinhDanhBySP.get(item.chiTietSanPham.idChiTietSanPham) == 0">Hết hàng</span>
-							</td>
+                                <td class="cart-product">
+                                    <a href="#/chitietsanpham/{{item.chiTietSanPham.sanPham.idSanPham}}"><img
+                                            alt="Blouse"
+                                            src="/assets/images/{{item.chiTietSanPham.sanPham.listAnhSanPham[0].link}}"
+                                            width="80%"></a>
+                                </td>
+                                <td class="cart-description">
+                                    <p class="product-name"><a
+                                            href="#/chitietsanpham/{{item.chiTietSanPham.sanPham.idSanPham}}">{{item.chiTietSanPham.sanPham.tenSanPham}} </a>
+                                    </p>
+                                    <small>Mã :{{item.chiTietSanPham.maChiTietSanPham}}</small>
+                                    <small><a href="#">Kích thước :{{item.chiTietSanPham.kichCo.tenKichCo}}
+                                        , Màu : {{item.chiTietSanPham.mauSac.tenMauSac}} </a></small>
+                                    <small><a href="#">Cấu trúc khuy :{{item.chiTietSanPham.cauTrucKhuy.tenCauTrucKhuy}}
+                                        , Chất liệu : {{item.chiTietSanPham.chatLieu.tenChatLieu}} </a></small>
+                                    <small><a href="#">Lớp lót :{{item.chiTietSanPham.lopLot.tenLopLot}}
+                                        , Hoạ Tiết : {{item.chiTietSanPham.hoaTiet.tenHoaTiet}} </a></small>
+                                    <small><a href="#">Kiểu túi :{{item.chiTietSanPham.kieuTui.tenKieuTui}}
+                                        , Kiểu dệt : {{item.chiTietSanPham.kieuDet.tenKieuDet}} </a></small>
+                                    <small><a href="#">Ve áo :{{item.chiTietSanPham.veAo.tenVeAo}}
+                                        , Xẻ tà : {{item.chiTietSanPham.xeTa.tenXeTa}} </a></small>
+                                </td>
 
-							<td class="cart-unit">
-								<ul class="price text-right">
-									<li class="price special-price"> {{item.giaBan | number}} đ</li>
-									<span ng-if="item.giaBan == item.chiTietSanPham.giaSanPham"></span>
-									<span ng-if="item.giaBan != item.chiTietSanPham.giaSanPham">
+                                <td class="cart-unit">
+                                    <ul class="price text-right">
+                                        <li class="price special-price"> {{item.giaBan | number}} đ</li>
+                                        <span ng-if="item.giaBan == item.chiTietSanPham.giaSanPham"></span>
+                                        <span ng-if="item.giaBan != item.chiTietSanPham.giaSanPham">
 										<li class="price-percent-reduction small">&nbsp;{{item.chiTietSanPham.khuyenMai.chietKhau}}%&nbsp;</li>
 									     <li class="old-price">{{item.chiTietSanPham.giaSanPham | number}} đ</li>
                                      </span>
-								</ul>
-							</td>
-							<td class="cart_quantity text-center" style="width: 10%">
-<!--								<div class="cart-plus-minus-button">-->
-									<input class="cart-plus-minus" type="text"  name="soLuongSanPham"
-										   value="{{item.soLuongSanPham}}" ng-disabled="true" style=" width:46%;height: 26px;  margin-top: 3px; text-align: center">
-									<div class="dec qtybutton" ng-click="giam(item)">-</div>
-									<div class="inc qtybutton"  ng-click="tang(item)">+</div>
-<!--								</div>-->
-							</td>
-							<td class="cart-delete text-center">
+                                    </ul>
+                                </td>
+                                <td class="cart_quantity text-center" style="width: 10%">
+                                    <!--								<div class="cart-plus-minus-button">-->
+                                    <input class="cart-plus-minus" type="text" name="soLuongSanPham"
+                                           value="{{item.soLuongSanPham}}" ng-disabled="true"
+                                           style=" width:46%;height: 26px;  margin-top: 3px; text-align: center">
+                                    <div class="dec qtybutton" ng-click="giam(item)">-</div>
+                                    <div class="inc qtybutton" ng-click="tang(item)">+</div>
+                                    <!--								</div>-->
+                                </td>
+
+                                <td class="cart-total">
+                                    <span class="price">{{item.soLuongSanPham * item.giaBan | number}}</span>
+                                </td>
+                                <td class="cart-delete text-center">
 											<span>
-												<p class="cart_quantity_delete" title="Delete" ng-click="removeSP(item)"><i class="fa fa-trash-o"></i></p>
+												<p class="cart_quantity_delete" title="Delete"
+                                                   ng-click="removeSP(item)"><i class="fa fa-trash-o"></i></p>
 											</span>
-							</td>
-							<td class="cart-total">
-								<span class="price">{{item.soLuongSanPham * item.giaBan | number}}</span>
-							</td>
-						</tr >
-						<!-- SINGLE CART_ITEM END -->
+                                </td>
+                                <!--                            <tr>-->
+                                <!--                                <td></td>-->
+                                <!--                                <td></td>-->
+                                <!--                                <td></td>-->
+                                <!--                                <td></td>-->
+                                <!--                                <td>Tổng tiền(tax excl.)</td>-->
+                                <!--                                <td>{{total | number}} đ</td>-->
+                                <!--                            </tr>-->
+                                <!--                            <tr>-->
+                                <!--                                <td></td>-->
+                                <!--                                <td></td>-->
+                                <!--                                <td></td>-->
+                                <!--                                <td></td>-->
+                                <!--                                <td>Phí vận chuyển (Tạm tính)</td>-->
+                                <!--                                <td>0.00đ</td>-->
+                                <!--                            </tr>-->
+                                <!--                            <tr>-->
+                                <!--                                <td></td>-->
+                                <!--                                <td></td>-->
+                                <!--                                <td></td>-->
+                                <!--                                <td></td>-->
+                                <!--                                <td>Tổng giảm giá (tax excl.)</td>-->
+                                <!--                                <td>0.00đ</td>-->
+                                <!--                            </tr>-->
+                                <!--                            <tr style="font-size: 20px">-->
+                                <!--                                <td style="border: none"></td>-->
+                                <!--                                <td></td>-->
+                                <!--                                <td></td>-->
+                                <!--                                <td></td>-->
+                                <!--                                <td><strong>Tổng</strong></td>-->
+                                <!--                                <td class="text-right"><strong>{{total | number}} đ</strong></td>-->
+                                <!--                            </tr>-->
+                            </tr>
+                            <!-- SINGLE CART_ITEM END -->
 
-						</tbody>
-						<!-- TABLE BODY END -->
-						<!-- TABLE FOOTER START -->
-						<tfoot>
-						<tr class="cart-total-price">
-							<td class="cart_voucher" colspan="4" rowspan="4"></td>
-							<td class="text-right" colspan="4">Tổng tiền(tax excl.)</td>
-							<td id="total_product" class="price" colspan="1">{{total | number}} đ</td>
-						</tr>
-						<tr>
-							<td class="text-right" colspan="4">Phí vận chuyển (Tạm tính)</td>
-							<td id="total_shipping" class="price" colspan="1">0.00đ</td>
-						</tr>
-						<tr>
-							<td class="text-right" colspan="4">Tổng giảm giá (tax excl.)</td>
-							<td class="price" colspan="1">0.00đ</td>
-						</tr>
-						<tr>
-							<td class="total-price-container text-right" colspan="4">
-								<span>Tổng</span>
-							</td>
-							<td id="total-price-container" class="price" colspan="1">
-								<span id="total-price">{{total | number}} đ</span>
-							</td>
-						</tr>
-						</tfoot>
-						<!-- TABLE FOOTER END -->
-					</table>
-					<!-- TABLE END -->
-					<span class="text-right" style="color:#ff0026" >{{errorSelectedSP}}</span>
-				</div>
-				<!-- CART TABLE_BLOCK END -->
-			</div>
+                            </tbody>
+                            <!-- TABLE BODY END -->
+                            <!-- TABLE FOOTER START -->
+                            <tfoot>
+                            <tr class="cart-total-price">
+                                <!--                                <td class="cart_voucher" colspan="4" rowspan="4"></td>-->
+                                <td class="text-center" colspan="4">Tổng tiền(tax excl.)</td>
+                                <td id="total_product" class="price" colspan="3">{{total | number}} đ</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" colspan="4">Phí vận chuyển (Tạm tính)</td>
+                                <td id="total_shipping" class="price" colspan="3">0.00đ</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" colspan="4">Tổng giảm giá (tax excl.)</td>
+                                <td class="price" colspan="3">0.00đ</td>
+                            </tr>
+                            <tr>
+                                <td class="total-price-container text-center" colspan="4">
+                                    <span>Tổng</span>
+                                </td>
+                                <td id="total-price-container" class="price" colspan="3">
+                                    <span id="total-price">{{total | number}} đ</span>
+                                </td>
+                            </tr>
+                            </tfoot>
+                            <!-- TABLE FOOTER END -->
+                        </table>
+                        <!-- TABLE END -->
+                        <span class="text-right" style="color:#ff0026">{{errorSelectedSP}}</span>
+                    </div>
+                    <!-- CART TABLE_BLOCK END -->
+                </div>
 
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<!-- RETURNE-CONTINUE-SHOP START -->
-				<div class="returne-continue-shop">
-					<a href="#index" class="continueshoping" style="cursor: pointer"><i class="fa fa-chevron-left"></i>Trang chủ</a>
-					<a class="procedtocheckout" style="cursor: pointer" ng-click="buy()">Thanh toán<i class="fa fa-chevron-right"></i></a>
-				</div>
-				<!-- RETURNE-CONTINUE-SHOP END -->
-			</div>
-		</div>
-	</div>
-</section >
-<!-- MAIN-CONTENT-SECTION END -->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- RETURNE-CONTINUE-SHOP START -->
+                    <div class=" returne-continue-shop">
+                            <a href="#index" class="continueshoping" style="cursor: pointer"><i
+                                    class="fa fa-chevron-left"></i>Trang chủ</a>
+                            <a class="procedtocheckout" style="cursor: pointer" ng-click="buy()">Thanh toán<i
+                                    class="fa fa-chevron-right"></i></a>
+                    </div>
+                    <!-- RETURNE-CONTINUE-SHOP END -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- MAIN-CONTENT-SECTION END -->
 </div>

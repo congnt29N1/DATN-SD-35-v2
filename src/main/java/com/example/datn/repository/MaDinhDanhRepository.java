@@ -17,7 +17,7 @@ import java.util.List;
 public interface MaDinhDanhRepository extends JpaRepository<MaDinhDanhCTSP,Integer> {
 
     @Query("select m from MaDinhDanhCTSP m where m.maDinhDanh like  %:keyword%")
-    Page<MaDinhDanhCTSP> findByIdImeiLike(@Param("keyword") String keyword, Pageable pageable);
+    Page<MaDinhDanhCTSP> findByIdMDDLike(@Param("keyword") String keyword, Pageable pageable);
 
     @Query(value = "select count(s) from MaDinhDanhCTSP s where s.trangThai = 1 and s.chiTietSanPham.idChiTietSanPham = ?1")
     Integer countMaDinhDanh (Integer chiTietSanPham);

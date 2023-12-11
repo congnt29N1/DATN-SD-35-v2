@@ -161,7 +161,6 @@
 						<tr>
 							<th class="cart-product">Sản phẩm</th>
 							<th class="cart-description">Mô tả</th>
-							<th class="cart-availability text-center">Availability</th>
 							<th class="cart-unit text-right">Giá bán</th>
 							<th class="cart_quantity text-center">Số lượng</th>
 							<th class="cart-total text-right">Tổng tiền</th>
@@ -179,12 +178,16 @@
 							</td>
 							<td class="cart-description">
 								<p class="product-name"><a href="#">{{item.chiTietSanPham.sanPham.tenSanPham}}</a></p>
-								<small>Vật Liệu : {{item.chiTietSanPham.vatLieu.tenVatLieu}}</small>
-								<small>Dây đeo : {{item.chiTietSanPham.dayDeo.tenDayDeo}}</small>
-								<small><a href="#">Size : {{item.chiTietSanPham.kichCo.tenKichCo}}, Màu : {{item.chiTietSanPham.mauSac.tenMauSac}}</a></small>
-							</td>
-							<td class="cart-avail">
-								<span class="label label-success">In stock</span>
+								<small><a href="#">Kích thước :{{item.chiTietSanPham.kichCo.tenKichCo}}
+									, Màu : {{item.chiTietSanPham.mauSac.tenMauSac}} </a></small>
+								<small><a href="#">Cấu trúc khuy :{{item.chiTietSanPham.cauTrucKhuy.tenCauTrucKhuy}}
+									, Chất liệu : {{item.chiTietSanPham.chatLieu.tenChatLieu}} </a></small>
+								<small><a href="#">Lớp lót :{{item.chiTietSanPham.lopLot.tenLopLot}}
+									, Hoạ Tiết : {{item.chiTietSanPham.hoaTiet.tenHoaTiet}} </a></small>
+								<small><a href="#">Kiểu túi :{{item.chiTietSanPham.kieuTui.tenKieuTui}}
+									, Kiểu dệt : {{item.chiTietSanPham.kieuDet.tenKieuDet}} </a></small>
+								<small><a href="#">Ve áo :{{item.chiTietSanPham.veAo.tenVeAo}}
+									, Xẻ tà : {{item.chiTietSanPham.xeTa.tenXeTa}} </a></small>
 							</td>
 							<!--Todo xử lý khuyến mại-->
 							<td class="cart-unit" >
@@ -207,15 +210,15 @@
 						<!-- TABLE FOOTER START -->
 						<tfoot>
 						<tr>
-							<td class="text-right" colspan="4">Tổng tiền sản phẩm</td>
+							<td class="text-center" colspan="4">Tổng tiền sản phẩm</td>
 							<td class="price" colspan="2">{{tongTien}}</td>
 						</tr>
 						<tr>
-							<td class="text-right" colspan="4">Tiền ship</td>
+							<td class="text-center" colspan="4">Tiền ship dự kiến</td>
 							<td class="price" colspan="2">{{fee}} đ</td>
 						</tr>
 						<tr>
-							<td class="total-price-container text-right" colspan="4">
+							<td class="total-price-container text-center" colspan="4">
 								<span>Tổng thanh toán</span>
 							</td>
 							<td id="total-price-container" class="price" colspan="2">
@@ -231,15 +234,15 @@
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<!-- FOUR-PAYMENT-METHOD START -->
-				<div class="four-payment-method">
+				<div class=" four-payment-method">
 					<!-- SINGLE-PAYMENT-METHOD START -->
 					<div class="single-payment-method payment-method-two">
-						<a style="cursor: pointer" ng-click="thanhToan(false)">Thanh toán sau<span> (xử lý đơn hàng sẽ lâu hơn)</span><i class="fa fa-chevron-right"></i></a>
+						<a style="cursor: pointer" ng-click="thanhToan(false)">Đặt hàng<i class="fa fa-chevron-right"></i></a>
 					</div>
 					<!-- SINGLE-PAYMENT-METHOD END -->
 					<!-- SINGLE-PAYMENT-METHOD START -->
 					<div class="single-payment-method payment-method-three">
-						<a style="cursor: pointer" ng-click="thanhToan(true)">Thanh toán VNPay<span> (xử lý đơn hàng sẽ nhanh hơn)</span><i class="fa fa-chevron-right"></i></a>
+						<a style="cursor: pointer" ng-click="thanhToan(true)">Thanh toán VNPay<i class="fa fa-chevron-right"></i></a>
 					</div>
 					<!-- SINGLE-PAYMENT-METHOD END -->
 				</div>

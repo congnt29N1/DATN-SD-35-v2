@@ -48,11 +48,11 @@ public class MaDinhDanhServiceImpl implements MaDinhDanhService {
     }
 
     @Override
-    public Page<MaDinhDanhCTSP> searchSeri(int pageNumber, int pageSize, String keyword) {
+    public Page<MaDinhDanhCTSP> searchMDD(int pageNumber, int pageSize, String keyword) {
         Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        repo.findByIdImeiLike(keyword,pageable).getContent().forEach(item->{
+        repo.findByIdMDDLike(keyword,pageable).getContent().forEach(item->{
         });
-        return repo.findByIdImeiLike(keyword,pageable);
+        return repo.findByIdMDDLike(keyword,pageable);
     }
 
     @Override

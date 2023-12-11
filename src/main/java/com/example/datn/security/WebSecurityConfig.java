@@ -38,7 +38,7 @@ public class WebSecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/refresh-token").permitAll()
                 .antMatchers("/src/**", "/images/**", "/js/**", "/webjars/**").permitAll()
-                .antMatchers("/api/giohang/**", "/api/phan-hoi/**", "/api/dia-chi", "/api/don-hang/**").permitAll()
+                .antMatchers("/api/giohang/**", "/api/phan-hoi/**", "/api/dia-chi", "/api/don-hang/**").hasAuthority("ROLE_CUSTOMER")
 //                .antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
                 .and()
                 .sessionManagement()

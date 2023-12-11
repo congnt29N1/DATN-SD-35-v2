@@ -4,13 +4,7 @@ import com.example.datn.cache.DiaChiCache;
 import com.example.datn.entity.DonHang;
 import com.example.datn.entity.HoaDonChiTiet;
 import com.example.datn.giaohangnhanhservice.DiaChiAPI;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -22,6 +16,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
 
 public class HoaDonPdf {
     public void exportToPDF(
@@ -43,7 +38,11 @@ public class HoaDonPdf {
         // Tạo đối tượng PdfWriter để ghi dữ liệu vào tài liệu PDF
 
         PdfWriter.getInstance(document, response.getOutputStream());
-        Font font = new Font(BaseFont.createFont("arial/arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED));
+//        Font font = new Font(BaseFont.createFont("arial/arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED));
+//        Font font = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL);
+        Font font = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL);
+//        Font font = new Font(BaseFont.createFont("arial/arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED));
+
         font.setColor(220, 20, 60);
         font.setStyle(Font.BOLD);
         document.setPageSize(PageSize.A4);

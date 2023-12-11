@@ -18,7 +18,7 @@
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                     <!-- SINGLE-PRODUCT-DESCRIPTION START -->
                     <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-4 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="single-product-view">
                                 <!-- Tab panes -->
                                 <div class="tab-content">
@@ -57,20 +57,21 @@
                                     </li>
                                 </ul>
                             </div>
+                            <div class="single-product-social-share" style="display: flex; align-items: center;">
+                                <p style="margin-right: 10px;">Chia sẻ:</p>
+                                <ul style="list-style-type: none; display: flex; padding: 0; margin: 0;">
+                                    <li style="margin-right: 10px;"><a href="#" class="twi-link"><i class="fa fa-twitter"></i>Tweet</a></li>
+                                    <li style="margin-right: 10px;"><a href="#" class="fb-link"><i class="fa fa-facebook"></i>Share</a></li>
+                                    <li><a href="#" class="ig-link"><i class="fa fa-instagram"></i>Instagram</a></li>
+                                </ul>
+                            </div>
+
+
                         </div>
-                        <div class="col-lg-7 col-md-7 col-sm-8 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-6` col-xs-12">
                             <div class="single-product-descirption">
                                 <h2>{{sanPhamDetail.tenSanPham}}</h2>
-                                <div class="single-product-social-share">
-                                    <ul>
-                                        <li><a href="#" class="twi-link"><i class="fa fa-twitter"></i>Tweet</a></li>
-                                        <li><a href="#" class="fb-link"><i class="fa fa-facebook"></i>Share</a></li>
-                                        <li><a href="#" class="g-plus-link"><i class="fa fa-google-plus"></i>Google+</a>
-                                        </li>
-                                        <li><a href="#" class="pin-link"><i class="fa fa-pinterest"></i>Pinterest</a>
-                                        </li>
-                                    </ul>
-                                </div>
+
                                 <div class="single-product-review-box">
                                     <div class="rating-box">
                                         <i class="fa fa-star"></i>
@@ -91,7 +92,7 @@
                                         <p>Mã: <span>{{chiTietSanPham.maChiTietSanPham}}</span></p>
                                     </div>
                                     <div class="single-product-price">
-                                        <h2><span ng-bind="getGia() | number"></span> đ</h2>
+                                        <h2><span ng-bind="getGia() | number"></span></h2>
                                     </div>
                                 </div>
                                 <div ng-if="chiTietSanPham.giaSanPham != getGia()">
@@ -101,28 +102,12 @@
                                         <p>Khuyến mại: <span>{{chiTietSanPham.khuyenMai.tenKhuyenMai}}</span></p>
                                     </div>
                                     <div class="single-product-price">
-                                        <h2><span ng-bind="getGia() | number "></span> đ</h2>
+                                        <h2><span ng-bind="getGia() | number "></span></h2>
                                         <span class="old-price">{{chiTietSanPham.giaSanPham | number }} đ</span>
                                     </div>
                                 </div>
-                                <div class="single-product-desc">
-                                    <!--<p>Faded short sleeves t-shirt with high neckline. Soft and stretchy material for a comfortable fit. Accessorize with a straw hat and you're ready for summer!</p>-->
-                                    <div class="product-in-stock">
-                                        <p style="color: red"> Còn {{ MaDinhDanhBySP.get(chiTietSanPham.soLuong) }}
-                                            sản phẩm
-                                            <span ng-show="MaDinhDanhBySP.get(chiTietSanPham.soLuong > 0)">Còn hàng</span>
-                                            <span style="background: red"
-                                                  ng-show="MaDinhDanhBySP.get(chiTietSanPham.soLuong == 0)">Hết hàng</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="single-product-info">
-                                    <a href="#"><i class="fa fa-envelope"></i></a>
-                                    <a href="#"><i class="fa fa-print"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                </div>
                                 <div class="single-product-quantity">
-                                    <p class="small-title" style=" margin-right: 16px">Số lượng</p>
+                                    <p class="small-title" style=" margin-right: 16px;margin-top: 3px">Số lượng</p>
                                     <div class="cart-quantity">
                                         <div class="cart-plus-minus-button single-qty-btn">
                                             <div class="dec qtybutton" ng-click="giam(item)" style="">-</div>
@@ -130,97 +115,100 @@
                                             <div class="inc qtybutton"  ng-click="tang(item)"  style="margin: 0">+</div>
                                         </div>
                                     </div>
+                                    <span ng-show="MaDinhDanhBySP.get(chiTietSanPham.idChiTietSanPham) > 0" >
+                                        {{ MaDinhDanhBySP.get(chiTietSanPham.idChiTietSanPham) }} sản phẩm có sẵn</span>
+                                    <span style="color: red"  ng-show="MaDinhDanhBySP.get(chiTietSanPham.idChiTietSanPham) == 0" >
+                                       Hết hàng</span>
                                 </div>
-
                                 <div class="single-product-color">
-                                    <p class="small-title">Kích Cỡ </p>
-                                    <div class="radio-container" ng-repeat="kc in listKichCo">
-                                        <input type="radio" name="kichCoOption" id="kichco{{kc}}" class="custom-radio"
+                                    <p class="small-title" style="display: inline-block; margin-right: 10px;">Kích Cỡ </p>
+                                    <div class="radio-container" ng-repeat="kc in listKichCo" style="display: inline-block;">
+                                        <input  type="radio" name="kichCoOption" id="kichco{{kc}}" class="custom-radio"
                                                ng-model="$parent.selectedKC" ng-value="kc">
-                                        <label for="kichco{{kc}}" class="custom-button-radio">{{kc}}</label>
+                                        <label for="kichco{{kc}}" class="custom-button-radio" style="margin-left: 3px">       {{kc}}</label>
                                     </div>
                                 </div>
                                 <div class="single-product-color">
-                                    <p class="small-title">Cấu Trúc Khuy </p>
+                                    <p class="small-title" style="display: inline-block; margin-right: 10px;">Cấu Trúc Khuy </p>
                                     <div class="radio-container" ng-repeat="ctk in listCauTrucKhuy">
                                         <input type="radio" name="cauTrucKhuyOption" id="cauTruckhuy{{ctk}}" class="custom-radio"
                                                ng-model="$parent.selectedCTK" ng-value="ctk"
                                                ng-disabled="!setAvaiableCauTrucKhuy.has(ctk)">
-                                        <label for="cauTruckhuy{{ctk}}" class="custom-button-radio">{{ctk}}</label>
+                                        <label for="cauTruckhuy{{ctk}}" class="custom-button-radio" style="margin-left: 3px">{{ctk}}</label>
                                     </div>
                                 </div>
                                 <div class="single-product-color">
-                                    <p class="small-title">Chất Liệu </p>
+                                    <p class="small-title"style="display: inline-block; margin-right: 10px;">Chất Liệu </p>
                                     <div class="radio-container" ng-repeat="cl in listChatLieu">
                                         <input type="radio" name="chatLieuOption" id="chatLieu{{cl}}" class="custom-radio"
                                                ng-model="$parent.selectedCL" ng-value="cl"
                                                ng-disabled="!setAvaiableChatLieu.has(cl)">
-                                        <label for="chatLieu{{cl}}" class="custom-button-radio">{{cl}}</label>
+                                        <label for="chatLieu{{cl}}" class="custom-button-radio" style="margin-left: 3px">{{cl}}</label>
                                     </div>
                                 </div>
                                 <div class="single-product-color">
-                                    <p class="small-title">Màu sắc </p>
+                                    <p class="small-title"style="display: inline-block; margin-right: 10px;">Màu sắc </p>
                                     <div class="radio-container" ng-repeat="ms in listMauSac">
                                         <input type="radio" name="mausacOption" id="mausac{{ms}}" class="custom-radio"
                                                ng-model="$parent.selectedMS" ng-value="ms"
                                                ng-disabled="!setAvaiableMauSac.has(ms)">
-                                        <label for="mausac{{ms}}" class="custom-button-radio">{{ms}}</label>
+                                        <label for="mausac{{ms}}" class="custom-button-radio"style="margin-left: 3px">{{ms}}</label>
                                     </div>
                                 </div>
 
 
                                 <div class="single-product-color">
-                                    <p class="small-title">Hoạ Tiết </p>
+                                    <p class="small-title"style="display: inline-block; margin-right: 10px;">Hoạ Tiết </p>
                                     <div class="radio-container" ng-repeat="ht in listHoaTiet">
                                         <input type="radio" name="hoaTietOption" id="hoatiet{{ht}}" class="custom-radio"
                                                ng-model="$parent.selectedHT" ng-value="ht"
                                                ng-disabled="!setAvaiableHoaTiet.has(ht)">
-                                        <label for="hoatiet{{ht}}" class="custom-button-radio">{{ht}}</label>
+                                        <label for="hoatiet{{ht}}" class="custom-button-radio"style="margin-left: 3px">{{ht}}</label>
                                     </div>
                                 </div>
                                 <div class="single-product-color">
-                                    <p class="small-title">Kiểu dệt</p>
+                                    <p class="small-title"style="display: inline-block; margin-right: 10px;">Kiểu dệt</p>
                                     <div class="radio-container" ng-repeat="kd in listKieuDet">
                                         <input type="radio" name="kieuDettOption" id="kieudet{{kd}}" class="custom-radio"
                                                ng-model="$parent.selectedKD" ng-value="kd"
                                                ng-disabled="!setAvaiableKieuDet.has(kd)">
-                                        <label for="kieudet{{kd}}" class="custom-button-radio">{{kd}}</label>
+                                        <label for="kieudet{{kd}}" class="custom-button-radio"style="margin-left: 3px">{{kd}}</label>
                                     </div>
                                 </div>
                                 <div class="single-product-color">
-                                    <p class="small-title">Kiểu túi</p>
+                                    <p class="small-title"style="display: inline-block; margin-right: 10px;">Kiểu túi</p>
                                     <div class="radio-container" ng-repeat="kt in listKieuTui">
                                         <input type="radio" name="kieuTuitOption" id="kieutui{{kt}}" class="custom-radio"
                                                ng-model="$parent.selectedKT" ng-value="kt"
                                                ng-disabled="!setAvaiableKieuTui.has(kt)">
-                                        <label for="kieutui{{kt}}" class="custom-button-radio">{{kt}}</label>
+                                        <label for="kieutui{{kt}}" class="custom-button-radio"style="margin-left: 3px">{{kt}}</label>
                                     </div>
                                 </div>
                                 <div class="single-product-color">
-                                    <p class="small-title">Lớp lót</p>
+                                    <p class="small-title"style="display: inline-block; margin-right: 10px;">Lớp lót</p>
                                     <div class="radio-container" ng-repeat="ll in listLopLot">
                                         <input type="radio" name="lopLopOption" id="loplot{{ll}}" class="custom-radio"
                                                ng-model="$parent.selectedLL" ng-value="ll"
                                                ng-disabled="!setAvaiableLopLot.has(ll)">
-                                        <label for="loplot{{ll}}" class="custom-button-radio">{{ll}}</label>
+                                        <label for="loplot{{ll}}" class="custom-button-radio"style="margin-left: 3px">{{ll}}</label>
                                     </div>
                                 </div>
                                 <div class="single-product-color">
-                                    <p class="small-title">Ve áo</p>
+                                    <p class="small-title"style="display: inline-block; margin-right: 10px;">Ve áo</p>
                                     <div class="radio-container" ng-repeat="va in listVeAo">
                                         <input type="radio" name="VeAoOption" id="loplot{{va}}" class="custom-radio"
                                                ng-model="$parent.selectedVA" ng-value="va"
                                                ng-disabled="!setAvaiableVeAo.has(va)">
-                                        <label for="loplot{{va}}" class="custom-button-radio">{{va}}</label>
+                                        <label for="loplot{{va}}" class="custom-button-radio"style="margin-left: 3px">{{va}}</label>
                                     </div>
                                 </div>
                                 <div class="single-product-color">
-                                    <p class="small-title">Xe tà</p>
+                                    <p class="small-title"style="display: inline-block; margin-right: 10px;">Xe tà</p>
                                     <div class="radio-container" ng-repeat="xt in listXeTa">
                                         <input type="radio" name="XeTaOption" id="xeta{{xt}}" class="custom-radio"
                                                ng-model="$parent.selectedXT" ng-value="xt"
                                                ng-disabled="!setAvaiableXeTa.has(xt)">
-                                        <label for="xeta{{xt}}" class="custom-button-radio">{{xt}}</label>
+                                        <label for="xeta{{xt}}" class="custom-button-radio"style="margin-left: 3px">{{xt}}</label>
                                     </div>
                                 </div>
                                 <div class="single-product-add-cart">

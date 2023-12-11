@@ -63,7 +63,7 @@ public class MaDinhDanhController {
         if (session.getAttribute("admin") == null) {
             return "redirect:/login-admin";
         }
-        Page<MaDinhDanhCTSP> page = maDinhDanhService.searchSeri(pageNum, ITEM_PER_PAGE, keyword);
+        Page<MaDinhDanhCTSP> page = maDinhDanhService.searchMDD(pageNum, ITEM_PER_PAGE, keyword);
         List<MaDinhDanhCTSP> listMaDinhDanh = page.getContent();
         long startCount = pageNum * ITEM_PER_PAGE + 1;
         long endCount = startCount + ITEM_PER_PAGE - 1;

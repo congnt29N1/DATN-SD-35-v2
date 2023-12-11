@@ -12,7 +12,7 @@ public interface MaDinhDanhService {
     List<MaDinhDanhCTSP> saveMany(List<MaDinhDanhCTSP> maDinhDanhCTSP);
     List<MaDinhDanhCTSP> getALl();
     MaDinhDanhCTSP get(Integer id);
-    Page<MaDinhDanhCTSP> searchSeri(int pageNumber, int pageSize, String keyword);
+    Page<MaDinhDanhCTSP> searchMDD(int pageNumber, int pageSize, String keyword);
 
     Integer countMaDinhDanh (Integer idChiTietSanPham);
     List<MaDinhDanhCTSP> findByChiTietSanPham(ChiTietSanPham chiTietSanPham, Integer soLuong);
