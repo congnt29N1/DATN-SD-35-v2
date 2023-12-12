@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface ChiTietSanPhamService {
-    public static final int PRODUCT_DETAIL_PER_PAGE = 3;
+    public static final int PRODUCT_DETAIL_PER_PAGE = 10;
     int totalPageSearchSP(String key, int pageNum);
     List<SanPhamAdminResponse> searchSP(String key, int pageNum);
     TimKiemSettingResponse getTimKiemSetting ();

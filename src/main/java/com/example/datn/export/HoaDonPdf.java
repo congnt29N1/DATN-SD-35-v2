@@ -4,8 +4,13 @@ import com.example.datn.cache.DiaChiCache;
 import com.example.datn.entity.DonHang;
 import com.example.datn.entity.HoaDonChiTiet;
 import com.example.datn.giaohangnhanhservice.DiaChiAPI;
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -77,7 +82,7 @@ public class HoaDonPdf {
 
         font.setStyle(Font.NORMAL);
         font.setSize(11.5f);
-        Paragraph paragraph3 = new Paragraph("DC: Đại Mỗ - Nam Từ Liêm - Hà Nội \nSĐT: 0816.134.100 - 0355.728.316", new Font(font));
+        Paragraph paragraph3 = new Paragraph("Địa chỉ: Bát Tràng - Gia Lâm - Hà Nội \nSĐT: 0969.612.465 - 0582.794.971", new Font(font));
         paragraph3.setSpacingBefore(10);
         paragraph3.setAlignment(Element.ALIGN_LEFT);
         paragraph3.setIndentationLeft(55);
