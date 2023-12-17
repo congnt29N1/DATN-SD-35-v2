@@ -337,82 +337,82 @@ myApp.controller(
 
 
 
-        // $scope.checkPhanHoiAPI = function (idChiTietSanPham) {
-        //     if(currentUser) {
-        //         $http
-        //             .get(
-        //                 `phan-hoi/checkPhanHoi?idKhachHang=${currentUser.idKhachHang}&idSanPham=${idChiTietSanPham}`
-        //             )
-        //             .then(function (response) {
-        //                 $scope.isPhanHoi= response.data;
-        //                 $scope.checkPhanHoi.set(idChiTietSanPham,$scope.isPhanHoi);
-        //             })
-        //             .catch(function (error) {
-        //                 console.log(error);
-        //             });
-        //
-        //     }else{
-        //         return true;
-        //     }
-        // };
-        // $scope.sendRate = function (h) {
-        //     if(currentUser) {
-        //         $scope.phanhoirequest = {
-        //             danhGia: $scope.ratings.current,
-        //             noiDungPhanHoi:$scope.noiDungPhanHoi,
-        //             idChiTietSanPham: h.chiTietSanPham.idChiTietSanPham,
-        //             idKhachHang: currentUser.idKhachHang,
-        //         };
-        //         console.log($scope.phanhoirequest);
-        //         $http
-        //             .post(`/api/phan-hoi/add`, $scope.phanhoirequest)
-        //             .then((resp) => {
-        //                 console.log(resp);
-        //                 $scope.isPhanHoi = true;
-        //                 Swal.fire({
-        //                     icon: "success",
-        //                     title: "Thành công!",
-        //                     text: "Đánh giá thành công!",
-        //                     showConfirmButton: true,
-        //                     closeOnClickOutside: true,
-        //                     timer: 3600,
-        //                 });
-        //                 setTimeout(function (){
-        //                     $window.location.reload();
-        //                 },2600)
-        //
-        //             })
-        //             .catch((error) => {
-        //                 alert("Loi roi", error);
-        //             });
-        //     }else{
-        //         Swal.fire({
-        //             icon: "warning",
-        //             title: "Bạn chưa đăng nhập !",
-        //             text: "Hãy đăng nhập để tiếp tục shopping!",
-        //             showConfirmButton: true,
-        //             closeOnClickOutside: true,
-        //             timer: 5600,
-        //         });
-        //         $window.location.href = '#login';
-        //     }
-        // };
-        // var i =2;
-        // $scope.more = function (){
-        //     if(i == $scope.donHang.length){
-        //         $scope.loading = false;
-        //     }
-        //
-        //     for( i; i < $scope.donHang.length;i++ ){
-        //         $scope.newItem = $scope.donHang[i++];
-        //         i = i++;
-        //         $scope.items.push( $scope.newItem );
-        //         console.log($scope.items)
-        //         break;
-        //     }
-        //
-        // }
-        // $scope.more();
+        $scope.checkPhanHoiAPI = function (idChiTietSanPham) {
+            if(currentUser) {
+                $http
+                    .get(
+                        `phan-hoi/checkPhanHoi?idKhachHang=${currentUser.idKhachHang}&idSanPham=${idChiTietSanPham}`
+                    )
+                    .then(function (response) {
+                        $scope.isPhanHoi= response.data;
+                        $scope.checkPhanHoi.set(idChiTietSanPham,$scope.isPhanHoi);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+            }else{
+                return true;
+            }
+        };
+        $scope.sendRate = function (h) {
+            if(currentUser) {
+                $scope.phanhoirequest = {
+                    danhGia: $scope.ratings.current,
+                    noiDungPhanHoi:$scope.noiDungPhanHoi,
+                    idChiTietSanPham: h.chiTietSanPham.idChiTietSanPham,
+                    idKhachHang: currentUser.idKhachHang,
+                };
+                console.log($scope.phanhoirequest);
+                $http
+                    .post(`/api/phan-hoi/add`, $scope.phanhoirequest)
+                    .then((resp) => {
+                        console.log(resp);
+                        $scope.isPhanHoi = true;
+                        Swal.fire({
+                            icon: "success",
+                            title: "Thành công!",
+                            text: "Đánh giá thành công!",
+                            showConfirmButton: true,
+                            closeOnClickOutside: true,
+                            timer: 3600,
+                        });
+                        setTimeout(function (){
+                            $window.location.reload();
+                        },2600)
+
+                    })
+                    .catch((error) => {
+                        alert("Loi roi", error);
+                    });
+            }else{
+                Swal.fire({
+                    icon: "warning",
+                    title: "Bạn chưa đăng nhập !",
+                    text: "Hãy đăng nhập để tiếp tục shopping!",
+                    showConfirmButton: true,
+                    closeOnClickOutside: true,
+                    timer: 5600,
+                });
+                $window.location.href = '#login';
+            }
+        };
+        var i =2;
+        $scope.more = function (){
+            if(i == $scope.donHang.length){
+                $scope.loading = false;
+            }
+
+            for( i; i < $scope.donHang.length;i++ ){
+                $scope.newItem = $scope.donHang[i++];
+                i = i++;
+                $scope.items.push( $scope.newItem );
+                console.log($scope.items)
+                break;
+            }
+
+        }
+        $scope.more();
     })
 
 
