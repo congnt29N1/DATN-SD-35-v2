@@ -95,6 +95,10 @@ myApp.config(function ($routeProvider, $locationProvider,$httpProvider) {
             templateUrl: "page/DHHoanTra.html",
             controller: "historyReturnCtrl"
         })
+        .when("/mayonline1", {
+            templateUrl: "page/mayOnline.html",
+            controller: "mayonline"
+        })
         .otherwise({
             redirectTo: "/",
         });
