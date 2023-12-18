@@ -48,38 +48,41 @@ public class MaDinhDanhController {
     HttpServletRequest request;
 
     @GetMapping("")
-    public String init() {
+    public String init(Model model) {
         HttpSession session = request.getSession();
         if (session.getAttribute("admin") == null) {
             return "redirect:/login-admin";
         }
-        return "admin/madinhdanh/madinhdanh";
-    }
-
-    @GetMapping("/page/{pageNum}")
-    public String listByPage(@PathVariable(name = "pageNum") int pageNum, Model model,
-                             @Param("keyword") String keyword) {
-        HttpSession session = request.getSession();
-        if (session.getAttribute("admin") == null) {
-            return "redirect:/login-admin";
-        }
-        Page<MaDinhDanhCTSP> page = maDinhDanhService.searchMDD(pageNum, ITEM_PER_PAGE, keyword);
-        List<MaDinhDanhCTSP> listMaDinhDanh = page.getContent();
-        long startCount = pageNum * ITEM_PER_PAGE + 1;
-        long endCount = startCount + ITEM_PER_PAGE - 1;
-        if (endCount > page.getTotalElements()) {
-            endCount = page.getTotalElements();
-        }
-        model.addAttribute("currentPage", pageNum);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("startCount", startCount);
-        model.addAttribute("endCount", endCount);
-        model.addAttribute("totalItem", page.getTotalElements());
+        List<MaDinhDanhCTSP> listMaDinhDanh = maDinhDanhService.getALl();
         model.addAttribute("listMaDinhDanh", listMaDinhDanh);
-        model.addAttribute("keyword", keyword);
-        System.out.println(listMaDinhDanh.size());
         return "admin/madinhdanh/madinhdanh";
     }
+//
+//    @GetMapping("/page/{pageNum}")
+//    public String listByPage(@PathVariable(name = "pageNum") int pageNum, Model model,
+//                             @Param("keyword") String keyword) {
+//        HttpSession session = request.getSession();
+//        if (session.getAttribute("admin") == null) {
+//            return "redirect:/login-admin";
+//        }
+//        Page<MaDinhDanhCTSP> page = maDinhDanhService.searchMDD(pageNum, ITEM_PER_PAGE, keyword);
+////        List<MaDinhDanhCTSP> listMaDinhDanh = page.getContent();
+//        List<MaDinhDanhCTSP> listMaDinhDanh = maDinhDanhService.getALl();
+//        long startCount = pageNum * ITEM_PER_PAGE + 1;
+//        long endCount = startCount + ITEM_PER_PAGE - 1;
+//        if (endCount > page.getTotalElements()) {
+//            endCount = page.getTotalElements();
+//        }
+//        model.addAttribute("currentPage", pageNum);
+//        model.addAttribute("totalPages", page.getTotalPages());
+//        model.addAttribute("startCount", startCount);
+//        model.addAttribute("endCount", endCount);
+//        model.addAttribute("totalItem", page.getTotalElements());
+//        model.addAttribute("listMaDinhDanh", listMaDinhDanh);
+//        model.addAttribute("keyword", keyword);
+//        System.out.println(listMaDinhDanh.size());
+//        return "admin/madinhdanh/madinhdanh";
+//    }
 
     @GetMapping("/new")
     public String newMaDinhDanh(Model model) {
