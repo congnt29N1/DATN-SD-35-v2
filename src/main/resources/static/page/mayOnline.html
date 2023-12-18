@@ -1,0 +1,242 @@
+
+<style>
+    .online {
+        width: 1200px;
+        height: 100%;
+        margin: auto;
+
+    }
+    .online_header {
+        width: 100%;
+        position: relative;
+    }
+
+    .online_header::after {
+        position: absolute;
+        content: "";
+        height: 6px;
+        width: 80px;
+        bottom: -10px;
+        right: 47%;
+        background-color: rgb(129, 100, 57);
+    }
+
+    .online_heading {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .online_container {
+        width: 600px;
+        height: 600px;
+        background-color: rgb(199, 166, 116);
+        margin: auto;
+        border-radius: 12px;
+
+    }
+
+    .online_form {
+        /* padding: ; */
+        width: 100%;
+    }
+
+    .online_input {
+        display: block;
+        width: 60%;
+        height: 40px;
+        color: black;
+        padding-left: 12px;
+        border-radius: 12px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+    }
+
+    .online_form-gr {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 60px;
+    }
+
+    .online_input::placeholder {
+        color: black;
+    }
+
+    .online_text {
+        width: 360px;
+        height: 120px;
+        padding: 12px 0 0 12px;
+        border-radius: 12px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+    }
+
+    .online_form-te {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 160px;
+
+    }
+
+    .online_btn {
+        height: 50px;
+        width: 150px;
+        color:  rgb(171,142,99);
+        background-color: #fff;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: 550;
+
+    }
+
+    .online_btn:hover {
+        color:  #fff;
+        background-color: rgb(124, 91, 42);
+        /* border: 1px solid #fff; */
+    }
+
+    /* post */
+
+    .post {
+        margin-top: 24px;
+    }
+    .post_list {
+        display: flex;
+        width: 100%;
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    .post_item {
+        width: 33.3333%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .post_img {
+        background-size: contain;
+        background-repeat: no-repeat;
+        padding-top: 100%;
+        border-radius: 12px;
+    }
+
+    .post_content {
+
+    }
+
+    .post_header {
+        position: relative;
+    }
+
+    .post_header::after {
+        position: absolute;
+        content: "";
+        height: 6px;
+        width: 34px;
+        background-color: rgb(129, 100, 57);
+        bottom: -10px;
+        left: 0;
+    }
+
+    .post_sign {
+        font-size: 14px;
+        color: #777777;
+    }
+
+    .post_title {
+        font-size: 20px;
+        text-decoration: none;
+
+    }
+    .post_title:hover {
+        color: rgb(129, 100, 57);
+        cursor: pointer;
+    }
+
+
+
+</style>
+<div class="online">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <!-- BSTORE-BREADCRUMB START -->
+            <div class="bstore-breadcrumb">
+                <a href="#index">Trang chủ</a>
+                <span><i class="fa fa-caret-right	"></i></span>
+                <span>   May đo online</span>
+            </div>
+            <!-- BSTORE-BREADCRUMB END -->
+        </div>
+    </div>
+
+
+    <div class="post">
+        <div class="post_list">
+            <div class="post_item">
+                <div class="post_img" style="background-image: url('https://bizweb.dktcdn.net/thumb/1024x1024/100/314/343/articles/z3339742573614-9b7d86b277d6246c74b59fb9d53bfa0d-1.jpg?v=1660882166283');"></div>
+                <div class="post_content">
+                    <div class="post_header">
+                        <p class="post_sign">Viết bởi: Phan Việt Thắng</p>
+                    </div>
+                    <a class="post_title">THE SUITS HOUSE | MAY ĐO ONLINE CÓ THỰC SỰ MANG LẠI MỘT BỘ SUIT HOÀN HẢO?</a>
+
+                </div>
+            </div>
+            <div class="post_item">
+                <div class="post_img" style="background-image: url('https://bizweb.dktcdn.net/100/314/343/articles/co-nen-lua-chon-may-do-tu-xa-01.jpg?v=1661246701447');"></div>
+                <div class="post_content">
+                    <div class="post_header">
+                        <p class="post_sign">Viết bởi: Phan Việt Thắng</p>
+                    </div>
+                    <a class="post_title">CÓ NÊN LỰA CHỌN PHƯƠNG PHÁP MAY ĐO TỪ XA?</a>
+
+                </div>
+            </div>
+            <div class="post_item">
+                <div class="post_img" style="background-image: url('https://bizweb.dktcdn.net/thumb/1024x1024/100/314/343/articles/30c8b8c897555b0b0244.jpg?v=1645780345890');"></div>
+                <div class="post_content">
+                    <div class="post_header">
+                        <p class="post_sign">Viết bởi: Phan Việt Thắng</p>
+                    </div>
+                    <a class="post_title">HƯỚNG DẪN LẤY SỐ ĐO SUIT ONLINE</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="online_header">
+        <h2 class="online_heading">May Đo Online</h2>
+    </div>
+    <div class="online_container">
+        <form action="" class="online_form" method="post">
+            <div class="online_form-gr">
+                <input type="text" class="online_input" placeholder="Họ và tên">
+            </div>
+            <div class="online_form-gr">
+                <input type="text" class="online_input" placeholder="Số điện thoại">
+
+            </div>
+            <div class="online_form-gr">
+                <input type="text" class="online_input" placeholder="Địa chỉ Email">
+
+            </div>
+            <div class="online_form-gr">
+                <input type="text" class="online_input" placeholder="Địa chỉ liên hệ">
+
+            </div>
+            <div class="online_form-te">
+                <textarea name="" id="" class="online_text" placeholder="Đôi lời nhắn gửi"></textarea>
+            </div>
+
+            <div class="online_form-gr">
+                <button type="submit" class="online_btn">Liên hệ tư vấn</button>
+            </div>
+
+        </form>
+    </div>
+</div>

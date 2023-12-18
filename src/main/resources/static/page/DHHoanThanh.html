@@ -64,7 +64,7 @@
                                 </div>
                                 <div ng-if="checkPhanHoi.get(h.chiTietSanPham.idChiTietSanPham) == true"></div>
                                 <div ng-if="checkPhanHoi.get(h.chiTietSanPham.idChiTietSanPham) == false">
-                                <a type="button" class="btn btn-primary btn-lg"  data-toggle="modal" data-target="#{{h.idHoaDonChiTiet}}" style="width: 95px; padding: 6px; font-size :14px ;margin: 8px; border: none;background: #eb2929;" >
+                                <a type="button" class="btn btn-primary btn-lg"  data-toggle="modal" data-target="#{{h.idHoaDonChiTiet}}" style="width: 95px; padding: 6px; font-size :14px ;margin: 8px; border: none;background: rgb(142, 116, 77);" >
                                     Đánh giá
                                 </a>
                                 </div>
@@ -74,7 +74,7 @@
                                         <div class="modal-content" style="margin-top: 200px;  width: 350px;  margin-left: 19%;">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h2 style="color: red" class="modal-title" id="myModalLabel1">Đánh giá sản phẩm</h2>
+                                                <h2 style="color: rgb(142, 116, 77)" class="modal-title" id="myModalLabel1">Đánh giá sản phẩm</h2>
                                             </div>
                                             <!--    modal body-->
                                             <div class="modal-body">
@@ -82,9 +82,7 @@
 
                                                 <span class="rating-selection">
 														<form ng-submit="sendRate(h)">
-															<div star-ratings  rating-value="ratings.current" max="5"></div>
-															<input type="text" name="noiDungPhanHoi" ng-model="noiDungPhanHoi" style="    width: 99%;
-    height: 94px; "/>
+															<input type="text" name="noiDungPhanHoi" ng-model="noiDungPhanHoi" style="    width: 99%; height: 94px; "/>
 															<a class="btn" style="text-align: end" class="write-review-btn" ng-click="sendRate(h)">Gửi đánh giá của bạn!</a>
 														</form>
 													</span>

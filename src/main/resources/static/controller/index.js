@@ -87,9 +87,17 @@ myApp.config(function ($routeProvider, $locationProvider,$httpProvider) {
             templateUrl: "page/DHDaHuy.html",
             controller: "historyCancelCtrl"
         })
+        .when("/chinhsach1", {
+            templateUrl: "page/chinhSach.html",
+            controller: "chinhsach"
+        })
         .when("/history/5", {
             templateUrl: "page/DHHoanTra.html",
             controller: "historyReturnCtrl"
+        })
+        .when("/mayonline1", {
+            templateUrl: "page/mayOnline.html",
+            controller: "mayonline"
         })
         .otherwise({
             redirectTo: "/",
