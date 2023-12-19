@@ -1,7 +1,9 @@
 package com.example.datn.service.impl;
 
+import com.example.datn.entity.DonHang;
 import com.example.datn.entity.ReportItem;
 import com.example.datn.entity.ReportType;
+import org.springframework.data.domain.Page;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -67,16 +69,16 @@ public abstract class AbstractReportService {
 	protected abstract List<ReportItem> getReportDataByDateRangeInternal(
 			Date startDate, Date endDate, ReportType reportType);
 
-	//    public List<ReportItem> getReportDataLastXYears(int years){
-	//        Date endTime = new Date();
-	//        Calendar cal = Calendar.getInstance();
-	//        cal.add(Calendar.YEAR, -(years -1));
-	//        Date startTime = cal.getTime();
-	//        System.out.println("Start time: " + startTime);
-	//        System.out.println("End time: " + endTime);
-	//        dateFormater = new SimpleDateFormat("yyyy");
-	//        return getReportDataByDateRangeR(startTime, endTime, "years");
-	//    }
+//	    public List<ReportItem> getReportDataLastXYears(int years){
+//	        Date endTime = new Date();
+//	        Calendar cal = Calendar.getInstance();
+//	        cal.add(Calendar.YEAR, -(years -1));
+//	        Date startTime = cal.getTime();
+//	        System.out.println("Start time: " + startTime);
+//	        System.out.println("End time: " + endTime);
+//	        dateFormater = new SimpleDateFormat("yyyy");
+//	        return getReportDataByDateRangeR(startTime, endTime, "years");
+//	    }
 //	public abstract List<DonHang> getAllDonHang();
 //
 //	public abstract List<DonHang> getAllPaginationDonHang();

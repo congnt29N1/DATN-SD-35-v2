@@ -11,7 +11,7 @@
                 th:classappend="${buttonClass}">6 tháng trước</button>
         <button period="last_year" class="btn btn-light m-1"
                 th:classappend="${buttonClass}">Trong 1 năm</button>
-        <button class="btn btn-light m-1" th:classappend="${buttonClass}">Chọn khoảng ngày thống kê</button>
+<!--        <button class="btn btn-light m-1" th:classappend="${buttonClass}">Chọn khoảng ngày thống kê</button>-->
     </div>
 
     <form>
@@ -25,7 +25,7 @@
     </form>
 
     <div class="row justify-content-center">
-        <div class="col-sm-2">
+        <div class="col-sm-4" >
             <div class="card">
                 <div class="card-header">
                     <b>Tổng Doanh Thu</b>
@@ -36,10 +36,10 @@
             </div>
         </div>
 
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <div class="card">
                 <div class="card-header">
-                    <b>Doanh Thu Thuần</b>
+                    <b>Doanh Thu</b>
                 </div>
                 <div class="card-body">
                     <span class="h3" th:id="'textTotalNetSales' + ${reportType}"></span>
@@ -47,29 +47,29 @@
             </div>
         </div>
 
-        <div class="col-sm-2">
-            <div class="card">
-                <div class="card-header">
-                    <b>Trung bình Tổng Doanh Thu</b>
-                </div>
-                <div class="card-body">
-                    <span class="h3" th:id="'textAvgGrossSales' + ${reportType}"></span>
-                </div>
-            </div>
-        </div>
+<!--        <div class="col-sm-2">-->
+<!--            <div class="card">-->
+<!--                <div class="card-header">-->
+<!--                    <b>Trung bình Tổng Doanh Thu</b>-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <span class="h3" th:id="'textAvgGrossSales' + ${reportType}"></span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <div class="col-sm-2">
-            <div class="card">
-                <div class="card-header">
-                    <b>Trung bình Doanh Thu Tuần</b>
-                </div>
-                <div class="card-body">
-                    <span class="h3" th:id="'textAvgNetSales' + ${reportType}"></span>
-                </div>
-            </div>
-        </div>
+<!--        <div class="col-sm-2">-->
+<!--            <div class="card">-->
+<!--                <div class="card-header">-->
+<!--                    <b>Trung bình Doanh Thu Tuần</b>-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <span class="h3" th:id="'textAvgNetSales' + ${reportType}"></span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <div class="card">
                 <div class="card-header">
                     <b><span th:id="'labelTotalItems' + ${reportType}"></span></b>
