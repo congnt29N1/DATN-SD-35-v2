@@ -99,124 +99,67 @@
                                         <div class="card-body">
                                             <h3 class="card-title">[[${cat.chiTietSanPham.sanPham.tenSanPham}]]</h3>
                                             <p class="card-text">[[${cat.chiTietSanPham.chatLieu.tenChatLieu}]],[[${cat.chiTietSanPham.mauSac.tenMauSac}]],[[${cat.chiTietSanPham.kichCo.tenKichCo}]]</p>
+                                            <p class="card-text">[[${cat.chiTietSanPham.kieuDet.tenKieuDet}]],[[${cat.chiTietSanPham.kieuTui.tenKieuTui}]],[[${cat.chiTietSanPham.LopLot.TenLopLot}]]</p>
+                                            <p class="card-text">[[${cat.chiTietSanPham.cauTrucKhuy.tenCauTrucKhuy}]],[[${cat.chiTietSanPham.hoaTiet.tenHoaTiet}]],[[${cat.chiTietSanPham.veAo.tenVeAo}]],[[${cat.chiTietSanPham.xeTa.tenXeTa}]]</p>
                                             <h5 class="card-text" th:text="${#numbers.formatDecimal(cat.giaBan, 0, 'COMMA', 0, 'POINT')} +
                          ' đ'">Giá: [[${cat.giaBan}]]</h5>
                                             <p class="card-text">Số lượng: x [[${cat.soLuong}]]</p>
                                             <div>
-                                                <p th:each="mdd :${cat.getListMDD()}">[[${mdd.maDinhDanh}]]</p>
+                                                <p th:each="mdd :${cat.getListMDD()}">Mã định danh: [[${mdd.maDinhDanh}]]</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <hr>
-
                                 </div>
                             </div>
-                            <!--            TỔNG TIỀN-->
-                            <div class="row g-0" style="padding: 20px 10px;">
-                                <div class="row" th:if="${donHang.diaChi != null}">
-                                    <div class="col-md-6">
-                                        <h5>Địa chỉ </h5>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h5 style="padding-left: 15px">
-                                            [[${donHang.diaChi}]]
-                                        </h5>
-                                    </div>
-                                </div>
 
-                                <div class="row" >
-                                    <div class="col-md-6">
-                                        <h5>Tổng tiền các sản phẩm </h5>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h5 style="padding-left: 15px" th:text="${#numbers.formatDecimal(donHang.tongTien, 0, 'COMMA', 0, 'POINT')} +
-                         ' đ'">[[${donHang.tongTien}]]</h5>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h5>Phí vận chuyển </h5>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h5 style="padding-left: 15px" th:text="${#numbers.formatDecimal( (donHang.phiVanChuyen== null ? 0 : donHang.phiVanChuyen), 0, 'COMMA', 0, 'POINT')} +
-                         ' đ'">[[${donHang.phiVanChuyen== null ? 0 : donHang.phiVanChuyen}]]</h5>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h3>Tổng tiền </h3>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h3 style="color: #e71616;padding-left: 15px" th:text="${#numbers.formatDecimal(donHang.tongTien +( donHang.phiVanChuyen== null ? 0 : donHang.phiVanChuyen ), 0, 'COMMA', 0, 'POINT')} +
-                         ' đ'">[[${donHang.tongTien +(donHang.phiVanChuyen== null ? 0 : donHang.phiVanChuyen)}]]</h3>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                     </div>
                     <div class="col-md-6">
-                        <!--    export            -->
-                        <div class="card border-danger mb-3" style="max-width: 100%;">
-                            <div class="card-header bg-transparent border-danger" style="text-align: center">
-                                <h4 style="font-weight: bold;">hiêu nè</h4>
-                                <p th:if="${donHang.idQuanHuyen != null && donHang.idPhuongXa != null && donHang.idTinhThanh != null}"><small>
-                                    [[${donHang.diaChi == null ? "" : donHang.diaChi}]],
-                                    [[${diaChiAPI.callGetPhuongXaAPI(donHang.idQuanHuyen).get(donHang.idPhuongXa)}]],
-                                    [[${diaChiAPI.callGetQuanHuyenAPI(donHang.idTinhThanh).get(donHang.idQuanHuyen)}]],
-                                    [[${diaChiCache.hashMapTinhThanh.get(donHang.idTinhThanh)}]]
-                                </small></p>
-                                <p th:if="${donHang.idQuanHuyen == null || donHang.idPhuongXa == null || donHang.idTinhThanh == null}"></p>
-                                <h5 style="font-weight: bold;">Hóa đơn thanh toán</h5>
+                        <!--            TỔNG TIỀN-->
+                        <div class="row g-0" style="padding: 20px 10px;">
+                            <div class="row" th:if="${donHang.diaChi != null}">
+                                <div class="col-md-6">
+                                    <h5>Địa chỉ </h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 style="padding-left: 15px">
+                                        [[${donHang.diaChi}]]
+                                    </h5>
+                                </div>
                             </div>
-                            <div class="card-body text-success">
 
-                                <table class="table overflow-auto scrollbar scrollbar-dark" style="max-height: 500px;display: inline-block">
-                                    <thead style="position: sticky;top: 0;">
-                                    <tr>
-                                        <th>#</th>
-                                        <th scope="col">Tên sản phẩm</th>
-                                        <th scope="col">Số lượng</th>
-                                        <th scope="col" style="width: 21%">Đơn giá</th>
-                                        <th scope="col" style="width: 21%">Thành tiền</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr th:each="cat,iterStat :${lstHDCT}">
-                                        <td th:text="${__${iterStat.index + 1}__}">1</td>
-                                        <td>
-                                            <span style="font-weight: 500"> [[${cat.chiTietSanPham.sanPham.tenSanPham}]]</span>
-                                            <span>Phân loại : [[${cat.chiTietSanPham.chatLieu.tenChatLieu}]], [[${cat.chiTietSanPham.mauSac.tenMauSac}]]</span>
-                                        </td>
-                                        <td>x[[${cat.soLuong}]]</td>
-                                        <td th:text="${#numbers.formatDecimal(cat.giaBan, 0, 'COMMA', 0, 'POINT')} +
-                         ' đ'">[[${cat.giaBan}]]đ</td>
-                                        <td th:text="${#numbers.formatDecimal(cat.giaBan*cat.soLuong, 0, 'COMMA', 0, 'POINT')} +
-                         ' đ'">[[${cat.giaBan*cat.soLuong}]]</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <div class="row">
-                                    <div class="col-md-6" style="padding-left: 10px;color:black">Đơn giá các sản phẩm</div>
-                                    <div class="col-md-6" style="text-align: center;color:black" th:text="${#numbers.formatDecimal(donHang.tongTien, 0, 'COMMA', 0, 'POINT')} +
-                         ' đ'">[[${donHang.tongTien}]]</div>
+                            <div class="row" >
+                                <div class="col-md-6">
+                                    <h5>Tổng tiền các sản phẩm </h5>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6" style="padding-left: 10px;color:black">Phí vận chuyển</div>
-                                    <div class="col-md-6" style="text-align: center;color:black" th:text="${#numbers.formatDecimal((donHang.phiVanChuyen== null ? 0 : donHang.phiVanChuyen), 0, 'COMMA', 0, 'POINT')} +
-                         ' đ'">[[${(donHang.phiVanChuyen== null ? 0 : donHang.phiVanChuyen)}]]</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6" style="padding-left: 10px;color:black" >Tổng tiền</div>
-                                    <div class="col-md-6" style="text-align: center;color:red" th:text="${#numbers.formatDecimal(donHang.tongTien + (donHang.phiVanChuyen== null ? 0 : donHang.phiVanChuyen), 0, 'COMMA', 0, 'POINT')} +
-                         ' đ'">[[${donHang.tongTien + (donHang.phiVanChuyen== null ? 0 : donHang.phiVanChuyen)}]]</div>
+                                <div class="col-md-6">
+                                    <h5 style="padding-left: 15px" th:text="${#numbers.formatDecimal(donHang.tongTien, 0, 'COMMA', 0, 'POINT')} +
+                         ' đ'">[[${donHang.tongTien}]]</h5>
                                 </div>
                             </div>
-                            <div class="card-footer bg-transparent border-danger" style="text-align: center">Chúc quý khách vui vẻ! Hẹn gặp lại!</div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Phí vận chuyển </h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 style="padding-left: 15px" th:text="${#numbers.formatDecimal( (donHang.phiVanChuyen== null ? 0 : donHang.phiVanChuyen), 0, 'COMMA', 0, 'POINT')} +
+                         ' đ'">[[${donHang.phiVanChuyen== null ? 0 : donHang.phiVanChuyen}]]</h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3>Tổng tiền </h3>
+                                </div>
+                                <div class="col-md-6">
+                                    <h3 style="color: #e71616;padding-left: 15px" th:text="${#numbers.formatDecimal(donHang.tongTien +( donHang.phiVanChuyen== null ? 0 : donHang.phiVanChuyen ), 0, 'COMMA', 0, 'POINT')} +
+                         ' đ'">[[${donHang.tongTien +(donHang.phiVanChuyen== null ? 0 : donHang.phiVanChuyen)}]]</h3>
+                                </div>
+                            </div>
                         </div>
-                        <div class="d-grid gap-2">
+                        <div class="d-grid gap-2 mt-30px">
                             <a class="btn btn-success" style="text-decoration: none"
                                th:href="@{'/admin/hoa-don-chi-tiet/export'}"
                                title="Chi tiết">Xuất hóa đơn</a>
