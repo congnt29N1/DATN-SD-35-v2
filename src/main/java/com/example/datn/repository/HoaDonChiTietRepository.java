@@ -5,6 +5,7 @@ import com.example.datn.entity.HoaDonChiTiet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,11 +41,14 @@ public interface HoaDonChiTietRepository extends JpaRepository<HoaDonChiTiet, In
 
     @Query(value = """
         DELETE 
-        FROM HoaDonChiTiet h
-        WHERE h.idHoaDonChiTiet = ?1
-    """)
+        FROM hoadonchitiet h
+        WHERE h.id_hoa_don_chi_tiet = :id
+    """, nativeQuery = true)
     @Modifying
-    public void xoaHDCT(int idHoaDonChiTiet);
+    public void xoaHDCT(@Param("id") int idHoaDonChiTiet);
+
+    void deleteByIdHoaDonChiTiet(int id);
+
     public HoaDonChiTiet findByIdHoaDonChiTiet(int id);
 
     @Query(value = """

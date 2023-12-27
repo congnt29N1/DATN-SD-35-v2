@@ -2,6 +2,7 @@ package com.example.datn.service.impl;
 
 import com.example.datn.entity.DonHang;
 import com.example.datn.entity.HoaDonChiTiet;
+import com.example.datn.entity.NhanVien;
 import com.example.datn.mapper.DonHangMapping;
 import com.example.datn.mapper.HoaDonChiTietMapping;
 import com.example.datn.repository.ChiTietSanPhamRepository;
@@ -41,7 +42,10 @@ public class DonHangServiceImpl implements DonHangService {
 
     @Override
     public DonHang save(DonHang donHang) {
-        return donHangRepository.save(donHang);
+        if(donHangRepository.checkHoaDonCho() <2){
+            return donHangRepository.save(donHang);
+        }
+        return null;
     }
 
     @Override
@@ -240,6 +244,11 @@ public class DonHangServiceImpl implements DonHangService {
     public Integer countDHAll() {
         return donHangRepository.countDHAll();
     }
+
+//    @Override
+//    public int countDonHangsByNhanVien(NhanVien nhanVien) {
+//        return donHangRepository.countByNhanVien(nhanVien);
+//    }
 
     @Override
     public Integer soLuongImeiCoTheCapNhat(int idHDCT) {

@@ -2,6 +2,7 @@ package com.example.datn.repository;
 
 import com.example.datn.entity.DonHang;
 import com.example.datn.entity.HoaDonChiTiet;
+import com.example.datn.entity.NhanVien;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,6 +17,8 @@ import java.util.List;
 
 @Repository
 public interface DonHangRepository extends JpaRepository<DonHang, Integer> {
+    @Query(value = "select count(donhang.trang_thai_don_hang) from donhang where donhang.trang_thai_don_hang = 8", nativeQuery = true)
+    Integer checkHoaDonCho();
     @Query(value = "select hdct from HoaDonChiTiet hdct where hdct.donHang.khachHang.idKhachHang = ?1 and hdct.chiTietSanPham.idChiTietSanPham = ?2 and hdct.donHang.trangThaiDonHang = 3")
     List<HoaDonChiTiet> findHDDonHang(Integer idKhachHang, Integer idChiTietSanPham);
     @Query("""
@@ -26,14 +29,24 @@ public interface DonHangRepository extends JpaRepository<DonHang, Integer> {
     @Modifying
     @Transactional
     void updateTongTienAdmin(@Param("id") int id, @Param("tongTien") Double tongTien);
+//    @Query("""
+//        SELECT d
+//        FROM DonHang d
+//        WHERE d.phuongThuc IS NULL
+//        AND d.trangThaiDonHang = 8
+//        ORDER BY d.ngayTao DESC
+//    """)
+//    List<DonHang> findDonHangChuaThanhToan();
     @Query("""
-        SELECT d
-        FROM DonHang d
-        WHERE d.phuongThuc IS NULL 
-        AND d.trangThaiDonHang = 8
-        ORDER BY d.ngayTao DESC
-    """)
-    List<DonHang> findDonHangChuaThanhToan();
+    SELECT d, kh.tenKhachHang
+    FROM DonHang d
+    JOIN d.khachHang kh
+    WHERE d.phuongThuc IS NULL 
+    AND d.trangThaiDonHang = 8
+    ORDER BY d.ngayTao DESC
+""")
+        List<DonHang> findDonHangChuaThanhToan();
+
     @Query(nativeQuery = true, value = """
         SELECT SUM(h.gia_ban * h.so_luong) as tongTien
         FROM donhang d JOIN hoadonchitiet h ON d.id_don_hang = h.id_don_hang

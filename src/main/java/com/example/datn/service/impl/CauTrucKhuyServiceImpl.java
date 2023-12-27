@@ -1,6 +1,6 @@
 package com.example.datn.service.impl;
 
-;
+
 import com.example.datn.entity.CauTrucKhuy;
 import com.example.datn.exception.CauTrucKhuyNotFoundException;
 import com.example.datn.repository.CauTrucKhuyRepository;

@@ -213,7 +213,6 @@ public class BanHangController {
 
         return "admin/banhang/banhang";
     }
-
     @PostMapping("/hoa-don/tao-moi")
     public String taoHoaDon(
             Model model,
@@ -483,12 +482,8 @@ public class BanHangController {
         // xoa hoa don chi tiet
         HoaDonChiTiet hoaDonChiTiet = hoaDonChiTietService.findHoaDonChiTietById(idHDCT);
         hoaDonChiTietService.xoaHDCT(hoaDonChiTiet);
-
         DonHang donHangByMa = (DonHang) httpSession.getAttribute("donHangHienTai");
-
-
         donHangService.updateTongTienAdmin(donHangByMa.getIdDonHang());
-
         return "redirect:/admin/ban-hang/hoa-don/" + donHangByMa.getMaDonHang();
     }
 

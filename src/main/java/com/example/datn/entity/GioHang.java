@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -29,7 +30,7 @@ public class GioHang {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idGioHang;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_khach_hang")
     private KhachHang khachHang;
 

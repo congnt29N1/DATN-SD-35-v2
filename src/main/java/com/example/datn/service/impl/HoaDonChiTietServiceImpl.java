@@ -12,6 +12,7 @@ import com.example.datn.service.DonHangService;
 import com.example.datn.service.HoaDonChiTietService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,6 +135,7 @@ public class HoaDonChiTietServiceImpl  implements HoaDonChiTietService {
         }
     }
 
+    @Transactional
     @Override
     public void xoaHDCT(HoaDonChiTiet hoaDonChiTiet) {
         maDinhDanhRepository.xoaSoLuongSanPham(hoaDonChiTiet.getIdHoaDonChiTiet());

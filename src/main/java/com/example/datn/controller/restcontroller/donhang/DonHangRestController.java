@@ -3,20 +3,24 @@ package com.example.datn.controller.restcontroller.donhang;
 
 import com.example.datn.cache.DiaChiCache;
 import com.example.datn.configure.VNPayConfig;
+import com.example.datn.entity.ChiTietSanPham;
 import com.example.datn.entity.DonHang;
 import com.example.datn.entity.HoaDonChiTiet;
 import com.example.datn.entity.KhachHang;
+import com.example.datn.entity.MaDinhDanhCTSP;
 import com.example.datn.giaohangnhanhservice.DiaChiAPI;
 import com.example.datn.giaohangnhanhservice.DonHangAPI;
 import com.example.datn.giaohangnhanhservice.request.ChiTietItemRequestGHN;
 import com.example.datn.giaohangnhanhservice.request.PhiVanChuyenRequest;
 import com.example.datn.request.DonHangRequest;
+import com.example.datn.request.HoaDonChiTietRequest;
 import com.example.datn.request.ThemDonHangRequest;
 import com.example.datn.response.DonHangResponse;
 import com.example.datn.response.HoaDonChiTietResponse;
 import com.example.datn.response.VNPayUrlResponse;
 import com.example.datn.service.*;
 import com.example.datn.utils.PhuongThucThanhToan;
+import com.example.datn.utils.TrangThaiMaDinhDanh;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +49,10 @@ public class DonHangRestController {
     @Autowired
     GioHangService gioHangService;
     @Autowired
+    MaDinhDanhService maDinhDanhService;
+    @Autowired
+    ChiTietSanPhamService chiTietSanPhamService;
+    @Autowired
     ChiTietGioHangService chiTietGioHangService;
     @PostMapping("/tinh-phi-van-chuyen")
     public ResponseEntity<?> getPhiVanChuyen(@RequestBody PhiVanChuyenRequest phiVanChuyenRequest) {
@@ -55,38 +63,121 @@ public class DonHangRestController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
-    @PostMapping("/them-don-hang")
-    public ResponseEntity<?> taoDonHang(@RequestBody ThemDonHangRequest themDonHangRequest) {
-        try {
-            KhachHang khachHang = khachHangService.findKhachHangById(themDonHangRequest.getKhachHangId());
-            DonHang donHang = DonHang.builder()
-                    .khachHang(khachHang)
-                    .ngayTao(new Date())
-                    .trangThaiDonHang(0)
-                    .idTinhThanh(themDonHangRequest.getIdTinhThanh())
-                    .idQuanHuyen(themDonHangRequest.getIdQuanHuyen())
-                    .idPhuongXa(themDonHangRequest.getIdPhuongXa())
-                    .diaChi(themDonHangRequest.getDiaChi())
-                    .phiVanChuyen(themDonHangRequest.getPhiVanChuyen())
-                    .ghiChu(themDonHangRequest.getGhiChu())
-                    .ngayCapNhap(new Date())
-                    .maDonHang("DH"+System.currentTimeMillis())
-                    .phuongThuc(PhuongThucThanhToan.TRA_SAU)
-                    .tongTien(hdctService.getTongGia(themDonHangRequest.getListHoaDonChiTietRequest()))
-                    .build();
-            DonHang savedDonHang = donHangService.save(donHang);
-            List<HoaDonChiTiet> listHoaDonChiTiet = hdctService.convertToListHoaDonChiTiet(themDonHangRequest.getListHoaDonChiTietRequest(), savedDonHang.getIdDonHang());
-            hdctService.saveAll(listHoaDonChiTiet);
-            HashMap<Integer,Integer> hashCTSPIdAndSoLuong = new HashMap();
-            themDonHangRequest.getListHoaDonChiTietRequest().forEach(item->{
-                hashCTSPIdAndSoLuong.put(item.getIdChiTietSanPham(),item.getSoLuong());
-            });
-            chiTietGioHangService.removeByCTSPAndKhachHang(khachHang.getIdKhachHang() , hashCTSPIdAndSoLuong);
-            return ResponseEntity.status(HttpStatus.OK).body(savedDonHang);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
+//    @PostMapping("/them-don-hang")
+//    public ResponseEntity<?> taoDonHang(@RequestBody ThemDonHangRequest themDonHangRequest) {
+//        try {
+//            KhachHang khachHang = khachHangService.findKhachHangById(themDonHangRequest.getKhachHangId());
+//            DonHang donHang = DonHang.builder()
+//                    .khachHang(khachHang)
+//                    .ngayTao(new Date())
+//                    .trangThaiDonHang(0)
+//                    .idTinhThanh(themDonHangRequest.getIdTinhThanh())
+//                    .idQuanHuyen(themDonHangRequest.getIdQuanHuyen())
+//                    .idPhuongXa(themDonHangRequest.getIdPhuongXa())
+//                    .diaChi(themDonHangRequest.getDiaChi())
+//                    .phiVanChuyen(themDonHangRequest.getPhiVanChuyen())
+//                    .ghiChu(themDonHangRequest.getGhiChu())
+//                    .ngayCapNhap(new Date())
+//                    .maDonHang("DH"+System.currentTimeMillis())
+//                    .phuongThuc(PhuongThucThanhToan.TRA_SAU)
+//                    .tongTien(hdctService.getTongGia(themDonHangRequest.getListHoaDonChiTietRequest()))
+//                    .build();
+//            DonHang savedDonHang = donHangService.save(donHang);
+//            List<HoaDonChiTiet> listHoaDonChiTiet = hdctService.convertToListHoaDonChiTiet(themDonHangRequest.getListHoaDonChiTietRequest(), savedDonHang.getIdDonHang());
+//            hdctService.saveAll(listHoaDonChiTiet);
+//            HashMap<Integer,Integer> hashCTSPIdAndSoLuong = new HashMap();
+//            themDonHangRequest.getListHoaDonChiTietRequest().forEach(item->{
+//                hashCTSPIdAndSoLuong.put(item.getIdChiTietSanPham(),item.getSoLuong());
+//            });
+//            chiTietGioHangService.removeByCTSPAndKhachHang(khachHang.getIdKhachHang() , hashCTSPIdAndSoLuong);
+//            return ResponseEntity.status(HttpStatus.OK).body(savedDonHang);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
+//        }
+//    }
+@PostMapping("/them-don-hang")
+public ResponseEntity<?> taoDonHang(@RequestBody ThemDonHangRequest themDonHangRequest) {
+    try {
+        // Lấy thông tin khách hàng và tạo đơn hàng
+        KhachHang khachHang = khachHangService.findKhachHangById(themDonHangRequest.getKhachHangId());
+        DonHang donHang = DonHang.builder()
+                .khachHang(khachHang)
+                .ngayTao(new Date())
+                .trangThaiDonHang(0)
+                .idTinhThanh(themDonHangRequest.getIdTinhThanh())
+                .idQuanHuyen(themDonHangRequest.getIdQuanHuyen())
+                .idPhuongXa(themDonHangRequest.getIdPhuongXa())
+                .diaChi(themDonHangRequest.getDiaChi())
+                .phiVanChuyen(themDonHangRequest.getPhiVanChuyen())
+                .ghiChu(themDonHangRequest.getGhiChu())
+                .ngayCapNhap(new Date())
+                .maDonHang("DH" + System.currentTimeMillis())
+                .phuongThuc(PhuongThucThanhToan.TRA_SAU)
+                .tongTien(hdctService.getTongGia(themDonHangRequest.getListHoaDonChiTietRequest()))
+                .build();
+
+        // Lưu đơn hàng và lấy đơn hàng đã lưu
+        DonHang savedDonHang = donHangService.save(donHang);
+
+        // Lấy danh sách chi tiết hóa đơn từ request và lưu vào CSDL
+        List<HoaDonChiTiet> listHoaDonChiTiet = hdctService.convertToListHoaDonChiTiet(themDonHangRequest.getListHoaDonChiTietRequest(), savedDonHang.getIdDonHang());
+        hdctService.saveAll(listHoaDonChiTiet);
+
+        // Kiểm tra số lượng sản phẩm trước khi đặt hàng
+        boolean isAvailable = kiemTraSoLuongSanPham(themDonHangRequest.getListHoaDonChiTietRequest());
+        if (!isAvailable) {
+            // Nếu số lượng sản phẩm đã hết, trả về thông báo lỗi
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Số lượng sản phẩm đã hết.");
         }
+
+        // Lấy danh sách mã định danh liên quan đến các chi tiết sản phẩm trong đơn hàng
+        List<MaDinhDanhCTSP> listMDD = new ArrayList<>();
+        for (HoaDonChiTiet hdct : listHoaDonChiTiet) {
+            ChiTietSanPham ctsp = hdct.getChiTietSanPham();
+            Integer soLuong = hdct.getSoLuong();
+            listMDD.addAll(maDinhDanhService.findByChiTietSanPham(ctsp, soLuong));
+        }
+
+        // Cập nhật trạng thái của từng mã định danh trong danh sách thành "Đang giao"
+        for (MaDinhDanhCTSP mdd : listMDD) {
+            mdd.setTrangThai(TrangThaiMaDinhDanh.DANG_GIAO);
+        }
+
+        // Lưu lại danh sách mã định danh đã được cập nhật
+        maDinhDanhService.saveMany(listMDD);
+
+        // Xóa các sản phẩm đã đặt hàng khỏi giỏ hàng của khách hàng
+        HashMap<Integer, Integer> hashCTSPIdAndSoLuong = new HashMap<>();
+        themDonHangRequest.getListHoaDonChiTietRequest().forEach(item -> {
+            hashCTSPIdAndSoLuong.put(item.getIdChiTietSanPham(), item.getSoLuong());
+        });
+        chiTietGioHangService.removeByCTSPAndKhachHang(khachHang.getIdKhachHang(), hashCTSPIdAndSoLuong);
+
+        // Trả về thông báo thành công và thông tin đơn hàng đã tạo
+        return ResponseEntity.status(HttpStatus.OK).body(savedDonHang);
+    } catch (Exception e) {
+        // Nếu có lỗi, trả về thông báo lỗi và thông tin lỗi
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
+}
+
+
+    // Hàm kiểm tra số lượng sản phẩm
+    private boolean kiemTraSoLuongSanPham(List<HoaDonChiTietRequest> listHoaDonChiTietRequest) {
+        for (HoaDonChiTietRequest hdctRequest : listHoaDonChiTietRequest) {
+            ChiTietSanPham ctsp = chiTietSanPhamService.getChiTietSanPhamById(hdctRequest.getIdChiTietSanPham());
+            if (ctsp != null) {
+                int soLuongConLai = maDinhDanhService.countMaDinhDanh(ctsp.getIdChiTietSanPham());
+                if (soLuongConLai < hdctRequest.getSoLuong()) {
+                    // Nếu số lượng mã định danh đã hết, trả về false
+                    return false;
+                }
+            }
+        }
+        // Nếu không có mã định danh nào hết, trả về true
+        return true;
+    }
+
     private HashMap<Integer, String> getListTP() {
         return DiaChiCache.hashMapTinhThanh;
     }

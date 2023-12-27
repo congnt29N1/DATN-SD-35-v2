@@ -122,9 +122,15 @@
                                     <label class="form-control" id="thanhTien" th:text="${#numbers.formatDecimal(thanhTien, 0, 'COMMA', 0, 'POINT')} +' đ'" disabled style="color: red;"></label>
                                 </div>
                                 <div class="col-md-6" style="margin-top: 30px">
+<!--                                    <button class="btn btn-primary"-->
+<!--                                            type="submit"-->
+<!--                                            id="tao-moi-don-hang"-->
+<!--                                    >Tạo mới</button>-->
+                                    <!-- Thêm điều kiện kiểm tra số lượng trong listHoaDon -->
                                     <button class="btn btn-primary"
                                             type="submit"
                                             id="tao-moi-don-hang"
+                                            th:disabled="${#lists.size(listHoaDon) > 2}"
                                     >Tạo mới</button>
 
                                     <button class="btn btn-success" id="thanhToan"
@@ -146,16 +152,19 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">Mã hóa đơn</th>
-                                    <th scope="col">Trạng thái</th>
+                                    <th scope="col">Tên khách hàng</th>
                                     <th scope="col">Ngày tạo</th>
+<!--                                    <th scope="col">Trạng thái</th>-->
                                     <th scope="col">Chức năng</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="hd : ${listHoaDon}">
                                     <td th:text="${hd.maDonHang}"></td>
-                                    <td th:text="${hd.trangThaiDonHang == 0 ? 'Chưa thanh toán' : ''}"></td>
+                                    <td th:text="${hd.khachHang.tenKhachHang}"></td>
+
                                     <td th:text="${hd.ngayTao}"></td>
+<!--                                    <td th:text="${hd.trangThaiDonHang == 0 ? 'Chưa thanh toán' : ''}"></td>-->
                                     <td>
                                         <form th:action="@{/admin/ban-hang/hoa-don/{maDonHang}(maDonHang=${hd.maDonHang})}" th:method="GET">
                                             <button class="btn btn-primary">Chọn</button>

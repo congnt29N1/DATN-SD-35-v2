@@ -1,6 +1,7 @@
 package com.example.datn.service;
 
 import com.example.datn.entity.DonHang;
+import com.example.datn.entity.NhanVien;
 import com.example.datn.request.DonHangRequest;
 import com.example.datn.response.DonHangResponse;
 import com.example.datn.response.HoaDonChiTietResponse;
@@ -58,6 +59,7 @@ public interface DonHangService {
 
     Integer countDHbyStatus(Integer trangThaiDonhang);
     Integer countDHAll();
+    // Trong DonHangService
 
     Integer soLuongImeiCoTheCapNhat(int idHDCT);
 }
