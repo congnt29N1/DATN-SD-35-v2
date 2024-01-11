@@ -230,5 +230,8 @@
 <a th:fragment="pagecustomer_link(pageNum, label)"
    class="page-link"
    th:href="@{'/admin/customers/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
+<a th:fragment="pagedonhangreport_link(pageNum, label)"
+   class="page-link"
+   th:href="@{'/admin/statisticals/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword' + keyword : ''}}"> [[${label}]]</a>
 </body>
 </html>

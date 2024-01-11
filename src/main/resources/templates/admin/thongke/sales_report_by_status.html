@@ -99,7 +99,7 @@
                         <th th:replace="admin/fragment/fragments::thongke_link('ngayTao', 'Ngày tạo')"></th>
                         <th th:replace="admin/fragment/fragments::thongke_link('ngayCapNhap', 'Ngày Cập nhập')"></th>
                         <th th:replace="admin/fragment/fragments::thongke_link('ngayGiaoHang', 'Ngày Giao Hàng')"></th>
-                                                <Th>Action</Th>
+                        <Th>Action</Th>
                     </tr>
                     </thead>
                     <tbody>
@@ -134,7 +134,7 @@
             </div>
 
             <div class="text-center m-1" th:if="${totalItem > 0}">
-<!--                <span>Hiển thị Đơn Hàng # [[${startCount}]] to [[${endCount}]] of [[${totalItem}]] </span>-->
+                <span>Hiển thị Đơn Hàng # [[${startCount}]] to [[${endCount}]] of [[${totalItem}]] </span>
             </div>
             <div class="text-center m-1" th:unless="${totalItem > 0}">
                 <span>Không có Đơn Hàng trang này</span>
