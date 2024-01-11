@@ -194,14 +194,14 @@
 								<ul class="price text-right">
 									<li class="price special-price">{{item.giaSanPham}}</li>
 									<li class="old-price">{{item.giaSanPham}}</li>
-									<li class="price-percent-reduction">{{item.giaBan}}</li>
+									<li class="price-percent-reduction">{{item.giaBan | number}}</li>
 								</ul>
 							</td>
 							<td class="cart_quantity text-center">
 								<span>{{item.soLuong}}</span>
 							</td>
 							<td class="cart-total">
-								<span class="price">{{item.giaBan * item.soLuong}}</span>
+								<span class="price">{{item.giaBan * item.soLuong | number}}</span>
 							</td>
 						</tr>
 						<!-- SINGLE CART_ITEM END -->
@@ -211,18 +211,18 @@
 						<tfoot>
 						<tr>
 							<td class="text-center" colspan="4">Tổng tiền sản phẩm</td>
-							<td class="price" colspan="2">{{tongTien}}</td>
+							<td class="price" colspan="2">{{tongTien | number}} vnđ</td>
 						</tr>
 						<tr>
 							<td class="text-center" colspan="4">Tiền ship dự kiến</td>
-							<td class="price" colspan="2">{{fee}} đ</td>
+							<td class="price" colspan="2">{{fee | number}} vnđ</td>
 						</tr>
 						<tr>
 							<td class="total-price-container text-center" colspan="4">
 								<span>Tổng thanh toán</span>
 							</td>
 							<td id="total-price-container" class="price" colspan="2">
-								<span id="total-price">{{tongTien + fee}}</span>
+								<span id="total-price">{{tongTien + fee | number}} vnđ</span>
 							</td>
 						</tr>
 						</tfoot>

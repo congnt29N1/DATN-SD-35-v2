@@ -176,33 +176,45 @@ public class DonHangController {
             return "redirect:/login-admin" ;
         }
         DonHang donHang = donHangService.findById(id);
-        if (trangThai == TrangThaiDonHang.DANG_CHUAN_BI) {
+        if(trangThai == TrangThaiDonHang.DANG_CHUAN_BI){
             try {
                 TaoDonHangRequestGHN donHangRequestGHN = createGHNRequest(donHang);
                 Integer code = DonHangAPI.createOrder(donHangRequestGHN);
                 donHang.setTrangThaiDonHang(trangThai);
                 donHang.setNgayCapNhap(new Date());
-
-                // Thêm logic xử lý mã định danh ở đây
-                List<HoaDonChiTiet> listHDCT = donHang.getListHoaDonChiTiet();
-                listHDCT.forEach(hdct -> {
-                    ChiTietSanPham ctsp = hdct.getChiTietSanPham();
-                    Integer soLuong = hdct.getSoLuong();
-                    List<MaDinhDanhCTSP> listMDD = maDinhDanhService.findByChiTietSanPham(ctsp, soLuong);
-                    listMDD.forEach(mdd -> {
-                        mdd.setTrangThai(TrangThaiMaDinhDanh.DANG_GIAO);
-                        mdd.setHoaDonChiTiet(hdct);
-                    });
-                    maDinhDanhService.saveMany(listMDD);
-                    hdct.setListMDD(listMDD);
-                });
-                hdctService.saveAll(listHDCT);
-
             } catch (Exception e) {
-//                log.error("Lỗi gửi Giao Hàng Nhanh {}", e);
-                redirectAttributes.addFlashAttribute("error", "Lỗi request giao hàng nhanh");
+                log.error("Lỗi gửi Giao Hàng nhanh {}", e);
+                redirectAttributes.addFlashAttribute("error","Lỗi request giao hàng nhanh");
                 return "redirect:/admin/don-hang";
             }
+//        }
+//        if (trangThai == TrangThaiDonHang.DANG_CHUAN_BI) {
+//            try {
+//                TaoDonHangRequestGHN donHangRequestGHN = createGHNRequest(donHang);
+//                Integer code = DonHangAPI.createOrder(donHangRequestGHN);
+//                donHang.setTrangThaiDonHang(trangThai);
+//                donHang.setNgayCapNhap(new Date());
+//
+//                // Thêm logic xử lý mã định danh ở đây
+//                List<HoaDonChiTiet> listHDCT = donHang.getListHoaDonChiTiet();
+//                listHDCT.forEach(hdct -> {
+//                    ChiTietSanPham ctsp = hdct.getChiTietSanPham();
+//                    Integer soLuong = hdct.getSoLuong();
+//                    List<MaDinhDanhCTSP> listMDD = maDinhDanhService.findByChiTietSanPham(ctsp, soLuong);
+//                    listMDD.forEach(mdd -> {
+//                        mdd.setTrangThai(TrangThaiMaDinhDanh.DANG_GIAO);
+//                        mdd.setHoaDonChiTiet(hdct);
+//                    });
+//                    maDinhDanhService.saveMany(listMDD);
+//                    hdct.setListMDD(listMDD);
+//                });
+//                hdctService.saveAll(listHDCT);
+//
+//            } catch (Exception e) {
+////                log.error("Lỗi gửi Giao Hàng Nhanh {}", e);
+//                redirectAttributes.addFlashAttribute("error", "Lỗi request giao hàng nhanh");
+//                return "redirect:/admin/don-hang";
+//            }
         } else if(trangThai == TrangThaiDonHang.DANG_GIAO){
             donHang.setTrangThaiDonHang(trangThai);
             donHang.setNgayCapNhap(new Date());

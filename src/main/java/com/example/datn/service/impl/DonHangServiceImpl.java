@@ -42,7 +42,7 @@ public class DonHangServiceImpl implements DonHangService {
 
     @Override
     public DonHang save(DonHang donHang) {
-        if(donHangRepository.checkHoaDonCho() <2){
+        if (donHangRepository.checkHoaDonCho() < 5) {
             return donHangRepository.save(donHang);
         }
         return null;

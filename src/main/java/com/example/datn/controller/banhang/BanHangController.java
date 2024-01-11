@@ -273,13 +273,18 @@ public class BanHangController {
                 .ngayTao(new Date())
                 .build();
 
-        donHangService.save(donHang);
-
-        DonHang donHangByMa = donHangService.findByMaDonHang(maDonHangCD);
-
-        httpSession.setAttribute("donHangHienTai", donHangByMa);
-
-        return "redirect:/admin/ban-hang/hoa-don/" + maDonHangCD;
+//        donHangService.save(donHang);
+//        DonHang donHangByMa = donHangService.findByMaDonHang(maDonHangCD);
+//        httpSession.setAttribute("donHangHienTai", donHangByMa);
+//        return "redirect:/admin/ban-hang/hoa-don/" + maDonHangCD;
+        if (donHangService.save(donHang) != null) {
+            DonHang donHangByMa = donHangService.findByMaDonHang(maDonHangCD);
+            httpSession.setAttribute("donHangHienTai", donHangByMa);
+            return "redirect:/admin/ban-hang/hoa-don/" + maDonHangCD;
+        } else {
+            redirectAttributes.addFlashAttribute("messageThatBai", "Bạn đã tạo tối đa hoá đơn chờ. ");
+            return "redirect:/admin/ban-hang";
+        }
     }
 
     public String generateMaHD() {
