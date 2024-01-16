@@ -46,23 +46,33 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
                         Bán hàng
                     </a>
-
                     <a class="nav-link collapsed" id="categories" th:href="@{/admin/categories}">
                         <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
                         Danh mục
                     </a>
-                    <a class="nav-link collapsed" id="products" th:href="@{/admin/products}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
-                        Sản phẩm
-                    </a>
-                    <a class="nav-link collapsed" id="productDetails" th:href="@{/admin/productDetails}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
-                        Chi tiết sản phẩm
-                    </a>
-                    <a class="nav-link collapsed" id="seri" th:href="@{/admin/ma-dinh-danh}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
-                        Mã định danh
-                    </a>
+                    <div class="nav-link collapsed accordion accordion-flush collapsed" id="accordionFlushExample1">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="listsanpham1">
+                                <button class="accordion-button collapsed" style="background: rgb(30, 50, 92); color: white;" type="button" data-bs-toggle="collapse" data-bs-target="#listsanpham" aria-expanded="false" aria-controls="listsanpham">
+                                    sản phẩm
+                                </button>
+                            </h2>
+                            <div id="listsanpham" class="collapse" style="background: rgb(30, 50, 92); color: white;" aria-labelledby="listsanpham1" data-bs-parent="#accordionFlushExample1">
+                                <a class="nav-link collapsed" id="products" th:href="@{/admin/products}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
+                                    Sản phẩm
+                                </a>
+                                <a class="nav-link collapsed" id="productDetails" th:href="@{/admin/productDetails}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
+                                    Chi tiết sản phẩm
+                                </a>
+                                <a class="nav-link collapsed" id="seri" th:href="@{/admin/ma-dinh-danh}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
+                                    Mã định danh
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <a class="nav-link collapsed" id="users" th:href="@{/admin/users}">
                         <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
                         Nhân viên
@@ -82,45 +92,55 @@
                     <a class="nav-link collapsed" id="discounts" th:href="@{/admin/discounts}">
                         <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
                         Khuyến mại</a>
-                    <a class="nav-link collapsed" id="cautruckhuy" th:href="@{/admin/cautruckhuy}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
-                        Cấu trúc khuy
-                    </a>
-                    <a class="nav-link collapsed" id="veao" th:href="@{/admin/veao}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
-                        Ve áo</a>
-                    <a class="nav-link collapsed" id="materials" th:href="@{/admin/chatlieu}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
-                        Chất Liệu
-                    </a>
-
-                    <a class="nav-link collapsed" id="colors" th:href="@{/admin/colors}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
-                        Màu sắc
-                    </a>
-                    <a class="nav-link collapsed" id="xeta" th:href="@{/admin/xeta}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
-                        Xẻ tà
-                    </a>
-                    <a class="nav-link collapsed" id="loplot" th:href="@{/admin/loplot}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
-                        Lớp Lót</a>
-                    <a class="nav-link collapsed" id="" th:href="@{/admin/design}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
-                        Họa tiết</a>
-
-                    <a class="nav-link collapsed" id="size" th:href="@{/admin/sizes}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
-                        kích cỡ
-                    </a>
-                    <a class="nav-link collapsed" id="kieudet" th:href="@{/admin/kieudet}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
-                        Kiểu dệt</a>
-                    <a class="nav-link collapsed" id="kieutui" th:href="@{/admin/kieutui}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
-                        kiểu túi
-                    </a>
+                    <div class="nav-link collapsed accordion accordion-flush collapsed" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" style="background: rgb(30, 50, 92); color: white;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    Tài nguyên sản phẩm
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class=" collapse" style="background: rgb(30, 50, 92); color: white;" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <a class="nav-link collapsed" id="cautruckhuy" th:href="@{/admin/cautruckhuy}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
+                                    Cấu trúc khuy
+                                </a>
+                                <a class="nav-link collapsed" id="veao" th:href="@{/admin/veao}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
+                                    Ve áo</a>
+                                <a class="nav-link collapsed" id="materials" th:href="@{/admin/chatlieu}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
+                                    Chất Liệu
+                                </a>
+                                <a class="nav-link collapsed" id="colors" th:href="@{/admin/colors}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
+                                    Màu sắc
+                                </a>
+                                <a class="nav-link collapsed" id="xeta" th:href="@{/admin/xeta}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
+                                    Xẻ tà
+                                </a>
+                                <a class="nav-link collapsed" id="loplot" th:href="@{/admin/loplot}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
+                                    Lớp Lót</a>
+                                <a class="nav-link collapsed" id="" th:href="@{/admin/design}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
+                                    Họa tiết</a>
+                                <a class="nav-link collapsed" id="size" th:href="@{/admin/sizes}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
+                                    kích cỡ
+                                </a>
+                                <a class="nav-link collapsed" id="kieudet" th:href="@{/admin/kieudet}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
+                                    Kiểu dệt</a>
+                                <a class="nav-link collapsed" id="kieutui" th:href="@{/admin/kieutui}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
+                                    kiểu túi
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </nav>
     </div>

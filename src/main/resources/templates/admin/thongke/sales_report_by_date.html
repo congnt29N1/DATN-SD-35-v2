@@ -25,7 +25,7 @@
     </form>
 
     <div class="row justify-content-center">
-        <div class="col-sm-3" >
+        <div class="col-sm-2">
             <div class="card">
                 <div class="card-header">
                     <b>Tổng Doanh Thu</b>
@@ -36,10 +36,10 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <div class="card">
                 <div class="card-header">
-                    <b>Doanh Thu</b>
+                    <b>Doanh Thu Thuần</b>
                 </div>
                 <div class="card-body">
                     <span class="h3" th:id="'textTotalNetSales' + ${reportType}"></span>
@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <div class="card">
                 <div class="card-header">
                     <b>Trung bình Tổng Doanh Thu</b>
@@ -58,9 +58,18 @@
             </div>
         </div>
 
+        <div class="col-sm-2">
+            <div class="card">
+                <div class="card-header">
+                    <b>Trung bình Doanh Thu Thuần</b>
+                </div>
+                <div class="card-body">
+                    <span class="h3" th:id="'textAvgNetSales' + ${reportType}"></span>
+                </div>
+            </div>
+        </div>
 
-
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <div class="card">
                 <div class="card-header">
                     <b><span th:id="'labelTotalItems' + ${reportType}"></span></b>
@@ -74,6 +83,8 @@
 
     <div th:id="'chart_sales_by' + ${reportType}"
          class="justify-content-center mt-3"></div>
+
+
 </div>
 </body>
 </html>
