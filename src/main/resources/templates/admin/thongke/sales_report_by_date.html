@@ -3,10 +3,10 @@
 <body>
 <div th:fragment="content(reportType)" th:remove="tag">
     <div th:with="buttonClass = 'button-sales-by' + ${reportType}">
-        <button period="last_7_days" class="btn btn-primary m-1"
-                th:classappend="${buttonClass}">7 ngày trước</button>
+<!--        <button period="last_7_days" class="btn btn-primary m-1"-->
+<!--                th:classappend="${buttonClass}">7 ngày trước</button>-->
         <button period="last_28_days" class="btn btn-light m-1"
-                th:classappend="${buttonClass}">28 ngày trước</button>
+                th:classappend="${buttonClass}">30 ngày trước</button>
         <button period="last_6_months" class="btn btn-light m-1"
                 th:classappend="${buttonClass}">6 tháng trước</button>
         <button period="last_year" class="btn btn-light m-1"
