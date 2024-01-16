@@ -91,119 +91,14 @@
             </div>
             <div style="max-width: 99%;margin: auto;">
                 <div class="row">
+
                     <!--  Thanh toan-->
-                    <div class="col-sm-12">
-                        <h3 style="font-weight: bold">Thông tin</h3>
-                        <form th:action="@{/admin/ban-hang/khach-hang/tim-kiem}" class="form-inline m-3" method="GET">
-                            <div class="d-flex align-items-center">
-                                <input style="width: 180px; margin-right: 10px" type="search"
-                                       placeholder="Tìm kiếm số điện thoại" class="form-control" required
-                                       name="phoneNumber"/>
-                                <button style="margin-right: 10px" type="submit" id="timKiemSDT"
-                                        class="btn btn-primary ml-2">Tìm kiếm
-                                </button>
-                            </div>
-                        </form>
-                        <form th:object="${hoaDonAdminRequest}" th:action="@{/admin/ban-hang/hoa-don/tao-moi}"
-                              method="post">
-                            <div class="row thong-tin-hoa-don bg-body-tertiary p-3 rounded border border-light">
-                                <div class="col-md-6">
-                                    <label for="maHoaDon" class="form-label">Mã hóa đơn</label>
-                                    <input type="text" class="form-control" id="maHoaDon" name="maHoaDon"
-                                           th:field="*{maHoaDon}" disabled style="background-color: white">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="sdt" class="form-label">SĐT</label>
-                                    <input type="text" class="form-control" id="sdt" name="sdt" th:field="*{sdt}"
-                                           style="background-color: white">
-                                    <label id="errorMessageSDT" style="color: red; display: none;">Độ dài từ 10-11 ký tự
-                                        số!</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="ngayTao" class="form-label">Ngày tạo</label>
-                                    <input type="date" class="form-control" id="ngayTao" name="ngayTao" disabled
-                                           th:field="*{ngayTao}" style="background-color: white">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="ten" class="form-label">Tên khách hàng</label>
-                                    <input type="text" class="form-control" id="ten" name="tenKhachHang"
-                                           th:field="*{tenKhachHang}" style="background-color: white">
-                                    <label style="color: red" th:text="${messageTrungSDT}"></label>
-                                    <label id="errorMessageTen" style="color: red; display: none;">Độ dài ít nhất 5 ký
-                                        tự chuỗi!</label>
-                                </div>
+                    <div class="col-sm-8">
 
-                                <div class="col-md-6">
-                                    <label for="thanhTien" class="form-label">Thành tiền</label>
-                                    <label class="form-control" id="thanhTien"
-                                           th:text="${#numbers.formatDecimal(thanhTien, 0, 'COMMA', 0, 'POINT')} +' đ'"
-                                           disabled style="color: red;"></label>
-                                </div>
-                                <div class="col-md-6" style="margin-top: 30px">
-                                    <button class="btn btn-primary"
-                                            type="submit"
-                                            id="tao-moi-don-hang"
-                                    >Tạo mới
-                                    </button>
-                                    <!-- Thêm điều kiện kiểm tra số lượng trong listHoaDon -->
-                                    <!--                                    <button class="btn btn-primary"-->
-                                    <!--                                            type="submit"-->
-                                    <!--                                            id="tao-moi-don-hang"-->
-                                    <!--                                            th:disabled="${#lists.size(listHoaDon) > 2}"-->
-                                    <!--                                    >Tạo mới</button>-->
-
-                                    <button class="btn btn-success" id="thanhToan"
-                                            data-bs-toggle="modal"
-                                            type="button"
-                                            data-bs-target="#thanhToanHoaDon"
-                                    >Thanh toán
-                                    </button>
-                                    <button class="btn btn-dark" id="huyDon"
-                                            data-bs-toggle="modal"
-                                            type="button"
-                                            data-bs-target="#huyHoaDon"
-                                    >Hủy
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        <h3 style="font-weight: bold">Hoá đơn chờ</h3>
-                        <div class="row thong-tin-hoa-don" style="height: 200px; overflow: scroll">
-                            <table class="table table-fixed">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Mã hóa đơn</th>
-                                    <th scope="col">Tên khách hàng</th>
-                                    <th scope="col">Ngày tạo</th>
-                                    <!--                                    <th scope="col">Trạng thái</th>-->
-                                    <th scope="col">Chức năng</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="hd : ${listHoaDon}">
-                                    <td th:text="${hd.maDonHang}"></td>
-                                    <td th:text="${hd.khachHang.tenKhachHang}"></td>
-
-                                    <td th:text="${hd.ngayTao}"></td>
-                                    <!--                                    <td th:text="${hd.trangThaiDonHang == 0 ? 'Chưa thanh toán' : ''}"></td>-->
-                                    <td>
-                                        <form th:action="@{/admin/ban-hang/hoa-don/{maDonHang}(maDonHang=${hd.maDonHang})}"
-                                              th:method="GET">
-                                            <button class="btn btn-primary">Chọn</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
                         <!--  Ban hang-->
                         <h3 style="font-weight: bold">Chi tiết hoá đơn</h3>
                         <div class="row gio-hang bg-body-tertiary p-3 rounded border border-light"
-                             style="height: 300px; overflow: scroll">
+                             style="height: 250px; overflow: scroll">
                             <table class="table">
                                 <thead>
                                 <tr>
@@ -257,105 +152,198 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <!--  San pham-->
-                            <div class="row gio-hang bg-body-tertiary p-3 rounded border border-light">
-                                <h3 style="font-weight: bold">Sản phẩm</h3>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <form th:action="@{/admin/ban-hang/tim-kiem}" method="GET">
-                                            <div class="row">
-                                                <input class="col-sm-8" type="text" name="searchSP"
-                                                       placeholder="Mã , tên sản phẩm" style="width: 300px">
-                                                <div class="col-sm-4">
-                                                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-                                                    <button type="submit" class="btn btn-secondary">Clear</button>
-                                                </div>
+                        <div class="row gio-hang bg-body-tertiary p-3 rounded border border-light"
+                             style="height: 400px; overflow: scroll">
+                            <h3 style="font-weight: bold">Sản phẩm</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form th:action="@{/admin/ban-hang/tim-kiem}" method="GET">
+                                        <div class="row">
+                                            <input class="col-sm-8" type="text" name="searchSP"
+                                                   placeholder="Mã , tên sản phẩm" style="width: 300px">
+                                            <div class="col-sm-4">
+                                                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                                                <button type="submit" class="btn btn-secondary">Clear</button>
                                             </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                    </form>
                                 </div>
+                            </div>
 
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Mã sản phẩm</th>
-                                        <th scope="col">Tên sản phẩm</th>
-                                        <th scope="col">Đơn giá</th>
-                                        <th scope="col">Số lượng</th>
-                                        <th scope="col">Màu sắc</th>
-                                        <th scope="col">Chất liệu</th>
-                                        <th scope="col">Kích cỡ</th>
-                                        <th scope="col">Cấu trúc khuy</th>
-                                        <th scope="col">Hoạ tiết</th>
-                                        <th scope="col">Kiểu túi</th>
-                                        <th scope="col">Kiểu dệt</th>
-                                        <th scope="col">Ve áo</th>
-                                        <th scope="col">Xẻ tà</th>
-                                        <th scope="col">Giảm giá</th>
-                                        <th scope="col">Chức năng</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr th:each="sp : ${listSanPham}">
-                                        <td th:text="${sp.maChiTietSanPham}"></td>
-                                        <td th:text="${sp.sanPham.tenSanPham}"></td>
-                                        <td th:text="${#numbers.formatDecimal(sp.giaSanPham, 0, 'COMMA', 0, 'POINT')} +'đ'"></td>
-                                        <td th:text="${sp.soLuong}"></td>
-                                        <td th:text="${sp.mauSac.tenMauSac}"></td>
-                                        <td th:text="${sp.chatLieu.tenChatLieu}"></td>
-                                        <td th:text="${sp.kichCo.tenKichCo}"></td>
-                                        <td th:text="${sp.cauTrucKhuy.tenCauTrucKhuy}"></td>
-                                        <td th:text="${sp.hoaTiet.tenHoaTiet}"></td>
-                                        <td th:text="${sp.kieuTui.tenKieuTui}"></td>
-                                        <td th:text="${sp.kieuDet.tenKieuDet}"></td>
-                                        <td th:text="${sp.veAo.tenVeAo}"></td>
-                                        <td th:text="${sp.xeTa.tenXeTa}"></td>
-                                        <td th:text="${sp.khuyenMai == null || sp.khuyenMai.enabled == false ? '' : sp.khuyenMai.chietKhau}"></td>
-                                        <td>
-                                            <button class="btn btn-primary them-san-pham"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#soLuongSanPham"
-                                                    th:data-ma-ctsp="${sp.maChiTietSanPham}"
-                                                    th:data-so-luong-ton="${sp.soLuong}"
-                                            >Thêm
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <div th:if="${totalPages > 1}">
-                                    <nav>
-                                        <ul class="pagination justify-content-center">
-                                            <li th:class="${currentPage > 1 ?'page-item' : 'page-item disabled'}">
-                                                <a th:replace="admin/fragment/fragments::page_spct_link(1, 'Trang Đầu')"></a>
-                                            </li>
-                                            <li th:class="${currentPage > 1 ?'page-item' : 'page-item disabled'}">
-                                                <a th:replace="admin/fragment/fragments::page_spct_link(${currentPage - 1}, Trước)"></a>
-                                            </li>
+                            <table class="table"style="width: 100%">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Mã sản phẩm</th>
+                                    <th scope="col">Tên sản phẩm</th>
+                                    <th scope="col">Đơn giá</th>
+                                    <th scope="col">Số lượng</th>
+                                    <th scope="col">Màu sắc</th>
+                                    <th scope="col">Chất liệu</th>
+                                    <th scope="col">Kích cỡ</th>
+                                    <th scope="col">Cấu trúc khuy</th>
+                                    <th scope="col">Hoạ tiết</th>
+                                    <th scope="col">Kiểu túi</th>
+                                    <th scope="col">Kiểu dệt</th>
+                                    <th scope="col">Ve áo</th>
+                                    <th scope="col">Xẻ tà</th>
+                                    <th scope="col">Giảm giá</th>
+                                    <th scope="col">Chức năng</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="sp : ${listSanPham}">
+                                    <td th:text="${sp.maChiTietSanPham}"></td>
+                                    <td th:text="${sp.sanPham.tenSanPham}"></td>
+                                    <td th:text="${#numbers.formatDecimal(sp.giaSanPham, 0, 'COMMA', 0, 'POINT')} +'đ'"></td>
+                                    <td th:text="${sp.soLuong}"></td>
+                                    <td th:text="${sp.mauSac.tenMauSac}"></td>
+                                    <td th:text="${sp.chatLieu.tenChatLieu}"></td>
+                                    <td th:text="${sp.kichCo.tenKichCo}"></td>
+                                    <td th:text="${sp.cauTrucKhuy.tenCauTrucKhuy}"></td>
+                                    <td th:text="${sp.hoaTiet.tenHoaTiet}"></td>
+                                    <td th:text="${sp.kieuTui.tenKieuTui}"></td>
+                                    <td th:text="${sp.kieuDet.tenKieuDet}"></td>
+                                    <td th:text="${sp.veAo.tenVeAo}"></td>
+                                    <td th:text="${sp.xeTa.tenXeTa}"></td>
+                                    <td th:text="${sp.khuyenMai == null || sp.khuyenMai.enabled == false ? '' : sp.khuyenMai.chietKhau}"></td>
+                                    <td>
+                                        <button class="btn btn-primary them-san-pham"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#soLuongSanPham"
+                                                th:data-ma-ctsp="${sp.maChiTietSanPham}"
+                                                th:data-so-luong-ton="${sp.soLuong}"
+                                        >Thêm
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div th:if="${totalPages > 1}">
+                                <nav>
+                                    <ul class="pagination justify-content-center">
+                                        <li th:class="${currentPage > 1 ?'page-item' : 'page-item disabled'}">
+                                            <a th:replace="admin/fragment/fragments::page_spct_link(1, 'Trang Đầu')"></a>
+                                        </li>
+                                        <li th:class="${currentPage > 1 ?'page-item' : 'page-item disabled'}">
+                                            <a th:replace="admin/fragment/fragments::page_spct_link(${currentPage - 1}, Trước)"></a>
+                                        </li>
 
-                                            <li th:class="${currentPage != i ? 'page-item': 'page-item disabled' }"
-                                                th:each="i : ${#numbers.sequence(currentPage == 1 ? currentPage : (currentPage - 1), (currentPage + 1) < totalPages ? (currentPage + 1) : totalPages )}">
-                                                <a th:replace="admin/fragment/fragments::page_spct_link(${i}, ${i})"></a>
-                                            </li>
+                                        <li th:class="${currentPage != i ? 'page-item': 'page-item disabled' }"
+                                            th:each="i : ${#numbers.sequence(currentPage == 1 ? currentPage : (currentPage - 1), (currentPage + 1) < totalPages ? (currentPage + 1) : totalPages )}">
+                                            <a th:replace="admin/fragment/fragments::page_spct_link(${i}, ${i})"></a>
+                                        </li>
 
-                                            <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-                                                <a th:replace="admin/fragment/fragments::page_spct_link(${currentPage + 1}, Sau)"></a>
-                                            </li>
-                                            <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-                                                <a th:replace="admin/fragment/fragments::page_spct_link(${totalPages}, 'Trang Cuối')"></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
+                                        <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                                            <a th:replace="admin/fragment/fragments::page_spct_link(${currentPage + 1}, Sau)"></a>
+                                        </li>
+                                        <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                                            <a th:replace="admin/fragment/fragments::page_spct_link(${totalPages}, 'Trang Cuối')"></a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-4">
+                        <h3 style="font-weight: bold">Thông tin</h3>
+                        <form th:action="@{/admin/ban-hang/khach-hang/tim-kiem}" class="form-inline m-3" method="GET">
+                            <div class="d-flex align-items-center">
+                                <input style="width: 180px; margin-right: 10px" type="search"
+                                       placeholder="Tìm kiếm số điện thoại" class="form-control" required
+                                       name="phoneNumber"/>
+                                <button style="margin-right: 10px" type="submit" id="timKiemSDT"
+                                        class="btn btn-primary ml-2">Tìm kiếm
+                                </button>
+                            </div>
+                        </form>
+                        <form th:object="${hoaDonAdminRequest}" th:action="@{/admin/ban-hang/hoa-don/tao-moi}"
+                              method="post">
+                            <div class="row thong-tin-hoa-don bg-body-tertiary p-3 rounded border border-light">
+                                <div class="col-md-6">
+                                    <label for="maHoaDon" class="form-label">Mã hóa đơn</label>
+                                    <input type="text" class="form-control" id="maHoaDon" name="maHoaDon"
+                                           th:field="*{maHoaDon}" disabled style="background-color: white">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="sdt" class="form-label">SĐT</label>
+                                    <input type="text" class="form-control" id="sdt" name="sdt" th:field="*{sdt}"
+                                           style="background-color: white">
+                                    <label id="errorMessageSDT" style="color: red; display: none;">Độ dài từ 10-11 ký tự
+                                        số!</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="ngayTao" class="form-label">Ngày tạo</label>
+                                    <input type="date" class="form-control" id="ngayTao" name="ngayTao" disabled
+                                           th:field="*{ngayTao}" style="background-color: white">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="ten" class="form-label">Tên khách hàng</label>
+                                    <input type="text" class="form-control" id="ten" name="tenKhachHang"
+                                           th:field="*{tenKhachHang}" style="background-color: white">
+                                    <label style="color: red" th:text="${messageTrungSDT}"></label>
+                                    <label id="errorMessageTen" style="color: red; display: none;">Độ dài ít nhất 5 ký
+                                        tự chuỗi!</label>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="thanhTien" class="form-label">Thành tiền</label>
+                                    <label class="form-control" id="thanhTien"
+                                           th:text="${#numbers.formatDecimal(thanhTien, 0, 'COMMA', 0, 'POINT')} +' đ'"
+                                           disabled style="color: red;"></label>
+                                </div>
+                                <div class="col-md-12" style="margin-top: 30px">
+                                    <button class="btn btn-primary"
+                                            type="submit"
+                                            id="tao-moi-don-hang"
+                                    >Tạo mới
+                                    </button>
+                                    <button class="btn btn-success" id="thanhToan"
+                                            data-bs-toggle="modal"
+                                            type="button"
+                                            data-bs-target="#thanhToanHoaDon"
+                                    >Thanh toán
+                                    </button>
+                                    <button class="btn btn-dark" id="huyDon"
+                                            data-bs-toggle="modal"
+                                            type="button"
+                                            data-bs-target="#huyHoaDon"
+                                    >Hủy
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <h3 style="font-weight: bold">Hoá đơn chờ</h3>
+                        <div class="row thong-tin-hoa-don" style="height: 200px; overflow: scroll">
+                            <table class="table table-fixed">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Mã hóa đơn</th>
+                                    <th scope="col">Tên khách hàng</th>
+                                    <th scope="col">Ngày tạo</th>
+                                    <!--                                    <th scope="col">Trạng thái</th>-->
+                                    <th scope="col">Chức năng</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="hd : ${listHoaDon}">
+                                    <td th:text="${hd.maDonHang}"></td>
+                                    <td th:text="${hd.khachHang.tenKhachHang}"></td>
+
+                                    <td th:text="${hd.ngayTao}"></td>
+                                    <!--                                    <td th:text="${hd.trangThaiDonHang == 0 ? 'Chưa thanh toán' : ''}"></td>-->
+                                    <td>
+                                        <form th:action="@{/admin/ban-hang/hoa-don/{maDonHang}(maDonHang=${hd.maDonHang})}"
+                                              th:method="GET">
+                                            <button class="btn btn-primary">Chọn</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
                 </div>
-            </div>
         </section>
         <!-- MAIN-CONTENT-SECTION END -->
 
