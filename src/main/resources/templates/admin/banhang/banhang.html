@@ -11,13 +11,14 @@
         box-sizing: border-box;
     }
 
-    .thong-tin-hoa-don>div{
+    .thong-tin-hoa-don > div {
         padding-bottom: 5px;
     }
 
     .nav-item:hover .nav-link {
         font-weight: bold;
     }
+
     .tracking nav ul li a {
         color: #050505;
         display: block;
@@ -34,17 +35,21 @@
         width: 16%;
 
     }
+
     .tracking nav ul li a:hover {
         color: #FF4F4F;
     }
+
     .tracking nav ul li a:active {
         color: #FF4F4F;
         border-bottom: 2px solid #FF4F4F;
     }
-    .tracking nav ul .active{
+
+    .tracking nav ul .active {
         border-bottom: 2px solid #FF4F4F;
     }
-    .tracking nav ul .active a{
+
+    .tracking nav ul .active a {
         color: #FF4F4F;
     }
 
@@ -91,58 +96,74 @@
                         <h3 style="font-weight: bold">Thông tin</h3>
                         <form th:action="@{/admin/ban-hang/khach-hang/tim-kiem}" class="form-inline m-3" method="GET">
                             <div class="d-flex align-items-center">
-                                <input style="width: 180px; margin-right: 10px" type="search" placeholder="Tìm kiếm số điện thoại" class="form-control" required name="phoneNumber" />
-                                <button style="margin-right: 10px" type="submit" id="timKiemSDT" class="btn btn-primary ml-2">Tìm kiếm</button>
+                                <input style="width: 180px; margin-right: 10px" type="search"
+                                       placeholder="Tìm kiếm số điện thoại" class="form-control" required
+                                       name="phoneNumber"/>
+                                <button style="margin-right: 10px" type="submit" id="timKiemSDT"
+                                        class="btn btn-primary ml-2">Tìm kiếm
+                                </button>
                             </div>
                         </form>
-                        <form th:object="${hoaDonAdminRequest}" th:action="@{/admin/ban-hang/hoa-don/tao-moi}" method="post">
+                        <form th:object="${hoaDonAdminRequest}" th:action="@{/admin/ban-hang/hoa-don/tao-moi}"
+                              method="post">
                             <div class="row thong-tin-hoa-don bg-body-tertiary p-3 rounded border border-light">
                                 <div class="col-md-6">
                                     <label for="maHoaDon" class="form-label">Mã hóa đơn</label>
-                                    <input type="text" class="form-control" id="maHoaDon" name="maHoaDon" th:field="*{maHoaDon}" disabled style="background-color: white">
+                                    <input type="text" class="form-control" id="maHoaDon" name="maHoaDon"
+                                           th:field="*{maHoaDon}" disabled style="background-color: white">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="sdt" class="form-label">SĐT</label>
-                                    <input type="text" class="form-control" id="sdt" name="sdt" th:field="*{sdt}" style="background-color: white">
-                                    <label id="errorMessageSDT" style="color: red; display: none;">Độ dài từ 10-11 ký tự số!</label>
+                                    <input type="text" class="form-control" id="sdt" name="sdt" th:field="*{sdt}"
+                                           style="background-color: white">
+                                    <label id="errorMessageSDT" style="color: red; display: none;">Độ dài từ 10-11 ký tự
+                                        số!</label>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="ngayTao" class="form-label">Ngày tạo</label>
-                                    <input type="date" class="form-control" id="ngayTao" name="ngayTao" disabled th:field="*{ngayTao}" style="background-color: white">
+                                    <input type="date" class="form-control" id="ngayTao" name="ngayTao" disabled
+                                           th:field="*{ngayTao}" style="background-color: white">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="ten" class="form-label">Tên khách hàng</label>
-                                    <input type="text" class="form-control" id="ten" name="tenKhachHang" th:field="*{tenKhachHang}" style="background-color: white">
+                                    <input type="text" class="form-control" id="ten" name="tenKhachHang"
+                                           th:field="*{tenKhachHang}" style="background-color: white">
                                     <label style="color: red" th:text="${messageTrungSDT}"></label>
-                                    <label id="errorMessageTen" style="color: red; display: none;">Độ dài ít nhất 5 ký tự chuỗi!</label>
+                                    <label id="errorMessageTen" style="color: red; display: none;">Độ dài ít nhất 5 ký
+                                        tự chuỗi!</label>
                                 </div>
 
-                                <div class="col-md-6" >
+                                <div class="col-md-6">
                                     <label for="thanhTien" class="form-label">Thành tiền</label>
-                                    <label class="form-control" id="thanhTien" th:text="${#numbers.formatDecimal(thanhTien, 0, 'COMMA', 0, 'POINT')} +' đ'" disabled style="color: red;"></label>
+                                    <label class="form-control" id="thanhTien"
+                                           th:text="${#numbers.formatDecimal(thanhTien, 0, 'COMMA', 0, 'POINT')} +' đ'"
+                                           disabled style="color: red;"></label>
                                 </div>
                                 <div class="col-md-6" style="margin-top: 30px">
-<!--                                    <button class="btn btn-primary"-->
-<!--                                            type="submit"-->
-<!--                                            id="tao-moi-don-hang"-->
-<!--                                    >Tạo mới</button>-->
-                                    <!-- Thêm điều kiện kiểm tra số lượng trong listHoaDon -->
                                     <button class="btn btn-primary"
                                             type="submit"
                                             id="tao-moi-don-hang"
-                                            th:disabled="${#lists.size(listHoaDon) > 2}"
-                                    >Tạo mới</button>
+                                    >Tạo mới
+                                    </button>
+                                    <!-- Thêm điều kiện kiểm tra số lượng trong listHoaDon -->
+                                    <!--                                    <button class="btn btn-primary"-->
+                                    <!--                                            type="submit"-->
+                                    <!--                                            id="tao-moi-don-hang"-->
+                                    <!--                                            th:disabled="${#lists.size(listHoaDon) > 2}"-->
+                                    <!--                                    >Tạo mới</button>-->
 
                                     <button class="btn btn-success" id="thanhToan"
                                             data-bs-toggle="modal"
                                             type="button"
                                             data-bs-target="#thanhToanHoaDon"
-                                    >Thanh toán</button>
-                                    <button class="btn btn-dark"id="huyDon"
+                                    >Thanh toán
+                                    </button>
+                                    <button class="btn btn-dark" id="huyDon"
                                             data-bs-toggle="modal"
                                             type="button"
                                             data-bs-target="#huyHoaDon"
-                                    >Hủy</button>
+                                    >Hủy
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -154,7 +175,7 @@
                                     <th scope="col">Mã hóa đơn</th>
                                     <th scope="col">Tên khách hàng</th>
                                     <th scope="col">Ngày tạo</th>
-<!--                                    <th scope="col">Trạng thái</th>-->
+                                    <!--                                    <th scope="col">Trạng thái</th>-->
                                     <th scope="col">Chức năng</th>
                                 </tr>
                                 </thead>
@@ -164,9 +185,10 @@
                                     <td th:text="${hd.khachHang.tenKhachHang}"></td>
 
                                     <td th:text="${hd.ngayTao}"></td>
-<!--                                    <td th:text="${hd.trangThaiDonHang == 0 ? 'Chưa thanh toán' : ''}"></td>-->
+                                    <!--                                    <td th:text="${hd.trangThaiDonHang == 0 ? 'Chưa thanh toán' : ''}"></td>-->
                                     <td>
-                                        <form th:action="@{/admin/ban-hang/hoa-don/{maDonHang}(maDonHang=${hd.maDonHang})}" th:method="GET">
+                                        <form th:action="@{/admin/ban-hang/hoa-don/{maDonHang}(maDonHang=${hd.maDonHang})}"
+                                              th:method="GET">
                                             <button class="btn btn-primary">Chọn</button>
                                         </form>
                                     </td>
@@ -180,7 +202,8 @@
                     <div class="col-sm-12">
                         <!--  Ban hang-->
                         <h3 style="font-weight: bold">Chi tiết hoá đơn</h3>
-                        <div class="row gio-hang bg-body-tertiary p-3 rounded border border-light" style="height: 300px; overflow: scroll">
+                        <div class="row gio-hang bg-body-tertiary p-3 rounded border border-light"
+                             style="height: 300px; overflow: scroll">
                             <table class="table">
                                 <thead>
                                 <tr>
@@ -234,101 +257,103 @@
                                 </tbody>
                             </table>
                         </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <!--  San pham-->
-                        <div class="row gio-hang bg-body-tertiary p-3 rounded border border-light">
-                            <h3 style="font-weight: bold">Sản phẩm</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!--  San pham-->
+                            <div class="row gio-hang bg-body-tertiary p-3 rounded border border-light">
+                                <h3 style="font-weight: bold">Sản phẩm</h3>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form th:action="@{/admin/ban-hang/tim-kiem}" method="GET">
-                                        <div class="row">
-                                            <input class="col-sm-8" type="text" name="searchSP" placeholder="Mã , tên sản phẩm" style="width: 300px">
-                                            <div class="col-sm-4">
-                                                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-                                                <button type="submit" class="btn btn-secondary">Clear</button>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form th:action="@{/admin/ban-hang/tim-kiem}" method="GET">
+                                            <div class="row">
+                                                <input class="col-sm-8" type="text" name="searchSP"
+                                                       placeholder="Mã , tên sản phẩm" style="width: 300px">
+                                                <div class="col-sm-4">
+                                                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                                                    <button type="submit" class="btn btn-secondary">Clear</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Mã sản phẩm</th>
-                                    <th scope="col">Tên sản phẩm</th>
-                                    <th scope="col">Đơn giá</th>
-                                    <th scope="col">Số lượng</th>
-                                    <th scope="col">Màu sắc</th>
-                                    <th scope="col">Chất liệu</th>
-                                    <th scope="col">Kích cỡ</th>
-                                    <th scope="col">Cấu trúc khuy</th>
-                                    <th scope="col">Hoạ tiết</th>
-                                    <th scope="col">Kiểu túi</th>
-                                    <th scope="col">Kiểu dệt</th>
-                                    <th scope="col">Ve áo</th>
-                                    <th scope="col">Xẻ tà</th>
-                                    <th scope="col">Giảm giá</th>
-                                    <th scope="col">Chức năng</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="sp : ${listSanPham}">
-                                    <td th:text="${sp.maChiTietSanPham}"></td>
-                                    <td th:text="${sp.sanPham.tenSanPham}"></td>
-                                    <td th:text="${#numbers.formatDecimal(sp.giaSanPham, 0, 'COMMA', 0, 'POINT')} +'đ'"></td>
-                                    <td th:text="${sp.soLuong}"></td>
-                                    <td th:text="${sp.mauSac.tenMauSac}"></td>
-                                    <td th:text="${sp.chatLieu.tenChatLieu}"></td>
-                                    <td th:text="${sp.kichCo.tenKichCo}"></td>
-                                    <td th:text="${sp.cauTrucKhuy.tenCauTrucKhuy}"></td>
-                                    <td th:text="${sp.hoaTiet.tenHoaTiet}"></td>
-                                    <td th:text="${sp.kieuTui.tenKieuTui}"></td>
-                                    <td th:text="${sp.kieuDet.tenKieuDet}"></td>
-                                    <td th:text="${sp.veAo.tenVeAo}"></td>
-                                    <td th:text="${sp.xeTa.tenXeTa}"></td>
-                                    <td th:text="${sp.khuyenMai == null || sp.khuyenMai.enabled == false ? '' : sp.khuyenMai.chietKhau}"></td>
-                                    <td>
-                                        <button class="btn btn-primary them-san-pham"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#soLuongSanPham"
-                                                th:data-ma-ctsp="${sp.maChiTietSanPham}"
-                                                th:data-so-luong-ton="${sp.soLuong}"
-                                        >Thêm</button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div th:if="${totalPages > 1}">
-                                <nav>
-                                    <ul class="pagination justify-content-center">
-                                        <li th:class="${currentPage > 1 ?'page-item' : 'page-item disabled'}">
-                                            <a th:replace="admin/fragment/fragments::page_spct_link(1, 'Trang Đầu')" ></a>
-                                        </li>
-                                        <li th:class="${currentPage > 1 ?'page-item' : 'page-item disabled'}">
-                                            <a th:replace="admin/fragment/fragments::page_spct_link(${currentPage - 1}, Trước)"></a>
-                                        </li>
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Mã sản phẩm</th>
+                                        <th scope="col">Tên sản phẩm</th>
+                                        <th scope="col">Đơn giá</th>
+                                        <th scope="col">Số lượng</th>
+                                        <th scope="col">Màu sắc</th>
+                                        <th scope="col">Chất liệu</th>
+                                        <th scope="col">Kích cỡ</th>
+                                        <th scope="col">Cấu trúc khuy</th>
+                                        <th scope="col">Hoạ tiết</th>
+                                        <th scope="col">Kiểu túi</th>
+                                        <th scope="col">Kiểu dệt</th>
+                                        <th scope="col">Ve áo</th>
+                                        <th scope="col">Xẻ tà</th>
+                                        <th scope="col">Giảm giá</th>
+                                        <th scope="col">Chức năng</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="sp : ${listSanPham}">
+                                        <td th:text="${sp.maChiTietSanPham}"></td>
+                                        <td th:text="${sp.sanPham.tenSanPham}"></td>
+                                        <td th:text="${#numbers.formatDecimal(sp.giaSanPham, 0, 'COMMA', 0, 'POINT')} +'đ'"></td>
+                                        <td th:text="${sp.soLuong}"></td>
+                                        <td th:text="${sp.mauSac.tenMauSac}"></td>
+                                        <td th:text="${sp.chatLieu.tenChatLieu}"></td>
+                                        <td th:text="${sp.kichCo.tenKichCo}"></td>
+                                        <td th:text="${sp.cauTrucKhuy.tenCauTrucKhuy}"></td>
+                                        <td th:text="${sp.hoaTiet.tenHoaTiet}"></td>
+                                        <td th:text="${sp.kieuTui.tenKieuTui}"></td>
+                                        <td th:text="${sp.kieuDet.tenKieuDet}"></td>
+                                        <td th:text="${sp.veAo.tenVeAo}"></td>
+                                        <td th:text="${sp.xeTa.tenXeTa}"></td>
+                                        <td th:text="${sp.khuyenMai == null || sp.khuyenMai.enabled == false ? '' : sp.khuyenMai.chietKhau}"></td>
+                                        <td>
+                                            <button class="btn btn-primary them-san-pham"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#soLuongSanPham"
+                                                    th:data-ma-ctsp="${sp.maChiTietSanPham}"
+                                                    th:data-so-luong-ton="${sp.soLuong}"
+                                            >Thêm
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div th:if="${totalPages > 1}">
+                                    <nav>
+                                        <ul class="pagination justify-content-center">
+                                            <li th:class="${currentPage > 1 ?'page-item' : 'page-item disabled'}">
+                                                <a th:replace="admin/fragment/fragments::page_spct_link(1, 'Trang Đầu')"></a>
+                                            </li>
+                                            <li th:class="${currentPage > 1 ?'page-item' : 'page-item disabled'}">
+                                                <a th:replace="admin/fragment/fragments::page_spct_link(${currentPage - 1}, Trước)"></a>
+                                            </li>
 
-                                        <li th:class="${currentPage != i ? 'page-item': 'page-item disabled' }"
-                                            th:each="i : ${#numbers.sequence(currentPage == 1 ? currentPage : (currentPage - 1), (currentPage + 1) < totalPages ? (currentPage + 1) : totalPages )}">
-                                            <a th:replace="admin/fragment/fragments::page_spct_link(${i}, ${i})"></a>
-                                        </li>
+                                            <li th:class="${currentPage != i ? 'page-item': 'page-item disabled' }"
+                                                th:each="i : ${#numbers.sequence(currentPage == 1 ? currentPage : (currentPage - 1), (currentPage + 1) < totalPages ? (currentPage + 1) : totalPages )}">
+                                                <a th:replace="admin/fragment/fragments::page_spct_link(${i}, ${i})"></a>
+                                            </li>
 
-                                        <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-                                            <a th:replace="admin/fragment/fragments::page_spct_link(${currentPage + 1}, Sau)"></a>
-                                        </li>
-                                        <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-                                            <a th:replace="admin/fragment/fragments::page_spct_link(${totalPages}, 'Trang Cuối')"></a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                            <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                                                <a th:replace="admin/fragment/fragments::page_spct_link(${currentPage + 1}, Sau)"></a>
+                                            </li>
+                                            <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                                                <a th:replace="admin/fragment/fragments::page_spct_link(${totalPages}, 'Trang Cuối')"></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -359,7 +384,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" id="themSoLuong" class="btn btn-outline-danger" data-bs-dismiss="modal">Xác nhận</button>
+                <button type="button" id="themSoLuong" class="btn btn-outline-danger" data-bs-dismiss="modal">Xác nhận
+                </button>
             </div>
         </div>
     </div>
@@ -376,7 +402,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" id="xoaSanPhamHDCT" class="btn btn-outline-danger" data-bs-dismiss="modal">Xác nhận</button>
+                <button type="button" id="xoaSanPhamHDCT" class="btn btn-outline-danger" data-bs-dismiss="modal">Xác
+                    nhận
+                </button>
             </div>
         </div>
     </div>
@@ -403,7 +431,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" id="capNhatSoLuong" class="btn btn-outline-danger" data-bs-dismiss="modal">Xác nhận</button>
+                <button type="button" id="capNhatSoLuong" class="btn btn-outline-danger" data-bs-dismiss="modal">Xác
+                    nhận
+                </button>
             </div>
         </div>
     </div>
@@ -411,7 +441,8 @@
 <!--   add san pham end     -->
 
 <!--  thanhToan hoa don-->
-<div class="modal fade modal-lg" id="thanhToanHoaDon" tabindex="-1" aria-labelledby="thanhToanHoaDonLabel" aria-hidden="true">
+<div class="modal fade modal-lg" id="thanhToanHoaDon" tabindex="-1" aria-labelledby="thanhToanHoaDonLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -441,22 +472,29 @@
                         <td th:text="${cat.chiTietSanPham.mauSac.tenMauSac}"></td>
                         <td>x[[${cat.soLuong}]]</td>
                         <td th:text="${#numbers.formatDecimal(cat.giaBan, 0, 'COMMA', 0, 'POINT')} +
-                         ' đ'">[[${cat.giaBan}]]đ</td>
+                         ' đ'">[[${cat.giaBan}]]đ
+                        </td>
                         <td th:text="${#numbers.formatDecimal(cat.giaBan*cat.soLuong, 0, 'COMMA', 0, 'POINT')} +
-                         ' đ'">[[${cat.giaBan*cat.soLuong}]]</td>
+                         ' đ'">[[${cat.giaBan*cat.soLuong}]]
+                        </td>
                     </tr>
                     </tbody>
                 </table>
                 <div class="row">
-                    <div class="col-md-6" style="padding-left: 10px;color:black" >Tổng tiền</div>
-                    <div class="col-md-6" style="text-align: center;color:red" th:text="${thanhTien == null ? 0 : #numbers.formatDecimal(thanhTien, 0, 'COMMA', 0, 'POINT')} + ' đ'"></div>
+                    <div class="col-md-6" style="padding-left: 10px;color:black">Tổng tiền</div>
+                    <div class="col-md-6" style="text-align: center;color:red"
+                         th:text="${thanhTien == null ? 0 : #numbers.formatDecimal(thanhTien, 0, 'COMMA', 0, 'POINT')} + ' đ'"></div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" id="xacNhanThanhToan" class="btn btn-outline-danger" data-bs-dismiss="modal">Xác nhận</button>
-                <form th:action="@{/admin/ban-hang/hoa-don/xuat-hoa-don}" th:method="GET" >
-                    <button type="submit" id="xuatHoaDon" class="btn btn-outline-danger" data-bs-dismiss="modal">Xuất hóa đơn</button>
+                <button type="button" id="xacNhanThanhToan" class="btn btn-outline-danger" data-bs-dismiss="modal">Xác
+                    nhận
+                </button>
+                <form th:action="@{/admin/ban-hang/hoa-don/xuat-hoa-don}" th:method="GET">
+                    <button type="submit" id="xuatHoaDon" class="btn btn-outline-danger" data-bs-dismiss="modal">Xuất
+                        hóa đơn
+                    </button>
                 </form>
             </div>
         </div>
@@ -473,12 +511,33 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" id="huyDonHangHienTai" class="btn btn-outline-danger" data-bs-dismiss="modal">Xác nhận</button>
+                <button type="button" id="huyDonHangHienTai" class="btn btn-outline-danger" data-bs-dismiss="modal">Xác
+                    nhận
+                </button>
             </div>
         </div>
     </div>
 </div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+<!-- Thêm mã JavaScript Thymeleaf -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var messageThatBai = /*[[${messageThatBai}]]*/ null;
+
+    // Kiểm tra nếu có thông báo thất bại, hiển thị SweetAlert
+    document.addEventListener("DOMContentLoaded", function () {
+        if (messageThatBai) {
+            Swal.fire({
+                title: 'Thất bại',
+                text: messageThatBai,
+                icon: 'warning'
+            });
+        }
+    });
+    /*]]>*/
+</script>
 <script>
     // var today = new Date();
     // var dd = today.getDate();
@@ -495,7 +554,7 @@
 
     // disabled khi don hang null
 
-    document.getElementById("timKiemSDT").addEventListener('click',function () {
+    document.getElementById("timKiemSDT").addEventListener('click', function () {
         if (document.getElementById('sdt').value.trim() == '') {
             document.getElementById('sdt').disabled = false;
             document.getElementById('ten').disabled = false;
@@ -520,7 +579,7 @@
         var btn_huydon = document.getElementById("huyDon");
         var btn_search_by_phoneNumber = document.getElementById("timKiemSDT");
         // if not exist =>> disabled them, thanh toan, huy | enabled tao moi
-        if (isExist_MaDH != ''){
+        if (isExist_MaDH != '') {
             btn_taoMoi.disabled = true;
             btn_search_by_phoneNumber.disabled = true;
 
@@ -536,7 +595,7 @@
             if (document.getElementById('sdt').value.trim() == '' ||
                 document.getElementById('ten').value.trim() == '' ||
                 sdtExist == document.getElementById('sdt').value.trim()
-            ){
+            ) {
                 btn_taoMoi.disabled = true;
             } else {
                 btn_taoMoi.disabled = false;
@@ -562,7 +621,7 @@
     var regexSDT = /^0[0-9]{9,10}$/;
     var regexTen = /^[\p{L}\s]{5,}$/u;
 
-    inputField.addEventListener('input', function() {
+    inputField.addEventListener('input', function () {
         fetch(`/admin/ban-hang/khach-hang/api/` + inputField.value.trim())
             .then(response => response.text())
             .then(data => {
@@ -575,8 +634,8 @@
                         || document.getElementById('ten').value.trim() == ''
                         || !document.getElementById('sdt').value.trim().match(regexSDT)
                         || !document.getElementById('ten').value.trim().match(regexTen)
-                    ){
-                        if (document.getElementById('sdt').value.trim() == '' || !document.getElementById('sdt').value.trim().match(regexSDT)){
+                    ) {
+                        if (document.getElementById('sdt').value.trim() == '' || !document.getElementById('sdt').value.trim().match(regexSDT)) {
                             $("#errorMessageSDT").show();
                         } else {
                             $("#errorMessageSDT").hide();
@@ -594,22 +653,22 @@
             });
     });
 
-    document.getElementById('ten').addEventListener('input', function() {
+    document.getElementById('ten').addEventListener('input', function () {
 
         if (document.getElementById('sdt').value.trim() == ''
             || document.getElementById('ten').value.trim() == ''
             || !document.getElementById('sdt').value.trim().match(regexSDT)
             || !document.getElementById('ten').value.trim().match(regexTen)
-        ){
-            if (document.getElementById('ten').value.trim() == '' || !document.getElementById('ten').value.trim().match(regexTen)){
+        ) {
+            if (document.getElementById('ten').value.trim() == '' || !document.getElementById('ten').value.trim().match(regexTen)) {
                 $("#errorMessageTen").show();
             } else {
                 $("#errorMessageTen").hide();
             }
 
             document.getElementById('tao-moi-don-hang').disabled = true;
-        }else{
-            if (sdtExist == document.getElementById('sdt').value.trim()){
+        } else {
+            if (sdtExist == document.getElementById('sdt').value.trim()) {
                 document.getElementById('tao-moi-don-hang').disabled = true;
             }
             $("#errorMessageTen").hide();
@@ -622,14 +681,14 @@
     var maCTSP;
     var soLuongTon;
 
-    $('.them-san-pham').click(function() {
+    $('.them-san-pham').click(function () {
         maCTSP = $(this).data('ma-ctsp');
         soLuongTon = $(this).data('so-luong-ton');
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Theo dõi sự thay đổi trong ô input
-        $("#soLuongThem").on("input", function() {
+        $("#soLuongThem").on("input", function () {
             var soLuongThem = document.getElementById('soLuongThem').value;
             var parttern = /^[0-9]+$/;
             // Kiểm tra giá trị
@@ -645,44 +704,44 @@
         });
     });
 
-    $('#themSoLuong').click(function() {
+    $('#themSoLuong').click(function () {
         var soLuongThem = document.getElementById('soLuongThem').value;
         $.ajax({
-            url: "/admin/ban-hang/them/"+ maCTSP + "/" + soLuongThem,
+            url: "/admin/ban-hang/them/" + maCTSP + "/" + soLuongThem,
             method: "POST",
-            success: function(response) {
+            success: function (response) {
                 $('#content').html(response);
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log("Lỗi: " + error);
             }
         });
         validateDonHang();
     });
     // erro
-    $('#xacNhanThanhToan').click(function() {
+    $('#xacNhanThanhToan').click(function () {
         $.ajax({
             url: "/admin/ban-hang/hoa-don/thanh-toan",
             method: "POST",
-            success: function(response) {
+            success: function (response) {
                 $('#content').html(response);
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log("Lỗi: " + error);
             }
         });
         validateDonHang();
     });
 
-    $('#xuatHoaDon').click(function() {
-        setTimeout(function() {
+    $('#xuatHoaDon').click(function () {
+        setTimeout(function () {
             $.ajax({
                 url: "/admin/ban-hang/hoa-don/thanh-toan",
                 method: "POST",
-                success: function(response) {
+                success: function (response) {
                     $('#content').html(response);
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.log("Lỗi: " + error);
                 }
             });
@@ -690,14 +749,14 @@
         }, 1000); // Chờ 1 giây (1000 milliseconds) trước khi gọi Ajax
     });
 
-    $('#huyDonHangHienTai').click(function() {
+    $('#huyDonHangHienTai').click(function () {
         $.ajax({
             url: "/admin/ban-hang/hoa-don/huy",
             method: "POST",
-            success: function(response) {
+            success: function (response) {
                 $('#content').html(response);
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log("Lỗi: " + error);
             }
         });
@@ -706,18 +765,18 @@
 
     // chuc nang xoa san pham tu hoa don chi tiet
     var idHDCTXoa;
-    $('.hoa-don-chi-tiet-xoa').click(function() {
+    $('.hoa-don-chi-tiet-xoa').click(function () {
         idHDCTXoa = $(this).data('id-hdct');
     });
 
-    $('#xoaSanPhamHDCT').click(function() {
+    $('#xoaSanPhamHDCT').click(function () {
         $.ajax({
-            url: "/admin/ban-hang/hoa-don-chi-tiet/"+ idHDCTXoa,
+            url: "/admin/ban-hang/hoa-don-chi-tiet/" + idHDCTXoa,
             method: "POST",
-            success: function(response) {
+            success: function (response) {
                 $('#content').html(response);
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log("Lỗi: " + error);
             }
         });
@@ -728,7 +787,7 @@
     // Lấy IDHDCT từ bảng
     var idHDCTSua;
     var soLuongMaxCoTheThem;
-    $('.hoa-don-chi-tiet-sua').click(function() {
+    $('.hoa-don-chi-tiet-sua').click(function () {
         idHDCTSua = $(this).data('id-hdct-sua');
         fetch(`/admin/ban-hang/ma-dinh-danh/api/` + idHDCTSua)
             .then(response => response.json())
@@ -743,9 +802,9 @@
             });
     });
     // validate input nếu > số lượng có thể mua thì disabled button thêm
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Theo dõi sự thay đổi trong ô input
-        $("#soLuongThemCapNhat").on("input", function() {
+        $("#soLuongThemCapNhat").on("input", function () {
             var soLuongSua = document.getElementById('soLuongThemCapNhat').value;
             var parttern = /^[0-9]+$/;
             // Kiểm tra giá trị
@@ -761,16 +820,16 @@
         });
     });
 
-    $('#capNhatSoLuong').click(function() {
+    $('#capNhatSoLuong').click(function () {
         var soLuongThemCapNhat = document.getElementById("soLuongThemCapNhat").value;
 
         $.ajax({
-            url: "/admin/ban-hang/hoa-don-chi-tiet/sua/"+ idHDCTSua+"/so-luong/" + soLuongThemCapNhat,
+            url: "/admin/ban-hang/hoa-don-chi-tiet/sua/" + idHDCTSua + "/so-luong/" + soLuongThemCapNhat,
             method: "POST",
-            success: function(response) {
+            success: function (response) {
                 $('#content').html(response);
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log("Lỗi: " + error);
             }
         });
