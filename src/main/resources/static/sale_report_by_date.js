@@ -40,7 +40,6 @@ function prepareChartDataForSalesReportByDate(responseJSON) {
     totalItems = 0;
 
     $.each(responseJSON, function(index, reportItem) {
-        console.log(responseJSON)
         data.addRows([[reportItem.identifier, reportItem.grossSales, reportItem.netSales, reportItem.ordersCount]]);
         totalGrossSales += parseFloat(reportItem.grossSales);
         totalNetSales += parseFloat(reportItem.netSales);
